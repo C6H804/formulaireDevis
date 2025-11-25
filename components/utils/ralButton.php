@@ -1,0 +1,12 @@
+<?php
+function ralSelector($id)
+{
+    ob_start();
+    ?>
+    <input type="button" id="<?php echo "ral$id"; ?>" class="btn secondaryBtn" value="Choisir une autre couleur"
+        onclick="modalRalOpen(<?php echo $id; ?>, '#radioToClear<?php echo $id; ?>')" />
+        <div><span id="ralOutput<?php echo $id; ?>"></span><span id="ralColor<?php echo $id; ?>"></span></div>
+    <?php
+    return ob_get_clean();
+}
+?>
