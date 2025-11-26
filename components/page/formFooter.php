@@ -16,7 +16,7 @@ include_once 'components/page/sondage.php';
 
 echo "
 </div>";
-echo "<input type='submit' value='Envoyer vôtre demande' />";
+echo "<input type='submit' value='Envoyer vôtre demande' name='submit' />";
 
 echo "</form>";
 ?>

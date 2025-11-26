@@ -1,0 +1,24 @@
+<script type="module" defer src="js/script.js"></script>
+<style>
+    .hidden {
+        display: none;
+    }
+
+    div.project {
+        border-bottom: solid black 2px;
+        margin: 1em 0;
+        padding: 1em 0;
+    }
+</style>
+<link rel="stylesheet" href="css/modal.css">
+
+<?php
+require_once 'components/utils/__createInput.php';
+
+require_once 'components/page/formHeader.php';
+
+require_once 'components/page/formBody.php';
+
+require_once 'components/page/formFooter.php';
+
+?>

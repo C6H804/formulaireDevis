@@ -51,6 +51,8 @@ function sanitize($data = "", $type = "general") {
 
 
 function analyzeData($data) {
+    echo "<script>console.log(" .json_encode($data) . ");</script>";
+
     if (empty($data)) {
         return "Aucune donnée reçue.";
     } else {
@@ -392,7 +394,7 @@ function getDataFromClotureAluminium($id, $data)
         "longueur" => $dimensionLongueur === null ? "" : $dimensionLongueur,
         "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur
     ];
-
+    return $result;
 }
 
 
@@ -567,13 +569,13 @@ function getDataFromMaconnerie($id, $data)
 
 function getDataFromAutre($id, $data)
 {
-    $description = sanitize($data['description' . $id] ?? null);
+    $description = sanitize($data['descriptionAutre' . $id] ?? null);
     if ($description === null || $description === "") {
         return null;
     }
     $result = [
         "type" => "Autre",
-        "description" => $description === null ? "" : $description
+        "descriptionAutre" => $description === null ? "" : $description
     ];
     return $result;
 }

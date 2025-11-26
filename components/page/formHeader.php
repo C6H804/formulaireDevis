@@ -1,6 +1,5 @@
 <?php
-
-echo "<form method='post' action='components/api/controller.php'>";
+echo "<form method='post' action='components/api/controller.php' enctype='multipart/form-data'>";
 echo "<div class='section sectionIdentite'>";
 echo "<h2>Vos informations</h2>";
 echo "<div class='sectionGroup sectionGroupName'>";

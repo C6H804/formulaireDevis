@@ -2,22 +2,37 @@
 
 function writteDevis($data)
 {
+    echo "<script>console.log(" . json_encode($data) . ");</script>";
     $nbrProjects = count($data['projects']);
     if ($nbrProjects > 0) {
-        $t = "Devis contenant " . $nbrProjects . " projet(s) : \n";
-        for ($i = 0; $i < $nbrProjects; $i++) {
-            $project = $data['projects'][$i];
-            $t .= "Projet n°" . ($i + 1) . " : " . $project['type'];
+        $t = "Devis contenant " . $nbrProjects . " projet(s) : \n";
+        $projectNumber = 1;
+        foreach ($data['projects'] as $projectId => $project) {
+            $t .= "Projet n°" . $projectNumber . " : " . $project['type'];
             $t .= getProjectData($project);
+            $t .= "\n";
+            $projectNumber++;
         }
     } else {
         $t = "Aucun projet à traiter du à une mauvaise récupération des données.";
     }
+
+    $t .= getDetailsSupplementaires($data);
+
     return $t;
 }
 
 
-
+function getDetailsSupplementaires($data) {
+    if (!isset($data['details'])) {
+        return "";
+    }
+    if ($data['details'] !== null && $data['details'] !== "") {
+        return "\nDétails supplémentaires :\n" . $data['details'] . " \n";
+    } else {
+        return "";
+    }
+}
 
 
 
@@ -46,20 +61,12 @@ function getProjectData($project) {
             return getFournitures($project);
         case "Maçonnerie":
             return getMaconnerie($project);
+        case "Autre":
+            return getAutre($project);
         default:
             return null;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 function manageColor($c) {
@@ -210,6 +217,12 @@ function getMaconnerie($p) {
         $r = substr($r, 0, -2);
         $r .= " \n";
     }
+    return $r;
+}
+
+function getAutre($p) {
+    $r = " \n";
+    $r .= "- Description : " . $p['descriptionAutre'] . " \n";
     return $r;
 }
 
