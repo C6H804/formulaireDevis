@@ -1,16 +1,16 @@
 <script type="module" defer src="js/script.js"></script>
+<link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/form.css">
 <style>
     .hidden {
         display: none;
     }
-
     div.project {
         border-bottom: solid black 2px;
         margin: 1em 0;
         padding: 1em 0;
     }
 </style>
-<link rel="stylesheet" href="css/modal.css">
 
 <?php
 require_once 'components/utils/__createInput.php';

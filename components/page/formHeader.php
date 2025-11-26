@@ -4,8 +4,8 @@ echo "<div class='section sectionIdentite'>";
 echo "<h2>Vos informations</h2>";
 echo "<div class='sectionGroup sectionGroupName'>";
 
-echo createInput("text", "name", "Votre nom", "Nom :", "", "", "required");
 echo createInput("text", "surname", "Votre prénom", "Prénom :", "", "", "required");
+echo createInput("text", "name", "Votre nom", "Nom :", "", "", "required");
 echo "</div>";
 echo "<div class='sectionGroup sectionGroupAddress'>";
 echo createInput("text", "address", "Votre adresse", "Adresse :", "", "", "required");

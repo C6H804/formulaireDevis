@@ -1,46 +1,79 @@
 # Formulaire Devis ACPORTAIL
 
+> Plateforme de génération de devis dynamique avec intégration CRM Pipedrive
+
 ## Objectifs
-- Refonte du formulaire de devis ACPORTAIL
-- Connexion avec Pipedrive pour insérer les clients et devis dans le CRM
+
+- Refonte complète du formulaire de devis ACPORTAIL
+- Intégration avec Pipedrive pour la gestion automatisée des clients et devis dans le CRM
 
 ## Fonctionnalités
-- Formulaire dynamique via JavaScript et PHP
-- Appel à l'API ACPORTAILRAL pour récupérer les couleurs RAL et finitions
-- Appel à la base de données MySQL pour récupérer les modèles des produits
-- Appel à l'API Pipedrive pour vérifier si un utilisateur existe déjà et créer un deal avec les informations du formulaire
+
+- **Formulaire dynamique** : Génération d'interface adaptative via JavaScript et PHP
+- **API ACPORTAILRAL** : Récupération automatique des couleurs RAL et finitions disponibles
+- **Base de données MySQL** : Gestion et récupération des modèles de produits
+- **Intégration Pipedrive** : Vérification de l'existence des clients et création automatique des deals
 
 ## Technologies utilisées
-- **HTML/CSS/JavaScript** : Interface utilisateur du formulaire
-- **PHP** : Gestion serveur et appels API
-- **MySQL** : Gestion des modèles de produits
-- **API ACPORTAILRAL** : Récupération des couleurs RAL et finitions
-- **API Pipedrive** : Gestion des clients et devis dans le CRM
+
+| Technologie | Utilisation |
+|-------------|-------------|
+| **HTML/CSS/JavaScript** | Interface utilisateur et interactions dynamiques |
+| **PHP** | Gestion serveur et orchestration des appels API |
+| **MySQL** | Stockage et gestion des modèles de produits |
+| **API ACPORTAILRAL** | Récupération des couleurs RAL et finitions |
+| **API Pipedrive** | Gestion des clients et devis dans le CRM |
 
 ## Fonctionnement du formulaire dynamique
 
-### Ajout d'un projet
-1. La fonction JavaScript `addProject` effectue un appel AJAX vers le script PHP `addProject` avec un type de produit
-2. Le script PHP renvoie un bloc HTML avec les champs appropriés (les noms et IDs des champs dépendent de l'ID du projet)
-3. Le JavaScript insère le bloc HTML dans le formulaire
-4. Le JavaScript met à jour le champ caché `projectIds` pour indiquer la liste des IDs des projets ajoutés
+### 1 Ajout d'un projet
 
-### Appel à une modal de sélection de couleur ou modèle
-1. Lors de pression du bouton de sélection de couleur ou modèle, une fonction JavaScript est appelée
+```mermaid
+sequenceDiagram
+    User->>JavaScript: Sélection type de produit
+    JavaScript->>PHP: Appel AJAX addProject(type)
+    PHP->>JavaScript: Retour bloc HTML
+    JavaScript->>DOM: Insertion du bloc
+    JavaScript->>DOM: Mise à jour projectIds
+```
 
-### Soumission du formulaire
-Le fichier `controller.php` gère la soumission du formulaire :
+**Processus détaillé :**
+1. La fonction JavaScript `addProject` effectue un appel AJAX vers le script PHP avec le type de produit
+2. Le script PHP génère un bloc HTML avec des champs uniques (noms et IDs basés sur l'ID du projet)
+3. Le JavaScript insère dynamiquement le bloc HTML dans le formulaire
+4. Le champ caché `projectIds` est mis à jour avec la liste des IDs des projets actifs
 
-1. **Récupération des données** : Le PHP récupère les IDs des projets depuis `projectIds` et boucle dessus pour extraire les données de chaque projet
-2. **Validation** : Vérification de la validité des données
-3. **Gestion de l'utilisateur** :
-   - Vérification dans Pipedrive si un utilisateur possède le numéro de téléphone ou l'email du formulaire
-   - Si l'utilisateur existe, il est récupéré
-   - Sinon, un nouvel utilisateur est créé dans Pipedrive
-4. **Création du devis** : Une variable `$devis` est créée et contient la description de tous les projets du formulaire
-5. **Création du deal** : Un deal est créé avec les informations du formulaire et lié à l'utilisateur
-6. **Redirection** : Le controller redirige vers `formSended.php` qui affiche un message de succès ou d'erreur
-7. **Protection** : Si la page est rafraîchie ou le bouton pressé à nouveau, renvoie vers la page d'accueil
+### 2 Sélection de couleur ou modèle
+
+```mermaid
+sequenceDiagram
+User->>JavaScript: Clic sur bouton sélection
+JavaScript->>PHP: Appel AJAX getModal(type, projectId)
+PHP->>JavaScript: Retour liste couleurs/modèles
+JavaScript->>DOM: Affichage modale
+User->>JavaScript: Sélection couleur/modèle
+
+```
+
+**Processus détaillé :**
+1. Une fonction Javascript effectue un appel AJAX au script PHP pour récupérer les options disponibles (couleurs RAL ou modèles)
+2. Le script PHP interroge l'API ACPORTAILRAL ou la base de données MySQL selon le type demandé et renvoie les données au format JSON
+3. Le JavaScript affiche une modale avec les options récupérées
+4. L'utilisateur sélectionne une option, qui est ensuite appliquée au projet correspondant dans le formulaire
+5. L'utilisateur sélectionne la couleur ou le modèle désiré, qui est alors affiché dans le formulaire et dans un champ caché pour la soumission
+
+### 3 Soumission du formulaire
+
+
+| Étape | Action | Description |
+|-------|--------|-------------|
+| **1** | Récupération | Extraction des IDs depuis `projectIds` et parcours des données de chaque projet |
+| **2** | Validation | Vérification de l'intégrité et de la validité des données saisies |
+| **3** | Gestion utilisateur | Recherche dans Pipedrive (téléphone/email)<br>→ Récupération si existe<br>→ Création si nouveau |
+| **4** | Génération devis | Construction de la variable `$devis` avec la description complète des projets |
+| **5** | Création deal | Création du deal dans Pipedrive lié au client |
+| **6** | Redirection | Affichage de `formSended.php` (succès/erreur) |
+| **7** | Protection | Redirection vers l'accueil en cas de rafraîchissement |
 
 ## Architecture des fichiers
 
@@ -56,7 +89,6 @@ formulaireDevis/
 ├── components/                         # Composants de l'application
 │   │
 │   ├── api/                           # Gestion des API et contrôleurs
-│   │   ├── controller.php             # Contrôleur principal de soumission du formulaire
 │   │   ├── _getData.php               # Récupération des données
 │   │   ├── _analyzeData.php           # Analyse et validation des données
 │   │   ├── __writteDevis.php          # Génération du texte du devis
@@ -126,6 +158,39 @@ formulaireDevis/
         └── _ChangeProject.js          # Modification de projet
 ```
 
-## TODO
 
-Pour consulter la liste des tâches à réaliser, voir [TODO.md](TODO.md)
+
+## Structure du formulaire
+
+Le formulaire est organisé de manière hiérarchique :
+
+```
+formContainer (Conteneur principal)
+│
+├── sectionIdentite (Informations client)
+├── sectionPromotion (Offres promotionnelles)
+│
+├── projectsContainer (Projets du client)
+│   ├── projectTitle
+│   ├── projectIds (champ caché - liste des IDs)
+│   │
+│   └── project (répétable)
+│       ├── projectHeader
+│       ├── projectBody
+│       │   └── sections spécifiques au type de projet
+│       └── projectFooter
+│           └── bouton de suppression
+│
+└── formFooter (Validation et soumission)
+```
+
+## Ressources
+
+- [Liste des tâches à réaliser](TODO.md)
+
+---
+
+**Développé pour ACPORTAIL** | Dernière mise à jour : Novembre 2025
+    - sondage : Section de sondage de satisfaction
+
+Chaque projet peut être de différents types (portail, portillon, clôture rigide, etc.) et possède des champs spécifiques.
