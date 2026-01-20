@@ -1,6 +1,5 @@
 <?php
 function connectDb() {
-    // Format OVH : nom_base.mysql.db ou clusterXXX-YYY.hosting.ovh.net
     $host = getenv("DB_HOST");
     $dbname = getenv("DB_NAME");
     $username = getenv("DB_USER");
