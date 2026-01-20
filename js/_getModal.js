@@ -1,7 +1,9 @@
+import { CreateElement } from "./components/__CreateElement.js";
 export const getModal = async (id, type) => {
     closeModal();
     // loadModal from components/page/formBody
     // content = {type: "ral", id= id}
+    if (type !== "ral") preloadModal(id);
     try {
         const response = await fetch("components/page/formBody.php", {
             method: "POST",
@@ -10,16 +12,20 @@ export const getModal = async (id, type) => {
             },
             body: `loadModal=${encodeURIComponent(JSON.stringify({ type: type, id: id }))}`,
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const result = await response.text();
         // console.log("Modal fetched:", result);
         // récupère un json avec de la donnée
-        console.log("json data", JSON.parse(result));
-        return result;
+        if (type === "ral") {
+            return result;
+        } else {
+            console.log("json data", JSON.parse(result));
+            return result;
+        }
     } catch (error) {
         console.error('Error fetching modal:', error);
         throw error;
@@ -27,31 +33,28 @@ export const getModal = async (id, type) => {
 }
 
 
-/*
-    <div class='modal modalDevis' id='modalModel<?php echo $id ?>'>
-        <div class='modalContent'>
-            <div class='modalHeader'>
-                <div class='modal-title'>
-                    <h2>Choisir un modèle</h2>
-                </div>
-                <span class='closeModal' onclick='closeModal()'>&times;</span>
-            </div>
-            <div class='modal-body'>
-                <?php
-                $modelList = getModel("portails_battants");
-                foreach ($modelList as $model) {
-                    $modelName = $model['reference_code'];
-                    $modelImage = $model['image_url'];
-                    $modelNameJS = json_encode($modelName);
-                    $modelImageJS = json_encode($modelImage);
-                    echo "<div class='modelItem' onclick='selectModel($id, $modelNameJS, $modelImageJS, \"battant-\")'>
-                        <img src='$modelImage' alt='$modelName' class='modelImage'/>
-                        <div class='modelName'>$modelName</div>
-                        </div>";
-                }
-                ?>
-            </div>
-            <div class='modal-footer'></div>
-        </div>
-    </div>
-*/
+
+const preloadModal = (id) => {
+    const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
+    
+    const modalHtml = CreateElement("div", { class: "modal modalDevis", id: "modalModel" + id }, [
+        CreateElement("div", { class: "modalContent" }, [
+            CreateElement("div", { class: "modalHeader" }, [
+                CreateElement("div", { class: "modalTitle" }, [
+                    CreateElement("h2", {}, ["Sélectionner un modèle"])
+                ]),
+                closeButton,
+                CreateElement("div", { class: "filterContainer" })
+            ]),
+            CreateElement("div", { class: "modal-body", id: "modalBodyModel" + id }, [
+                CreateElement("div", { class: "loader" }, [
+                    CreateElement("img", { src: "/img/loader.svg", alt: "Chargement..." })
+                ])
+            ])
+        ])
+    ]);
+    
+    closeButton.addEventListener('click', () => closeModal());
+    
+    document.body.appendChild(modalHtml);
+}

@@ -1,7 +1,7 @@
 import { addProject } from './components/_AddProject.js';
 import { changeProject } from './components/_ChangeProject.js';
 import { getModal } from './_getModal.js';
-// import { CreateElement } from './components/__CreateElement.js';
+import { CreateElement } from './components/__CreateElement.js';
 window.projectType = [
     "Portail",
     "Portillon",
@@ -93,7 +93,7 @@ window.deleteProject = (id) => {
     if (projectList.length <= 1) return;
     projectList = projectList.filter(e => e.id != id);
     document.getElementById("project" + id).remove();
-    
+
     // Mettre à jour le champ caché avec les IDs des projets
     const projectIds = window.projectList.map(p => p.id).join(',');
     document.getElementById('projectIds').value = projectIds;
@@ -108,12 +108,6 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
             closeModal();
         }
     });
-    // document.addEventListener('keydown', (e) => {
-    //     if (e.key === "Escape") {
-    //         closeModal();
-    //     }
-    // });
-
 }
 
 window.closeModal = () => {
@@ -143,20 +137,55 @@ const uncheckAll = (containerId) => {
 init();
 
 window.modalModel = async (id, type) => {
-    const modalHtml = await getModal(id, type);
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    const models = JSON.parse(await getModal(id, type));
+    renderModelStyle(Object.keys(models), id, models);
     const modalmodel = document.getElementById("modalModel" + id);
     modalmodel.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal') || e.target.classList.contains('closeModalBtn')) {
             closeModal();
         }
     });
-    // modalmodel.addEventListener('keydown', (e) => {
-    //     if (e.key === "Escape") {
-    //         closeModal();
-    //     }
-    // });
 }
+
+
+const renderModelStyle = (styles, id, data) => {
+    const target = document.querySelectorAll(`#modalModel${id} .filterContainer`)[0];
+    console.log("Rendering styles:", styles, "for modalModel" + id);
+    styles.forEach(style => {
+        const button = CreateElement("button", { class: "filterButton" }, [style]);
+        button.addEventListener('click', () => changeModelFilter(id, style, data));
+        target.appendChild(button);
+    });
+    changeModelFilter(id, styles[0], data);
+}
+
+window.changeModelFilter = (id, style, data) => {
+    console.log("Changing model filter to:", style, "for modalModel" + id);
+    document.querySelectorAll(`#modalModel${id} .filterButton`).forEach(button => {
+        button.classList.remove("active");
+        if (button.innerText === style) {
+            button.classList.add("active");
+        }
+    });
+    loadModels(id, style, data);
+
+}
+
+
+window.loadModels = (id, style, data) => {
+    const target = document.getElementById("modalBodyModel" + id);
+    target.innerHTML = "";
+    data[style].forEach(model => {
+        const modelItem = CreateElement("div", { class: "modelItem", onClick: `selectModel(${id}, '${model.nom}', '${model.image_url}')` }, [
+            CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage" }),
+            CreateElement("div", { class: "modelName" }, [model.nom])
+        ]);
+        target.appendChild(modelItem);
+    });
+}
+
+
+
 
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
 
