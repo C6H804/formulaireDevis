@@ -13,7 +13,6 @@ include_once __DIR__ . '/__writteDevis.php';
 include_once __DIR__ . '/../utils/loadEnv.php';
 
 
-
 $data = getData();
 if ($data === null) {
     $_SESSION['formError'] = "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer plus tard.";
@@ -34,9 +33,8 @@ if ($data === null) {
         $_SESSION['formError'] = $result;
         header('Location: ../../index.php?error=validation');
         exit;
+        
     } else {
-
-
         $token = $_ENV['TOKEN'];
         // chercher l'ID de la personne via numéro de téléphone
         // si non trouvé, chercher l'ID via email
@@ -60,6 +58,7 @@ if ($data === null) {
         }
 
         $devis = writteDevis($result);
+        echo $devis;
 
         $deal = addDeal(
             $token,

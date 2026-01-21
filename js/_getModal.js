@@ -35,8 +35,9 @@ export const getModal = async (id, type) => {
 
 
 const preloadModal = (id) => {
+    document.body.style.overflow = 'hidden';
     const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
-    
+
     const modalHtml = CreateElement("div", { class: "modal modalDevis", id: "modalModel" + id }, [
         CreateElement("div", { class: "modalContent" }, [
             CreateElement("div", { class: "modalHeader" }, [
@@ -53,8 +54,13 @@ const preloadModal = (id) => {
             ])
         ])
     ]);
-    
+
+    modalHtml.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal') || e.target.classList.contains('closeModalBtn')) {
+            closeModal();
+        }
+    });
     closeButton.addEventListener('click', () => closeModal());
-    
+
     document.body.appendChild(modalHtml);
 }

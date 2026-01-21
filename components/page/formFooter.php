@@ -1,6 +1,6 @@
 <?php
 echo "</div>";
-echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='Ajouter un projet' class='btn addProjectBtn'></div>";
+echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='Ajouter un projet' class='btn btn-black addProjectBtn'></div>";
 echo "
 <div class='formFooter'>
 <div class='fieldInput'>
@@ -12,11 +12,11 @@ echo "
     <input type='file' name='projectFile' id='projectFile'>
 </div>
 ";
-include_once 'components/page/sondage.php'; 
+include_once 'components/page/sondage.php';
 
 echo "
 </div>";
-echo "<input type='submit' value='Envoyer vôtre demande' name='submit' />";
+echo "<input class='btn btn-red btn-h' type='submit' value='Envoyer vôtre demande' name='submit' />";
 
 echo "</form>";
 ?>

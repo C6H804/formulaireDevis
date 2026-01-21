@@ -83,21 +83,35 @@ function analyzeData($data) {
                     $result['TVA'] = $data['TVA'] === "true" ? true : false;
 
                     $result['projects'] = [];
-                    if (sanitize($data['projectIds'], 'id') !== null) {
+                    echo "<script>console.log('projectIds reçu:', " . json_encode($data['projectIds'] ?? 'NON DÉFINI') . ");</script>";
+                    
+                    if (isset($data['projectIds']) && sanitize($data['projectIds'], 'id') !== null) {
                         // Séparation des IDs de projets
                         $projectIds = explode(',', sanitize($data['projectIds'], 'id'));
+                        echo "<script>console.log('IDs de projets à traiter:', " . json_encode($projectIds) . ");</script>";
 
                         foreach ($projectIds as $id) {
                             $id = trim($id);
+                            echo "<script>console.log('Traitement du projet ID:', " . json_encode($id) . ");</script>";
+                            echo "<script>console.log('Type de projet (selectProject" . $id . "):', " . json_encode($data['selectProject' . $id] ?? 'NON TROUVÉ') . ");</script>";
+                            
                             // Vérification du type de projet et récupération des données spécifiques
                             if (isset($data['selectProject' . $id]) && verifyType($data['selectProject' . $id])) {
                                 $project = getDataByType($id, $data['selectProject' . $id], $data);
+                                echo "<script>console.log('Données du projet " . $id . ":', " . json_encode($project) . ");</script>";
                                 if ($project !== null) {
                                     $result['projects'][$id] = $project;
+                                } else {
+                                    echo "<script>console.warn('Le projet " . $id . " est null (données incomplètes)');</script>";
                                 }
+                            } else {
+                                echo "<script>console.warn('Le projet " . $id . " n\\'est pas valide ou son type n\\'existe pas');</script>";
                             }
                         }
+                    } else {
+                        echo "<script>console.error('projectIds est vide ou invalide !');</script>";
                     }
+                    echo "<script>console.log('Nombre de projets traités:', " . count($result['projects']) . ");</script>";
                     // Récupération des données du sondage
                     $result['sondage'] = getSondage($data);
                     $details = getdetails($data);
@@ -283,11 +297,14 @@ function getDataFromPortail($id, $data)
         // $model = htmlspecialchars($data['battant-modelSelect' . $id] ?? null);
         $model = sanitize($data['battant-modelSelect' . $id] ?? null);
         $sensOuverture = null;
+        echo "<script>console.log('Portail Battant - Model recherché: battant-modelSelect" . $id . "', " . json_encode($data['battant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
     } else {
         $model = sanitize($data['coulissant-modelSelect' . $id] ?? null);
         $sensOuverture = sanitize($data['directionCoulissant' . $id] ?? null, ['Droite', 'Gauche']);
+        echo "<script>console.log('Portail Coulissant - Model recherché: coulissant-modelSelect" . $id . "', " . json_encode($data['coulissant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
     }
     if ($model === null) {
+        echo "<script>console.error('Portail ID " . $id . ": AUCUN MODÈLE SÉLECTIONNÉ ! Le projet sera ignoré.');</script>";
         return null;
     }
     try {

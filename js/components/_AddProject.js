@@ -19,5 +19,11 @@ export const addProject = async (type) => {
 
 function updateProjectIds() {
     const projectIds = window.projectList.map(p => p.id).join(',');
-    document.getElementById('projectIds').value = projectIds;
+    const element = document.getElementById('projectIds');
+    if (element) {
+        element.value = projectIds;
+        console.log('projectIds mis à jour:', projectIds);
+    } else {
+        console.error('Élément projectIds introuvable !');
+    }
 }

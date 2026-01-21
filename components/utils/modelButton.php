@@ -3,10 +3,10 @@ function modelSelector($id, $type, $outputIdPrefix = ""): bool|string
 {
     ob_start();
     ?>
-    <input type="button" id="model<?php echo $id; ?>" class="btn secondaryBtn" value="Choisir un modèle"
+    <input type="button" id="model<?php echo $id; ?>" class="btn btn-h-black" value="Choisir un modèle"
         onclick="modalModel(<?php echo $id ?>, '<?php echo $type; ?>')" />
 
-    <div>
+    <div class="modeleOutputField">
         <span id="<?php echo $outputIdPrefix; ?>modelOutput<?php echo $id; ?>"></span><span id="<?php echo $outputIdPrefix; ?>modelImage<?php echo $id; ?>"></span>
     </div>
     

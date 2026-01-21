@@ -1,6 +1,7 @@
 <script type="module" defer src="js/script.js"></script>
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="css/form.css">
+<link rel="stylesheet" href="css/btn.css">
 <style>
     .hidden {
         display: none;

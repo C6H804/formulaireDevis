@@ -18,7 +18,7 @@ window.projectType = [
 ];
 window.projectList = [];
 
-const init = () => {
+const init = async () => {
 
     console.log("Script loaded");
     document.getElementById('addProjectBtn').addEventListener('click', () => {
@@ -32,7 +32,26 @@ const init = () => {
         }
     });
 
-    addProject(projectType[0]);
+    // Écouter la soumission du formulaire pour s'assurer que projectIds est à jour
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            // Mettre à jour projectIds une dernière fois avant soumission
+            const projectIds = window.projectList.map(p => p.id).join(',');
+            document.getElementById('projectIds').value = projectIds;
+            console.log('Soumission du formulaire, projectIds:', projectIds);
+            
+            // Vérifier qu'il y a au moins un projet
+            if (projectIds === '' || window.projectList.length === 0) {
+                e.preventDefault();
+                alert('Veuillez ajouter au moins un projet avant de soumettre le formulaire.');
+                return false;
+            }
+        });
+    }
+
+    await addProject(projectType[0]);
+    console.log("Premier projet ajouté, projectIds =", document.getElementById('projectIds')?.value);
 };
 
 window.changeProjectType = async (id = "") => {
@@ -108,12 +127,14 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
             closeModal();
         }
     });
+    document.body.style.overflow = 'hidden';
 }
 
 window.closeModal = () => {
     document.querySelectorAll(".modal").forEach(e => {
         e.remove();
     });
+    document.body.style.overflow = '';
 }
 
 window.selectRal = (id, ralCode, un = "", color = "", name = "") => {
@@ -140,11 +161,6 @@ window.modalModel = async (id, type) => {
     const models = JSON.parse(await getModal(id, type));
     renderModelStyle(Object.keys(models), id, models);
     const modalmodel = document.getElementById("modalModel" + id);
-    modalmodel.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal') || e.target.classList.contains('closeModalBtn')) {
-            closeModal();
-        }
-    });
 }
 
 
@@ -188,13 +204,25 @@ window.loadModels = (id, style, data) => {
 
 
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
-
-    const select = document.getElementById(outputIdPrefix + "modelSelect" + id);
-    if (!select) {
-        console.error("Élément non trouvé :", outputIdPrefix + "modelSelect" + id);
-        return;
+    
+    projectType = document.getElementById("selectProject" + id).value;
+    
+    // Déterminer le préfixe en fonction du type de projet
+    if (projectType === "Portail") {
+        outputIdPrefix = document.getElementById("typePortail" + id).value === "Battant" ? "battant-" : "coulissant-";
+    } else if (projectType === "Porte de garage") {
+        const typePorteGarage = document.getElementById("typePorteGarage" + id).value.toLowerCase();
+        outputIdPrefix = typePorteGarage + "-";
     }
-    select.value = modelName;
+
+    // Mise à jour du champ caché avec le nom du modèle
+    const select = document.getElementById(outputIdPrefix + "modelSelect" + id);
+    if (select) {
+        select.value = modelName;
+        console.log("Modèle sélectionné:", outputIdPrefix + "modelSelect" + id, "=", modelName);
+    } else {
+        console.error("Élément non trouvé :", outputIdPrefix + "modelSelect" + id);
+    }
 
     const output = document.getElementById(outputIdPrefix + "modelOutput" + id);
     if (output) {

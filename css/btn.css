@@ -1,0 +1,52 @@
+.btn {
+    padding: 0.5em 1.25em;
+    font-size: 1.1em;
+    border: solid black 2px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 0;
+    text-transform: uppercase;
+    transition: 0.5s;
+    /* center the text vertically */
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.btn-black {
+    background-color: black;
+    color: white;
+}
+
+.btn-black:hover {
+    background-color: #222;
+    color: white;
+    border-color: #222;
+}
+
+.btn-red {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: #dd0000;
+    color: white;
+    border-color: #dd0000;
+}
+
+
+.btn-h-black:hover {
+    background-color: black;
+    color: white;
+}
+
+.btn-h-red:hover {
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+
+.btn-h:hover {
+    transform: scale(1.05);
+}
