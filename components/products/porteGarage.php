@@ -5,48 +5,14 @@ function addPorteGarage($id)
     ?>
     <h3 class="productTitle">Porte de garage</h3>
 
-    <div class="section sectionPorteGarage"> <!-- type de porte de garage -->
+    <div class="section sectionPorteGarage"> <!-- modèle porte garage -->
         <div class="inputField">
-            <label for="typePorteGarage<?php echo $id; ?>">Type de porte de garage :</label>
-            <select name="typePorteGarage<?php echo $id; ?>" id="typePorteGarage<?php echo $id; ?>"
-                onchange="changeDisplaySection(<?php echo $id; ?>, 'typePorteGarage')">
-                <option value="Basculante">Basculante</option>
-                <option value="Battante">Battante</option>
-                <option value="Sectionnable">Sectionnable</option>
-                <option value="Enroulable">Enroulable</option>
-            </select>
+            <?php echo modelSelector($id, "porteGarage"); ?>
         </div>
     </div>
 
-    <div class="section sectionPorteGarage basculante"> <!-- modèle porte garage basculante -->
-        <div class="inputField">
-            porteGarageBasculante
-            <?php echo modelSelector($id, "porteGarageBasculante", "basculante-"); ?>
-        </div>
-    </div>
 
-    <div class="section sectionPorteGarage hidden battante"> <!-- modèle porte garage battante -->
-        <div class="inputField">
-            porteGarageBattante
-            <?php echo modelSelector($id, "porteGarageBattante", "battante-"); ?>
-        </div>
-    </div>
-
-    <div class="section sectionPorteGarage hidden sectionnable"> <!-- modèle porte garage sectionnable -->
-        <div class="inputField">
-            porteGarageSectionnable
-            <?php echo modelSelector($id, "porteGarageSectionnable", "sectionnable-"); ?>
-        </div>
-    </div>
-
-    <div class="section sectionPorteGarage hidden enroulable"> <!-- modèle porte garage enroulable -->
-        <div class="inputField">
-            porteGarageEnroulable
-            <?php echo modelSelector($id, "porteGarageEnroulable", "enroulable-"); ?>
-        </div>
-    </div>
-
-    <div class="section sectionPorteGarage" id="porteGarage-radioToClear<?php echo $id; ?>">
+    <div class="section sectionPorteGarage" id="radioToClear<?php echo $id; ?>">
         <!-- couleur porte de garage -->
         <?php ralStandard($id); ?>
     </div>
@@ -59,9 +25,6 @@ function addPorteGarage($id)
             <div class="output" id="ralOutput<?php echo $id; ?>"></div>
         </div>
     </div>
-
-
-
 
     <?php
     return ob_get_clean();

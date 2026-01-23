@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="css/modal.css">
 <link rel="stylesheet" href="css/form.css">
 <link rel="stylesheet" href="css/btn.css">
+<link rel="stylesheet" href="css/ralStandard.css">
 <style>
     .hidden {
         display: none;

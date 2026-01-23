@@ -83,17 +83,17 @@ function analyzeData($data) {
                     $result['TVA'] = $data['TVA'] === "true" ? true : false;
 
                     $result['projects'] = [];
-                    echo "<script>console.log('projectIds reçu:', " . json_encode($data['projectIds'] ?? 'NON DÉFINI') . ");</script>";
+                    echo "<script>console.log('projectIds reçu : ', " . json_encode($data['projectIds'] ?? 'NON DÉFINI') . ");</script>";
                     
                     if (isset($data['projectIds']) && sanitize($data['projectIds'], 'id') !== null) {
                         // Séparation des IDs de projets
                         $projectIds = explode(',', sanitize($data['projectIds'], 'id'));
-                        echo "<script>console.log('IDs de projets à traiter:', " . json_encode($projectIds) . ");</script>";
+                        echo "<script>console.log('IDs de projets à traiter : ', " . json_encode($projectIds) . ");</script>";
 
                         foreach ($projectIds as $id) {
                             $id = trim($id);
-                            echo "<script>console.log('Traitement du projet ID:', " . json_encode($id) . ");</script>";
-                            echo "<script>console.log('Type de projet (selectProject" . $id . "):', " . json_encode($data['selectProject' . $id] ?? 'NON TROUVÉ') . ");</script>";
+                            echo "<script>console.log('Traitement du projet ID : ', " . json_encode($id) . ");</script>";
+                            echo "<script>console.log('Type de projet (selectProject" . $id . ") : ', " . json_encode($data['selectProject' . $id] ?? 'NON TROUVÉ') . ");</script>";
                             
                             // Vérification du type de projet et récupération des données spécifiques
                             if (isset($data['selectProject' . $id]) && verifyType($data['selectProject' . $id])) {
@@ -422,23 +422,7 @@ function getDataFromClotureAluminium($id, $data)
 function getDataFromPorteGarage($id, $data)
 {
     $result = [];
-    $type = sanitize($data['typePorteGarage' . $id] ?? null, ['Basculante', 'Battante', 'Sectionnable', 'Enroulable']);
-    switch ($type) {
-        case 'Basculante':
-            $model = sanitize($data['basculante-modelSelect' . $id] ?? null);
-            break;
-        case 'Battante':
-            $model = sanitize($data['battante-modelSelect' . $id] ?? null);
-            break;
-        case 'Sectionnable':
-            $model = sanitize($data['sectionnable-modelSelect' . $id] ?? null);
-            break;
-        case 'Enroulable':
-            $model = sanitize($data['enroulable-modelSelect' . $id] ?? null);
-            break;
-        default:
-            $model = null;
-    }
+    $model = sanitize($data['modelSelect' . $id] ?? null);
 
     if ($model === null) {
         return null;
@@ -452,7 +436,6 @@ function getDataFromPorteGarage($id, $data)
 
     $result = [
         "type" => "Porte de garage",
-        "typePorteGarage" => $type,
         "model" => $model,
         "color" => $color === null ? "" : $color
     ];

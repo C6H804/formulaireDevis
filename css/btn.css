@@ -10,6 +10,7 @@
     /* center the text vertically */
     line-height: 1.5em;
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn-black {

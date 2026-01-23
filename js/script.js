@@ -74,22 +74,6 @@ window.changeDisplaySection = (id, self) => {
         "Battant": {
             on: [".modelBattant"],
             off: [".directionCoulissantSection", ".modelCoulissant"]
-        },
-        "Basculante": {
-            on: [".basculante"],
-            off: [".battante", ".sectionnable", ".enroulable"]
-        },
-        "Enroulable": {
-            on: [".enroulable"],
-            off: [".battante", ".sectionnable", ".basculante"]
-        },
-        "Sectionnable": {
-            on: [".sectionnable"],
-            off: [".battante", ".enroulable", ".basculante"]
-        },
-        "Battante": {
-            on: [".battante"],
-            off: [".sectionnable", ".enroulable", ".basculante"]
         }
     }
     const value = document.getElementById(self + id).value;
@@ -119,14 +103,18 @@ window.deleteProject = (id) => {
 }
 
 window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
-    const modalHtml = await getModal(id, "ral");
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    const modalHtml = await getModal(id, "ral", "Ral");
+
+    const target = document.getElementById("modalBodyRal" + id);
+    target.innerHTML = modalHtml;
+    // document.body.insertAdjacentHTML('beforeend', modalHtml);
     const modalRal = document.getElementById("modalRal" + id);
     modalRal.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal') || e.target.classList.contains('closeModalBtn')) {
             closeModal();
         }
     });
+
     document.body.style.overflow = 'hidden';
 }
 
@@ -137,15 +125,24 @@ window.closeModal = () => {
     document.body.style.overflow = '';
 }
 
-window.selectRal = (id, ralCode, un = "", color = "", name = "") => {
+window.selectRal = (id, ralCode, un = "", color = "", name = "", clear = false) => {
     const select = document.getElementById("ralSelect" + id);
-    select.value = ralCode;
-    uncheckAll(un);
-    const output = document.getElementById("ralOutput" + id);
-    output.innerText = name + " (" + ralCode + ")";
-    const outputSample = document.getElementById("ralColor" + id);
-    outputSample.style.backgroundColor = "#" + color;
-    closeModal();
+    if (!clear) {
+        select.value = ralCode;
+        uncheckAll(un);
+        const output = document.getElementById("ralOutput" + id);
+        output.innerText = name + " (" + ralCode + ")";
+        const outputSample = document.getElementById("ralColor" + id);
+        outputSample.style.backgroundColor = "#" + color;
+        closeModal();
+    } else {
+        select.value = "";
+        const output = document.getElementById("ralOutput" + id);
+        output.innerText = "";
+        const outputSample = document.getElementById("ralColor" + id);
+        outputSample.style.backgroundColor = "transparent";
+        closeModal();
+    }
 }
 
 
@@ -193,7 +190,7 @@ window.loadModels = (id, style, data) => {
     target.innerHTML = "";
     data[style].forEach(model => {
         const modelItem = CreateElement("div", { class: "modelItem", onClick: `selectModel(${id}, '${model.nom}', '${model.image_url}')` }, [
-            CreateElement("div", { class: "modelImageContainer"}, [CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage" })]),
+            CreateElement("div", { class: "modelImageContainer"}, [CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage center" })]),
             CreateElement("div", { class: "modelName" }, [model.nom])
         ]);
         target.appendChild(modelItem);
@@ -288,16 +285,16 @@ const getProjectList = (id) => {
 window.preloadModal = (id, modalType) => {
     document.body.style.overflow = 'hidden';
     const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
-    const name = modalType === "Model" ? "modèle" : modalType === "Project" ? "projet" : modalType;
+    const title = modalType === "Model" ? "Choisir un modèle" : modalType === "Project" ? "Choisir un projet" : "Choisir une couleur";
 
     const modalHtml = CreateElement("div", { class: "modal modalDevis modal" + modalType, id: "modal" + modalType + id }, [
         CreateElement("div", { class: "modalContent" }, [
             CreateElement("div", { class: "modalHeader" }, [
                 CreateElement("div", { class: "modal-title" }, [
-                    CreateElement("h2", {}, ["Choisir un " + name])
+                    CreateElement("h2", {}, [title])
                 ]),
                 closeButton,
-                CreateElement("div", { class: "filterContainer" })
+                modalType === "Model" ? CreateElement("div", { class: "filterContainer" }) : null
             ]),
             CreateElement("div", { class: "modal-body", id: "modalBody" + modalType + id }, [
                 CreateElement("div", { class: "loader" }, [

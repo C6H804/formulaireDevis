@@ -128,17 +128,8 @@ if (isset($_POST['loadModal'])) {
         case "clotureAluminium":
             echo modelClotureAluminiumModal($id);
             break;
-        case "porteGarageBasculante":
-            echo modelPorteGarageBasculanteModal($id);
-            break;
-        case "porteGarageEnroulable":
-            echo modelPorteGarageEnroulableModal($id);
-            break;
-        case "porteGarageSectionnable":
-            echo modelPorteGarageSectionnableModal($id);
-            break;
-        case "porteGarageBattante":
-            echo modelPorteGarageBattanteModal($id);
+        case "porteGarage":
+            echo modelPorteGarageModal($id);
             break;
         case "store":
             echo modelStoreModal($id);

@@ -149,7 +149,7 @@ function getClotureAluminium($p) {
 }
 
 function getPorteGarage($p) {
-    $r = " " . $p['typePorteGarage'] . " \n";
+    $r = " \n";
     $r .= "- Modèle : " . $p['model'] . " \n";
     $color = manageColor($p['color']);
     $r .= "- Couleur : " . $color . " \n";

@@ -35,15 +35,6 @@ function ralModal($id)
     ob_start();
     ?>
 
-    <div class='modal modalDevis' id='modalRal<?php echo $id ?>'>
-        <div class='modalContent'>
-            <div class='modalHeader'>
-                <div class='modal-title'>
-                    <h2>Choisir une couleur</h2>
-                </div>
-                <span class='closeModal' onclick='closeModal()'>&times;</span>
-            </div>
-            <div class='modal-body'>
                 <?php
                 $colors = getColors();
                 foreach ($colors['colors'] as $color) {
@@ -58,10 +49,6 @@ function ralModal($id)
                         </div>";
                 }
                 ?>
-            </div>
-            <div class='modal-footer'></div>
-        </div>
-    </div>
     <?php
     return ob_get_clean();
 }

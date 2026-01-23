@@ -11,6 +11,10 @@ function getModel($type)
             return apiModel("portillon");
         case "clotures_aluminium":
             return apiModel("cloture");
+        case "portes_garage":
+            return apiModel("porte_de_garage");
+        case "clotures_beton":
+            return apiModel("cloture_beton");
         default:
             return databaseModel($type);
     }
@@ -31,19 +35,19 @@ function apiModel($type)
     $response = json_decode($response, true);
 
 
-    // traite les données pour les rendre compatible avec l'ancien format
-    // retourne un tableau contenant : id, nom, image_url, style
-
-
-
-    /*
-    $modelName
-    $modelImage
-    $modelNameJS
-    $modelImageJS
-    */
-
     $result = [];
+
+    if (isset($response["modeles"]) && count($response["modeles"]) > 0) {
+        foreach ($response["modeles"] as $modele) {
+            $result["Standard"][] = [
+                "id" => $modele["id"],
+                "nom" => $modele["nom"],
+                "image_url" => $modele["image"]
+            ];
+        }
+        return $result;
+    }
+
     foreach ($response["styles"] as $style) {
         // $result[] = $style["style"][];
         if (count($style["modeles"]) == 0) {
@@ -68,7 +72,9 @@ function apiModel($type)
                 ];
             }
         }
+
     }
+
 
     // return $response["styles"];
     return $result;
@@ -90,12 +96,6 @@ function databaseModel($type)
 
     $models = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Debug : afficher le nombre de résultats
-    // echo "Nombre de résultats trouvés: " . count($models) . "<br>";
-    // var_dump($models);
-
     return $models;
 }
-
-
 ?>

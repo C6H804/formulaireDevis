@@ -90,7 +90,6 @@
     align-items: center;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    /* width: 100%; */
 }
 
 .modal-body div {
@@ -154,6 +153,10 @@
 
 
 /* models ------------------------------------------------------------------------- */
+
+.modalModel .modal-body {
+    width: 100%;
+}
 
 .modalDevis .modal-body {
     overflow-y: scroll;

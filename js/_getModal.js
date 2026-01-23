@@ -3,10 +3,11 @@ export const getModal = async (id, type, modalType = "Model") => {
     closeModal();
     // loadModal from components/page/formBody
     // content = {type: "ral", id= id}
-    if (type !== "ral") preloadModal(id, modalType);
+    preloadModal(id, modalType);
     if (type === "project") {
         return projectType;
     }
+    console.log("Fetching modal for type:", type, "and id:", id);
     try {
         const response = await fetch("components/page/formBody.php", {
             method: "POST",

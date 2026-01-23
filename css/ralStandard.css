@@ -1,0 +1,175 @@
+.ralStandardContainer {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.ralStandard {
+    display: flex;
+    gap: 10px;
+    border: solid 2px black;
+    cursor: pointer;
+    align-items: center;
+    flex: 1 1 calc(25% - 1em);
+    min-width: 210px;
+    height: 40px;
+}
+
+.ralStandard {
+    display: flex;
+    gap: 10px;
+    border: solid 2px black;
+    cursor: pointer;
+    align-items: center;
+    width: 100%;
+
+}
+
+.ralStandard input[type="radio"] {
+    display: none;
+}
+
+
+.ralStandard label {
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease-out;
+    overflow: hidden;
+}
+
+.ralStandard label span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.ralStandard input[type="radio"]:checked + label {
+    position: relative;
+}
+
+.ralStandard input[type="radio"]:checked + label span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    font-weight: bold;
+}
+
+
+.ralStandard input[type="radio"]:checked + label {
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+.ralStandard input[type="radio"]:checked + label.invert {
+    color: white;
+}
+
+@keyframes slideScale {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1.5);
+    }
+}
+
+.ralStandard input[type="radio"]:checked + label span {
+    animation: slideScale 0.5s ease-out forwards;
+    transform-origin: left center;
+
+}
+
+.displayColorSelected {
+    display: flex;
+    gap: 0.25em;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25em;
+    flex-direction: column;
+    height: 141px;
+    overflow: hidden;
+}
+
+.displayColorSelected:has(span:first-child:not(:empty)) {
+    animation: addColorSelected 0.5s forwards;
+}
+
+
+
+.displayColorSelected span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.displayColorSelected span:last-child {
+    border-radius: 2em;
+    height: 2.25em;
+    width: 100%;
+    max-width: 400px;
+}
+
+.displayColorSelected:has(span:first-child:empty) {
+    animation: removeColorSelected 0.5s forwards;
+}
+
+.displayColorSelected:has(span:first-child:not(:empty)) span:last-child {
+    animation: generateColorBlock 1s ease-out forwards;
+}
+
+
+@keyframes removeColorSelected {
+    0% {
+        height: 141px;
+        opacity: 1;
+    }
+    1% {
+        height: 141px;
+        opacity: 1;
+    }
+    100% {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes addColorSelected {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        height: 140px;
+        opacity: 1;
+    }
+}
+
+@keyframes generateColorBlock {
+    0% {
+        max-width: 0;
+    }
+    40% {
+        max-width: 0;
+    }
+    100% {
+        max-width: 400px;
+    }
+}
