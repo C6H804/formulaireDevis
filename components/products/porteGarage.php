@@ -3,7 +3,7 @@ function addPorteGarage($id)
 {
     ob_start();
     ?>
-    <h3>Porte de garage</h3>
+    <h3 class="productTitle">Porte de garage</h3>
 
     <div class="section sectionPorteGarage"> <!-- type de porte de garage -->
         <div class="inputField">

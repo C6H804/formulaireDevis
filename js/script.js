@@ -193,7 +193,7 @@ window.loadModels = (id, style, data) => {
     target.innerHTML = "";
     data[style].forEach(model => {
         const modelItem = CreateElement("div", { class: "modelItem", onClick: `selectModel(${id}, '${model.nom}', '${model.image_url}')` }, [
-            CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage" }),
+            CreateElement("div", { class: "modelImageContainer"}, [CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage" })]),
             CreateElement("div", { class: "modelName" }, [model.nom])
         ]);
         target.appendChild(modelItem);
@@ -240,4 +240,79 @@ window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
     }
 
     closeModal();
+}
+
+
+window.openModalProject = async (id) => {
+    preloadModal(id, "Project");
+    const data = getProjectList(id);
+    console.log(data);
+    const target = document.getElementById("modalBodyProject" + id);
+    target.innerHTML = "";
+    const projectImgFolder = "/img/projects/";
+
+    data.forEach(p => {
+        const projectItem = CreateElement("div", { class: "projectItem" }, [
+            CreateElement("div", { class: "projectItemContent" }, [
+                CreateElement("img", { class: "projectImg", src: projectImgFolder + p.id + ".svg", alt: p.id }),
+                CreateElement("div", { class: "projectName" }, [p.name])
+            ])
+        ]);
+        projectItem.addEventListener('click', () => {
+            const s = document.getElementById("selectProject" + id);
+            console.log("Project selected:", p);
+            s.value = p.id;
+            console.log(s.name);
+
+            changeProjectType(id);
+            closeModal();
+        });
+        target.appendChild(projectItem);
+    });
+}
+
+const getProjectList = (id) => {
+    const options = document.querySelectorAll(`#selectProject${id} option`);
+    let projectList = [];
+    options.forEach(option => {
+        projectList.push({
+            id: option.value,
+            name: option.textContent
+        });
+    });
+    return projectList;
+}
+
+
+
+window.preloadModal = (id, modalType) => {
+    document.body.style.overflow = 'hidden';
+    const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
+    const name = modalType === "Model" ? "modèle" : modalType === "Project" ? "projet" : modalType;
+
+    const modalHtml = CreateElement("div", { class: "modal modalDevis modal" + modalType, id: "modal" + modalType + id }, [
+        CreateElement("div", { class: "modalContent" }, [
+            CreateElement("div", { class: "modalHeader" }, [
+                CreateElement("div", { class: "modal-title" }, [
+                    CreateElement("h2", {}, ["Choisir un " + name])
+                ]),
+                closeButton,
+                CreateElement("div", { class: "filterContainer" })
+            ]),
+            CreateElement("div", { class: "modal-body", id: "modalBody" + modalType + id }, [
+                CreateElement("div", { class: "loader" }, [
+                    CreateElement("img", { src: "/img/loader.svg", alt: "Chargement..." })
+                ])
+            ])
+        ])
+    ]);
+
+    modalHtml.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal') || e.target.classList.contains('closeModalBtn')) {
+            closeModal();
+        }
+    });
+    closeButton.addEventListener('click', () => closeModal());
+
+    document.body.appendChild(modalHtml);
 }

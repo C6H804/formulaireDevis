@@ -4,7 +4,7 @@ function addPortail($id)
 {
     ob_start();
     ?>
-    <h3>Portail</h3>
+    <h3 class="productTitle">Portail</h3>
     <div class="section sectionPortail typePortailSection"> <!-- type de portail : battant coulissant -->
         <div class="inputField">
             <label for="<?php echo "typePortail$id"; ?>">Choisissez votre type de portail :</label>

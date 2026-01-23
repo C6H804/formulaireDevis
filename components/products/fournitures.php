@@ -4,7 +4,7 @@ function addFournitures($id)
     ob_start();
     ?>
 
-    <h3>Fournitures</h3>
+    <h3 class="productTitle">Fournitures</h3>
     <div class="section sectionFournitures"> <!-- options fournitures -->
         <div class="inputField">
             <label for="visiophone<?php echo $id ?>">Visiophone</label>

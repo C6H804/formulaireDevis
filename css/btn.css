@@ -50,3 +50,49 @@
 .btn-h:hover {
     transform: scale(1.05);
 }
+
+.fieldInputFile {
+    height: fit-content;
+    margin: 2em 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.right {
+    /* make this element on the right of the div */
+    display: block;
+    margin-left: auto;
+}
+
+.center {
+    /* make this element in the center of the div */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.addProjectBtnContainer {
+    margin: 2em 0;
+}
+
+.fieldInputTextarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fieldInputTextarea label {
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.fieldInputTextarea textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.5em;
+    border: solid black 2px;
+    font-size: 1.5em;
+    border-radius: 0;
+}

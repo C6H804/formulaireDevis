@@ -3,7 +3,7 @@ function addStore($id)
 {
     ob_start();
     ?>
-    <h3>Store</h3>
+    <h3 class="productTitle">Store</h3>
     <div class="section sectionStore"> <!-- modèle de store -->
         <div class="inputField">
             <?php echo modelSelector($id, 'store'); ?>

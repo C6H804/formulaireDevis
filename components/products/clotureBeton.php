@@ -4,7 +4,7 @@ function addClotureBeton($id)
 {
     ob_start();
     ?>
-    <h3>Clôture en béton</h3>
+    <h3 class="productTitle">Clôture en béton</h3>
 
     <div class="section sectionClotureBeton sectionClotureBetonModel"> <!-- modèle de clôture béton -->
         <div class="inputField">

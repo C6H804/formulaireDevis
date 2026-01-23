@@ -3,7 +3,7 @@ function addClotureRigide($id)
 {
     ob_start();
     ?>
-    <h3>Clôture rigide</h3>
+    <h3 class="productTitle">Clôture rigide</h3>
 
     <div class="section sectionClotureRigide"> <!-- options kit occultant et soubassement -->
         <div class="inputField">

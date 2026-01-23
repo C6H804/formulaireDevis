@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .modalDevis .modalContent {
@@ -89,6 +90,14 @@
     align-items: center;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    /* width: 100%; */
+}
+
+.modal-body div {
+    max-width: 536px;
+}
+.modal-body div.projectItemContent {
+    max-width: none;
 }
 
 .modalDevis .modal-body::-webkit-scrollbar {
@@ -164,7 +173,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #F2F2F2;
     border-radius: 1em;
     padding: 1em;
     width: 100%;
@@ -174,7 +183,25 @@
     max-width: 100%;
     height: auto;
     border-radius: 1em;
+    transition: 0.8s ease;
 }
+
+.modelItem:hover img {
+    transform: scale(1.1);
+}
+
+.modelImageContainer {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1em;
+}
+.modelName {
+    margin-top: 0.5em;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2em;
+}
+
 
 /* Loader */
 .modalDevis .loader {
@@ -235,4 +262,50 @@
 
 .modalDevis .filterButton.active:hover {
     background-color: #0056b3;
+}
+
+
+/* project ------------------------------------------------------------------------- */
+
+
+
+.projectItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    gap: 0.5em;
+    max-width: 100%;
+    margin: 0.1em 1em;
+    font-size: 1.5em;
+    border-radius: 1em;
+    width: 100%;
+    padding: 1em;
+    font-weight: bold;
+    padding-bottom: 0.5em;
+    max-width: 350px;
+}
+
+.projectItem img {
+    transition: 0.3s ease;
+}
+
+
+.projectItem:hover img {
+    transform: scale(1.1);
+}
+
+.projectItemContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+}
+
+.modalProject .modalContent {
+    max-width: 500px;
 }

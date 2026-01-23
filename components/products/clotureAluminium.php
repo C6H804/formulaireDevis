@@ -3,7 +3,7 @@ function addClotureAluminium($id)
 {
     ob_start();
     ?>
-    <h3>Clôture en aluminium</h3>
+    <h3 class="productTitle">Clôture en aluminium</h3>
 
     <div class="section sectionClotureAluminium"> <!-- modèle de clôture aluminium -->
         <div class="inputField">

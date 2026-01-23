@@ -4,7 +4,7 @@ function addAutre($id): bool|string
     ob_start();
     ?>
 
-    <h3>Autre Produit</h3>
+    <h3 class="productTitle">Autre Produit</h3>
     <div class="section sectionAutre">
         <div class="inputField">
             <label for="descriptionAutre<?php echo $id ?>">Description</label>

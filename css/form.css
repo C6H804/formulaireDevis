@@ -20,11 +20,17 @@ form {
     max-width: 1080px;
 }
 
-h2 {
+h2:not(.modal h2) {
     padding-bottom: 0.2em;
     border-bottom: dotted black 1px;
 }
 
+h3.productTitle {
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    text-transform: uppercase;
+}
 
 
 .inputField input[type="text"],
@@ -89,4 +95,25 @@ h2 {
 label {
     margin-bottom: 0.3em;
     font-size: 1.1em;
+}
+
+.fieldInputTextarea {
+    border-top: solid black 2px;
+    padding-top: 1em;
+}
+
+
+/* animations --------------------------------------- */
+.project {
+    animation: growDown 0.5s ease-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }

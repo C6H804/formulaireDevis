@@ -3,7 +3,7 @@ function addPergola($id)
 {
     ob_start();
     ?>
-    <h3>Pergola</h3>
+    <h3 class="productTitle">Pergola</h3>
 
     <div class="section sectionPergola"> <!-- dimension largeur hauteur longueur -->
         <div class="inputField">

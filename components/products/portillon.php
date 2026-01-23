@@ -4,7 +4,7 @@ function addPortillon($id)
     ob_start();
     ?>
 
-    <h3>Portillon</h3>
+    <h3 class="productTitle">Portillon</h3>
 
     <div class="section sectionPortillon sectionPortillonModel"> <!-- modèle de portillon -->
         <div class="inputField">

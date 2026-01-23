@@ -4,7 +4,7 @@ function addMaconnerie($id)
     ob_start();
     ?>
 
-    <h3>Maçonnerie</h3>
+    <h3 class="productTitle">Maçonnerie</h3>
     <div class="section sectionMaconnerie"> <!-- options maçonnerie -->
         <div class="inputField">
             <label for="piliers<?php echo $id ?>">Piliers</label>

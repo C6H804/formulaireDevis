@@ -3,7 +3,7 @@ function addCarport($id)
 {
     ob_start();
     ?>
-    <h3>Carport</h3>
+    <h3 class="productTitle">Carport</h3>
 
     <div class="section sectionCarport"> <!-- dimensions -->
         <div class="inputField">
