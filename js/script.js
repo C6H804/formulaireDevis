@@ -198,8 +198,6 @@ window.loadModels = (id, style, data) => {
 }
 
 
-
-
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
     
     projectType = document.getElementById("selectProject" + id).value;
@@ -207,10 +205,11 @@ window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
     // Déterminer le préfixe en fonction du type de projet
     if (projectType === "Portail") {
         outputIdPrefix = document.getElementById("typePortail" + id).value === "Battant" ? "battant-" : "coulissant-";
-    } else if (projectType === "Porte de garage") {
-        const typePorteGarage = document.getElementById("typePorteGarage" + id).value.toLowerCase();
-        outputIdPrefix = typePorteGarage + "-";
-    }
+    } 
+    // else if (projectType === "Porte de garage") {
+    //     const typePorteGarage = document.getElementById("typePorteGarage" + id).value.toLowerCase();
+    //     outputIdPrefix = typePorteGarage + "-";
+    // }
 
     // Mise à jour du champ caché avec le nom du modèle
     const select = document.getElementById(outputIdPrefix + "modelSelect" + id);

@@ -13,6 +13,7 @@
  * - Clés optionnelles : 'address', 'codePromo', 'TVA', 'projectIds'
  */
 
+
 function sanitize($data = "", $type = "general") {
     if (!isset($data)) {
         return null;
@@ -112,6 +113,13 @@ function analyzeData($data) {
                         echo "<script>console.error('projectIds est vide ou invalide !');</script>";
                     }
                     echo "<script>console.log('Nombre de projets traités:', " . count($result['projects']) . ");</script>";
+
+                    // Récupération des images transmises
+                    $imageUrl = getImages($data);
+                    if ($imageUrl !== null) {
+                        $result['imageUrl'] = $imageUrl;
+                    }
+
                     // Récupération des données du sondage
                     $result['sondage'] = getSondage($data);
                     $details = getdetails($data);
@@ -455,10 +463,20 @@ function getDataFromStore($id, $data)
         return null;
     }
     $largeur = sanitize($data['dimensionLargeur' . $id] ?? null);
+    $projection = sanitize($data['projection' . $id] ?? null);
+    $toileVerticale = sanitize($data['toileVerticale' . $id] ?? null, ['oui', 'non']);
+    try {
+        $color = getColor($id, $data);
+    } catch (Exception $e) {
+        $color = null;
+    }
     $result = [
         "type" => "Store",
         "model" => $model,
-        "largeur" => $largeur === null ? "" : $largeur
+        "color" => $color === null ? "": $color,
+        "largeur" => $largeur === null ? "" : $largeur,
+        "projection" => $projection === null ? "" : $projection,
+        "toileVerticale" => $toileVerticale === null ? "" : $toileVerticale
     ];
     return $result;
 }
@@ -547,8 +565,6 @@ function getDataFromFournitures($id, $data)
 
 
 
-
-
 function getDataFromMaconnerie($id, $data)
 {
     $piliers = sanitize($data['piliers' . $id] ?? null, ['on', null]);
@@ -580,5 +596,26 @@ function getDataFromAutre($id, $data)
     return $result;
 }
 
+function getImages($data) {
+    if (isset($_FILES["projectFile"])) {
+        $file = $_FILES["projectFile"];
+        if ($file["error"] === UPLOAD_ERR_OK && $file["size"] > 0 && $file["size"] <= 5 * 1024 * 1024) {
+            if ($file["type"] === "image/jpeg" || $file["type"] === "image/png" || $file["type"] === "image/gif") {
+                $imageUrl = getImageUrl($file);
+                if ($imageUrl === "") {
+                    return null;
+                } else {
+                    return $imageUrl;
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    } else {
+        return null;
+    }
+}
 
 ?>

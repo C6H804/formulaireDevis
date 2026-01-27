@@ -17,11 +17,20 @@ function writteDevis($data)
         $t = "Aucun projet à traiter du à une mauvaise récupération des données.";
     }
 
+    $t .= getImageCode($data);
+
     $t .= getDetailsSupplementaires($data);
 
     return $t;
 }
 
+function getImageCode($data) {
+    if (isset($data["imageUrl"])) {
+        return "\nImage du projet : " . $data["imageUrl"] . "\n";
+    } else {
+        return "";
+    }
+}
 
 function getDetailsSupplementaires($data) {
     if (!isset($data['details'])) {
@@ -159,8 +168,12 @@ function getPorteGarage($p) {
 function getStore($p) {
     $r = " \n";
     $r .= "- Modèle : " . $p['model'] . " \n";
+    $color = manageColor($p['color']);
+    $r .= "- Couleur : " . $color . " \n";
     $r .= "- Dimensions :  \n";
-    $r .= "  - Largeur : " . $p['largeur'] . " cm \n";
+    $r .= "  - Largeur : " . $p['largeur'] . " m\n";
+    $r .= "  - Projection : " . $p['projection'] . " m\n";
+    $r .= "- Toile verticale : " . $p['toileVerticale'] . " \n";
     return $r;
 }
 

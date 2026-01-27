@@ -12,6 +12,8 @@ include_once __DIR__ . '/__writteDevis.php';
 
 include_once __DIR__ . '/../utils/loadEnv.php';
 
+include_once __DIR__ . '/imgbb/__getImage.php';
+
 
 $data = getData();
 if ($data === null) {

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="css/form.css">
 <link rel="stylesheet" href="css/btn.css">
 <link rel="stylesheet" href="css/ralStandard.css">
+<link rel="stylesheet" href="css/outputModel.css">
 <style>
     .hidden {
         display: none;

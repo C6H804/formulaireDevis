@@ -15,6 +15,8 @@ function getModel($type)
             return apiModel("porte_de_garage");
         case "clotures_beton":
             return apiModel("cloture_beton");
+        case "stores":
+            return apiModel("store");
         default:
             return databaseModel($type);
     }
