@@ -13,10 +13,17 @@
     gap: 10px;
     border: solid 2px black;
     cursor: pointer;
+    user-select: none;
     align-items: center;
     flex: 1 1 calc(25% - 1em);
-    min-width: 210px;
     height: 40px;
+    min-width: 300px;
+}
+@media (max-width: 400px) {
+    .ralStandard {
+        min-width: 240px;
+    }
+    
 }
 
 .ralStandard {
@@ -53,6 +60,14 @@
     vertical-align: middle;
 }
 
+.ralStandard label div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 30px;
+    /* width: calc(100% - 50px); */
+}
+
 .ralStandard input[type="radio"]:checked + label {
     position: relative;
 }
@@ -66,6 +81,8 @@
     z-index: -1;
     font-weight: bold;
 }
+
+
 
 
 .ralStandard input[type="radio"]:checked + label {

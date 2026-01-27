@@ -122,6 +122,7 @@ function analyzeData($data) {
 
                     // Récupération des données du sondage
                     $result['sondage'] = getSondage($data);
+                    
                     $details = getdetails($data);
                     if ($details !== "") {
                         $result['details'] = $details;

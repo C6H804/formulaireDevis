@@ -2,7 +2,7 @@
 
 function writteDevis($data)
 {
-    echo "<script>console.log(" . json_encode($data) . ");</script>";
+    // echo "<script>console.log(" . json_encode($data) . ");</script>"; debug
     $nbrProjects = count($data['projects']);
     if ($nbrProjects > 0) {
         $t = "Devis contenant " . $nbrProjects . " projet(s) : \n";
@@ -19,9 +19,24 @@ function writteDevis($data)
 
     $t .= getImageCode($data);
 
+
     $t .= getDetailsSupplementaires($data);
 
+    $t .= getSondageText($data);
+
     return $t;
+}
+
+function getSondageText($data) {
+    if (isset($data["sondage"]) && count($data["sondage"]) > 0) {
+        $r = "\nA entendu parlé de l'entreprise via :\n- ";
+        foreach($data["sondage"] as $response) {
+            $r .= $response . ", ";
+        }
+        return $r;
+    } else {
+        return "";
+    }
 }
 
 function getImageCode($data) {

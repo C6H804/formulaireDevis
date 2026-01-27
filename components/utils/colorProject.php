@@ -261,45 +261,45 @@ function ralStandard($id)
 {
     echo "
     <div class='ralStandardContainer'>
-        <div class='ralStandard'>
+        <div class='ralStandard' title='Gris Anthracite RAL 7016'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);' name='ralStandard$id' value='7016' id='ralStandardA$id' style='background-color: #363D43;' />
                 <label for='ralStandardA$id' class='invert'>
-                <span style='background-color: #363D43;'></span>Gris Anthracite</label>
+                <span style='background-color: #363D43;'></span><div>Gris Anthracite (RAL 7016)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Blanc signalisation RAL 9016'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='9016' id='ralStandardB$id' style='background-color: #F3F6F6;' />
                 <label for='ralStandardB$id'>
-                <span style='background-color: #F3F6F6;'></span>Blanc signalisation</label>
+                <span style='background-color: #F3F6F6;'></span><div>Blanc signalisation (RAL 9016)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Brun sépia RAL 8014'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='8014' id='ralStandardC$id' style='background-color: #382C1E;' />
                 <label for='ralStandardC$id' class='invert'>
-                <span style='background-color: #382C1E;'></span>Brun sépia</label>
+                <span style='background-color: #382C1E;'></span><div>Brun sépia (RAL 8014)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Ivoire clair RAL 1015'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='1015' id='ralStandardD$id' style='background-color: #E6D690;' />
                 <label for='ralStandardD$id'>
-                <span style='background-color: #E6D690;'></span>Ivoire clair</label>
+                <span style='background-color: #E6D690;'></span><div>Ivoire clair (RAL 1015)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Noir foncé RAL 9005'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='9005' id='ralStandardE$id' style='background-color: #0A0A0A;' />
                 <label for='ralStandardE$id' class='invert'>
-                <span style='background-color: #0A0A0A;'></span>Noir foncé</label>
+                <span style='background-color: #0A0A0A;'></span><div>Noir foncé (RAL 9005)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Rouge basque RAL 3004'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='3004' id='ralStandardF$id' style='background-color: #75151E;' />
                 <label for='ralStandardF$id' class='invert'>
-                <span style='background-color: #75151E;'></span>Rouge basque</label>
+                <span style='background-color: #75151E;'></span><div>Rouge basque (RAL 3004)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Vert basque RAL 6005'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='6005' id='ralStandardG$id' style='background-color: #2F4538;' />
                 <label for='ralStandardG$id' class='invert'>
-                <span style='background-color: #2F4538;'></span>Vert basque</label>
+                <span style='background-color: #2F4538;'></span><div>Vert basque (RAL 6005)</div></label>
             </div>
-            <div class='ralStandard'>
+            <div class='ralStandard' title='Bleu gentiane RAL 5010'>
                 <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='5010' id='ralStandardH$id' style='background-color: #0E294B;' />
                 <label for='ralStandardH$id' class='invert'>
-                <span style='background-color: #0E294B;'></span>Bleu gentiane</label>
+                <span style='background-color: #0E294B;'></span><div>Bleu gentiane (RAL 5010)</div></label>
         </div>
     </div>";
 }

@@ -88,7 +88,16 @@ h3.productTitle {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 300px;
+    /* min-width: 300px; */
+}
+
+@media (max-width:720px) {
+    .sectionGroupContact, .sectionGroupName {
+        flex-wrap: wrap;
+
+
+    }
+    
 }
 
 .section.sectionAutre .inputField {
