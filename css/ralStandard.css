@@ -96,15 +96,15 @@
 
 @keyframes slideScale {
     0% {
-        transform: scaleX(0);
+        transform: scaleX(0.12);
     }
     100% {
-        transform: scaleX(1.5);
+        transform: scaleX(1.1);
     }
 }
 
 .ralStandard input[type="radio"]:checked + label span {
-    animation: slideScale 0.5s ease-out forwards;
+    animation: slideScale 0.7s ease-out forwards;
     transform-origin: left center;
 
 }
@@ -183,10 +183,10 @@
     0% {
         max-width: 0;
     }
-    40% {
+    30% {
         max-width: 0;
     }
-    100% {
+    60% {
         max-width: 400px;
     }
 }

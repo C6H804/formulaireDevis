@@ -120,7 +120,10 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
 
 window.closeModal = () => {
     document.querySelectorAll(".modal").forEach(e => {
-        e.remove();
+        e.classList.add("modalClose");
+        e.addEventListener("animationend", () => {
+            e.remove();
+        });
     });
     document.body.style.overflow = '';
 }

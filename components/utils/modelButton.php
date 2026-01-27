@@ -7,7 +7,7 @@ function modelSelector($id, $type, $outputIdPrefix = ""): bool|string
         onclick="modalModel(<?php echo $id ?>, '<?php echo $type; ?>')" />
 
     <div class="modeleOutputField">
-        <span id="<?php echo $outputIdPrefix; ?>modelOutput<?php echo $id; ?>"></span><span id="<?php echo $outputIdPrefix; ?>modelImage<?php echo $id; ?>"></span>
+        <span id="<?php echo $outputIdPrefix; ?>modelOutput<?php echo $id; ?>">Aucun modèle Sélectionné</span><span id="<?php echo $outputIdPrefix; ?>modelImage<?php echo $id; ?>"></span>
     </div>
     
     <input type="text" id="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" name="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" class="hidden">

@@ -27,6 +27,7 @@
     justify-content: center;
     transition: all 0.3s ease-in-out;
     height: fit-content;
+    transition: height 0.5s ease-in-out;
 }
 
 .modalDevis h2::after {
@@ -311,4 +312,59 @@
 
 .modalProject .modalContent {
     max-width: 500px;
+}
+
+
+
+.modalContent {
+    animation: modalOpenAnim 0.5s forwards;
+}
+
+
+
+
+.modalClose {
+    animation: modalCloseDelay 0.2s forwards;
+}
+
+.modalClose .modalContent {
+    animation: modalCloseAnim 0.2s forwards;
+}
+
+@keyframes modalOpenAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    10% {
+        opacity: 0;
+
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalCloseDelay {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes modalCloseAnim {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
 }

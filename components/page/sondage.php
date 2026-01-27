@@ -10,8 +10,6 @@ function writteSondageRandom()
             id="chkSondageFacebook" value="on"></input><label for="chkSondageFacebook">Facebook</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageInstagram"
             id="chkSondageInstagram" value="on"></input><label for="chkSondageInstagram">Instagram</label></div>',
-        '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageInstagram"
-            id="chkSondageInstagram" value="on"></input><label for="chkSondageInstagram">Instagram</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondagePinterest"
             id="chkSondagePinterest" value="on"></input><label for="chkSondagePinterest">Pinterest</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageRadio"
