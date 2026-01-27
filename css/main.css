@@ -1,0 +1,16 @@
+@import url("form.css");
+@import url("fileInput.css");
+@import url("btn.css");
+@import url("modal.css");
+@import url("outputModel.css");
+@import url("ralStandard.css");
+
+.hidden {
+    display: none;
+}
+
+div.project {
+    border-bottom: solid black 2px;
+    margin: 1em 0;
+    padding: 1em 0;
+}

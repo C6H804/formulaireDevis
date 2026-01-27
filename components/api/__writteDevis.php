@@ -19,12 +19,21 @@ function writteDevis($data)
 
     $t .= getImageCode($data);
 
-
     $t .= getDetailsSupplementaires($data);
 
     $t .= getSondageText($data);
 
+    $t .= getCodePromoText($data);
+
     return $t;
+}
+
+function getCodePromoText($data) {
+    if (isset($data["codePromo"]) && $data["codePromo"] !== "" && strlen($data["codePromo"]) >= 3) {
+        return "\nCode promotionnel utilisé : " . $data["codePromo"];
+    } else {
+        return "";
+    }
 }
 
 function getSondageText($data) {
@@ -33,6 +42,7 @@ function getSondageText($data) {
         foreach($data["sondage"] as $response) {
             $r .= $response . ", ";
         }
+        $r = substr($r,0,-1);
         return $r;
     } else {
         return "";
