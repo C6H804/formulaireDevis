@@ -1,0 +1,7 @@
+.fieldInputFile {
+    height: fit-content;
+    margin: 2em 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}

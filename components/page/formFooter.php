@@ -8,9 +8,9 @@ echo "
     <textarea name='moreInfo' id='moreInfo' rows='4' cols='50'></textarea>
 </div>
 <div class='fieldInput fieldInputFile'>
-    <label class='btn btn-red btn-h center' for='projectFile'>Nous transmettre un fichier</label>
+    <label class='btn btn-red btn-h center' for='projectFile'>Nous transmettre une image</label>
     </div>
-    <input type='file' name='projectFile' id='projectFile' class='hidden' />
+    <input type='file' name='projectFile' id='projectFile' onchange='changeImage()' class='hidden' />
 ";
 include_once 'components/page/sondage.php';
 

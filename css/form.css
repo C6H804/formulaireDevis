@@ -91,6 +91,22 @@ h3.productTitle {
     min-width: 300px;
 }
 
+.section.sectionAutre .inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+}
+
+.section.sectionAutre .inputField textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    padding: 0.4em 0.8em;
+    border: solid black 2px;
+    resize: vertical;
+
+}
+
 
 label {
     margin-bottom: 0.3em;
@@ -112,8 +128,14 @@ label {
 @keyframes growDown {
     0% {
         transform: scaleY(0);
+        opacity: 0;
+    }
+    90% {
+        opacity: 1;
     }
     100% {
         transform: scaleY(1);
     }
 }
+
+

@@ -26,7 +26,7 @@ function writteDevis($data)
 
 function getImageCode($data) {
     if (isset($data["imageUrl"])) {
-        return "\nImage du projet : " . $data["imageUrl"] . "\n";
+        return "Image du projet : " . $data["imageUrl"] . "\n";
     } else {
         return "";
     }

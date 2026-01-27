@@ -600,7 +600,7 @@ function getImages($data) {
     if (isset($_FILES["projectFile"])) {
         $file = $_FILES["projectFile"];
         if ($file["error"] === UPLOAD_ERR_OK && $file["size"] > 0 && $file["size"] <= 5 * 1024 * 1024) {
-            if ($file["type"] === "image/jpeg" || $file["type"] === "image/png" || $file["type"] === "image/gif") {
+            if ($file["type"] === "image/jpeg" || $file["type"] === "image/png" || $file["type"] === "image/gif" || $file["type"] === "image/webp") {
                 $imageUrl = getImageUrl($file);
                 if ($imageUrl === "") {
                     return null;

@@ -312,3 +312,13 @@ window.preloadModal = (id, modalType) => {
 
     document.body.appendChild(modalHtml);
 }
+
+window.changeImage = () => {
+    const input = document.getElementById("projectFile");
+    const btn = document.querySelectorAll("label[for='projectFile']")[0];
+    if (input.files.length > 0) {
+        btn.innerText = "Choisir une autre image";
+    } else {
+        btn.innerText = "Nous transmettre une image";
+    }
+}

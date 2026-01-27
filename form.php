@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="css/btn.css">
 <link rel="stylesheet" href="css/ralStandard.css">
 <link rel="stylesheet" href="css/outputModel.css">
+<link rel="stylesheet" href="css/fileInput.css">
 <style>
     .hidden {
         display: none;
