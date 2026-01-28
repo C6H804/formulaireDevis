@@ -1,4 +1,4 @@
-.modeleOutputField {
+.formulaireDevis .modeleOutputField {
     display: flex;
     flex-direction: column;
     flex-direction: column-reverse;
@@ -12,21 +12,21 @@
     font-size: 1.2em;
 }
 
-.modeleOutputField span {
+.formulaireDevis .modeleOutputField span {
     max-height: 200px;
     overflow: hidden;
     text-align: center;
 }
 
-.modeleOutputField span:last-child {
+.formulaireDevis .modeleOutputField span:last-child {
     border-radius: 1em;
 }
 
-.modeleOutputField span img {
+.formulaireDevis .modeleOutputField span img {
     max-height: 200px;
     transition: transform 2s ease;
 }
 
-.modeleOutputField span img:hover {
+.formulaireDevis .modeleOutputField span img:hover {
     transform: scale(1.2);
 }

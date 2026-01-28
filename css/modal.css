@@ -1,4 +1,4 @@
-.modalDevis {
+.formulaireDevis .modalDevis {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.modalDevis .modalContent {
+.formulaireDevis .modalDevis .modalContent {
     position: relative;
     background: white;
     margin: auto;
@@ -30,7 +30,7 @@
     transition: height 0.5s ease-in-out;
 }
 
-.modalDevis h2::after {
+.formulaireDevis .modalDevis h2::after {
     content: "";
     display: block;
     width: 100%;
@@ -39,21 +39,21 @@
     margin: 0.5em auto 0 auto;
 }
 
-.modalDevis .modalHeader {
+.formulaireDevis .modalDevis .modalHeader {
     display: flex;
     justify-content: center;
     width: 100%;
     align-items: center;
 }
 
-.modalDevis .modal-title {
+.formulaireDevis .modalDevis .modal-title {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
 }
 
 
-.modalDevis .closeModal {
+.formulaireDevis .modalDevis .closeModal {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -73,12 +73,12 @@
     font-weight: bold;
 }
 
-.modalDevis .closeModal:hover {
+.formulaireDevis .modalDevis .closeModal:hover {
     color: #000;
     font-weight: bolder;
 }
 
-.modalDevis .modal-body {
+.formulaireDevis .modalDevis .modal-body {
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 60vh;
@@ -93,18 +93,18 @@
     -ms-overflow-style: none;
 }
 
-.modal-body div {
+.formulaireDevis .modalDevis .modal-body div {
     max-width: 536px;
 }
-.modal-body div.projectItemContent {
+.formulaireDevis .modalDevis .modal-body div.projectItemContent {
     max-width: none;
 }
 
-.modalDevis .modal-body::-webkit-scrollbar {
+.formulaireDevis .modalDevis .modal-body::-webkit-scrollbar {
     display: none;
 }
 
-.modalDevis .colorItem {
+.formulaireDevis .modalDevis .colorItem {
     display: grid;
     grid-template-columns: 1fr 1fr 70px;
     height: 25px;
@@ -116,11 +116,11 @@
     border-radius: 5em;
 }
 
-.modalDevis .colorItem:hover {
+.formulaireDevis .modalDevis .colorItem:hover {
     background-color: #e0e0e0;
 }
 
-.modalDevis span.colorSample {
+.formulaireDevis .modalDevis span.colorSample {
     display: inline-block;
     height: 25px;
     width: 100%;
@@ -128,20 +128,20 @@
 
 }
 
-.modalDevis .colorName {
+.formulaireDevis .modalDevis .colorName {
     display: inline-block;
     align-self: center;
     text-align: center;
     font-weight: bold;
 }
 
-.modalDevis .colorRal {
+.formulaireDevis .modalDevis .colorRal {
     display: inline-block;
     align-self: center;
     text-align: start;
 }
 
-.modalDevis .modal-title h2 {
+.formulaireDevis .modalDevis .modal-title h2 {
     margin-top: 0;
     margin-bottom: 0.5em;
 }
@@ -155,11 +155,11 @@
 
 /* models ------------------------------------------------------------------------- */
 
-.modalModel .modal-body {
+.formulaireDevis .modalModel .modal-body {
     width: 100%;
 }
 
-.modalDevis .modal-body {
+.formulaireDevis .modalDevis .modal-body {
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 60vh;
@@ -171,7 +171,7 @@
     align-items: center;
 }
 
-.modalDevis .modelItem {
+.formulaireDevis .modalDevis .modelItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -183,23 +183,23 @@
     width: 100%;
 }
 
-.modalDevis .modelItem img {
+.formulaireDevis .modalDevis .modelItem img {
     max-width: 100%;
     height: auto;
     border-radius: 1em;
     transition: 0.8s ease;
 }
 
-.modelItem:hover img {
+.formulaireDevis .modalDevis .modelItem:hover img {
     transform: scale(1.1);
 }
 
-.modelImageContainer {
+.formulaireDevis .modalDevis .modelImageContainer {
     width: 100%;
     overflow: hidden;
     border-radius: 1em;
 }
-.modelName {
+.formulaireDevis .modalDevis .modelName {
     margin-top: 0.5em;
     font-weight: bold;
     text-align: center;
@@ -208,7 +208,7 @@
 
 
 /* Loader */
-.modalDevis .loader {
+.formulaireDevis .modalDevis .loader {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,14 +216,14 @@
     padding: 2em;
 }
 
-.modalDevis .loader img {
+.formulaireDevis .modalDevis .loader img {
     width: 50px;
     height: 50px;
     /* mettre en noir tout ce qui n'est pas transparent */
     filter: brightness(0%);
 }
 
-.modalDevis .filterContainer {
+.formulaireDevis .modalDevis .filterContainer {
     display: flex;
     /* display: grid; */
     gap: 0.5em;
@@ -234,13 +234,13 @@
     width: 90%;
 }
 
-.modalDevis .modalHeader {
+.formulaireDevis .modalDevis .modalHeader {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.modalDevis .filterButton {
+.formulaireDevis .modalDevis .filterButton {
     padding: 0.5em 1em;
     border: none;
     border-radius: 5em;
@@ -254,17 +254,17 @@
     min-width: max-content;
 }
 
-.modalDevis .filterButton:hover {
+.formulaireDevis .modalDevis .filterButton:hover {
     background-color: #e0e0e0;
 }
 
 
-.modalDevis .filterButton.active {
+.formulaireDevis .modalDevis .filterButton.active {
     background-color: #007bff;
     color: white;
 }
 
-.modalDevis .filterButton.active:hover {
+.formulaireDevis .modalDevis .filterButton.active:hover {
     background-color: #0056b3;
 }
 
@@ -273,7 +273,7 @@
 
 
 
-.projectItem {
+.formulaireDevis .projectItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -292,16 +292,16 @@
     max-width: 350px;
 }
 
-.projectItem img {
+.formulaireDevis .projectItem img {
     transition: 0.3s ease;
 }
 
 
-.projectItem:hover img {
+.formulaireDevis .projectItem:hover img {
     transform: scale(1.1);
 }
 
-.projectItemContent {
+.formulaireDevis .projectItemContent {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -310,24 +310,24 @@
     gap: 1em;
 }
 
-.modalProject .modalContent {
+.formulaireDevis .modalProject .modalContent {
     max-width: 500px;
 }
 
 
 
-.modalContent {
+.formulaireDevis .modalContent {
     animation: modalOpenAnim 0.5s forwards;
 }
 
 
 
 
-.modalClose {
+.formulaireDevis .modalClose {
     animation: modalCloseDelay 0.2s forwards;
 }
 
-.modalClose .modalContent {
+.formulaireDevis .modalClose .modalContent {
     animation: modalCloseAnim 0.2s forwards;
 }
 

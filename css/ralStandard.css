@@ -1,4 +1,4 @@
-.ralStandardContainer {
+.formulaireDevis .ralStandardContainer {
     /* display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr; */
     display: flex;
@@ -8,7 +8,7 @@
     align-items: stretch;
 }
 
-.ralStandard {
+.formulaireDevis .ralStandard {
     display: flex;
     gap: 10px;
     border: solid 2px black;
@@ -20,13 +20,13 @@
     min-width: 300px;
 }
 @media (max-width: 400px) {
-    .ralStandard {
+    .formulaireDevis .ralStandard {
         min-width: 240px;
     }
     
 }
 
-.ralStandard {
+.formulaireDevis .ralStandard {
     display: flex;
     gap: 10px;
     border: solid 2px black;
@@ -36,12 +36,12 @@
 
 }
 
-.ralStandard input[type="radio"] {
+.formulaireDevis .ralStandard input[type="radio"] {
     display: none;
 }
 
 
-.ralStandard label {
+.formulaireDevis .ralStandard label {
     margin-bottom: 0;
     cursor: pointer;
     width: 100%;
@@ -53,14 +53,14 @@
     overflow: hidden;
 }
 
-.ralStandard label span {
+.formulaireDevis .ralStandard label span {
     display: inline-block;
     width: 40px;
     height: 40px;
     vertical-align: middle;
 }
 
-.ralStandard label div {
+.formulaireDevis .ralStandard label div {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -68,11 +68,11 @@
     /* width: calc(100% - 50px); */
 }
 
-.ralStandard input[type="radio"]:checked + label {
+.formulaireDevis .ralStandard input[type="radio"]:checked + label {
     position: relative;
 }
 
-.ralStandard input[type="radio"]:checked + label span {
+.formulaireDevis .ralStandard input[type="radio"]:checked + label span {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -85,12 +85,12 @@
 
 
 
-.ralStandard input[type="radio"]:checked + label {
+.formulaireDevis .ralStandard input[type="radio"]:checked + label {
     font-weight: bold;
     padding-left: 50px;
 }
 
-.ralStandard input[type="radio"]:checked + label.invert {
+.formulaireDevis .ralStandard input[type="radio"]:checked + label.invert {
     color: white;
 }
 
@@ -103,13 +103,13 @@
     }
 }
 
-.ralStandard input[type="radio"]:checked + label span {
+.formulaireDevis .ralStandard input[type="radio"]:checked + label span {
     animation: slideScale 0.7s ease-out forwards;
     transform-origin: left center;
 
 }
 
-.displayColorSelected {
+.formulaireDevis .displayColorSelected {
     display: flex;
     gap: 0.25em;
     align-items: center;
@@ -121,31 +121,31 @@
     overflow: hidden;
 }
 
-.displayColorSelected:has(span:first-child:not(:empty)) {
+.formulaireDevis .displayColorSelected:has(span:first-child:not(:empty)) {
     animation: addColorSelected 0.5s forwards;
 }
 
 
 
-.displayColorSelected span {
+.formulaireDevis .displayColorSelected span {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-.displayColorSelected span:last-child {
+.formulaireDevis .displayColorSelected span:last-child {
     border-radius: 2em;
     height: 2.25em;
     width: 100%;
     max-width: 400px;
 }
 
-.displayColorSelected:has(span:first-child:empty) {
+.formulaireDevis .displayColorSelected:has(span:first-child:empty) {
     animation: removeColorSelected 0.5s forwards;
 }
 
-.displayColorSelected:has(span:first-child:not(:empty)) span:last-child {
+.formulaireDevis .displayColorSelected:has(span:first-child:not(:empty)) span:last-child {
     animation: generateColorBlock 1s ease-out forwards;
 }
 

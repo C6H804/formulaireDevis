@@ -1,6 +1,6 @@
 /* teporaire */
 
-body {
+.formulaireDevis {
     display: flex;
     justify-content: center;
     margin: 0;
@@ -11,7 +11,7 @@ body {
 
 
 
-form {
+.formulaireDevis form {
     font-family: 'Montserrat', sans-serif;
     /* max-width: 1080px;
     padding-left: 2em;
@@ -20,12 +20,12 @@ form {
     max-width: 1080px;
 }
 
-h2:not(.modal h2) {
+.formulaireDevis h2:not(.modal h2) {
     padding-bottom: 0.2em;
     border-bottom: dotted black 1px;
 }
 
-h3.productTitle {
+.formulaireDevis h3.productTitle {
     font-weight: bold;
     font-size: 3em;
     text-align: center;
@@ -34,58 +34,58 @@ h3.productTitle {
 }
 
 
-.inputField input[type="text"],
-.inputField input[type="email"],
-.inputField select,
-.inputField input[type="tel"] {
+.formulaireDevis .inputField input[type="text"],
+.formulaireDevis .inputField input[type="email"],
+.formulaireDevis .inputField select,
+.formulaireDevis .inputField input[type="tel"] {
     padding: 0.4em 0.8em;
     border: solid black 2px;
     font-size: 1em;
     border-radius: 0;
 }
 
-.inputField input[type="text"]:focus,
-.inputField input[type="email"]:focus,
-.inputField input[type="tel"]:focus {
+.formulaireDevis .inputField input[type="text"]:focus,
+.formulaireDevis .inputField input[type="email"]:focus,
+.formulaireDevis .inputField input[type="tel"]:focus {
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
     outline: none;
 }
 
-.section {
+.formulaireDevis .section {
     display: flex;
     flex-direction: column;
     gap: 1em;
     margin-bottom: 1.7em;
 }
 
-.sectionIdentite .sectionGroupName {
+.formulaireDevis .sectionIdentite .sectionGroupName {
     display: flex;
     gap: 1em;
 }
 
-.sectionGroupName .inputField {
+.formulaireDevis .sectionGroupName .inputField {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
 
-.sectionGroupAddress {
+.formulaireDevis .sectionGroupAddress {
     display: flex;
     gap: 1em;
 }
 
-.sectionGroupAddress .inputField {
+.formulaireDevis .sectionGroupAddress .inputField {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.sectionGroupContact {
+.formulaireDevis .sectionGroupContact {
     display: flex;
     gap: 1em;
 }
-.sectionGroupContact .inputField {
+.formulaireDevis .sectionGroupContact .inputField {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -93,7 +93,7 @@ h3.productTitle {
 }
 
 @media (max-width:720px) {
-    .sectionGroupContact, .sectionGroupName {
+    .formulaireDevis .sectionGroupContact, .formulaireDevis .sectionGroupName {
         flex-wrap: wrap;
 
 
@@ -101,14 +101,14 @@ h3.productTitle {
     
 }
 
-.section.sectionAutre .inputField {
+.formulaireDevis .section.sectionAutre .inputField {
     display: flex;
     flex-direction: column;
     gap: 1em;
     justify-content: center;
 }
 
-.section.sectionAutre .inputField textarea {
+.formulaireDevis .section.sectionAutre .inputField textarea {
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
     padding: 0.4em 0.8em;
@@ -118,19 +118,19 @@ h3.productTitle {
 }
 
 
-label {
+.formulaireDevis label {
     margin-bottom: 0.3em;
     font-size: 1.1em;
 }
 
-.fieldInputTextarea {
+.formulaireDevis .fieldInputTextarea {
     border-top: solid black 2px;
     padding-top: 1em;
 }
 
 
 /* animations --------------------------------------- */
-.project {
+.formulaireDevis .project {
     animation: growDown 0.5s ease-out forwards;
     transform-origin: top center;
 }

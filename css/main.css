@@ -5,11 +5,11 @@
 @import url("outputModel.css");
 @import url("ralStandard.css");
 
-.hidden {
+.formulaireDevis .hidden {
     display: none;
 }
 
-div.project {
+.formulaireDevis div.project {
     border-bottom: solid black 2px;
     margin: 1em 0;
     padding: 1em 0;

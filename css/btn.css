@@ -1,4 +1,4 @@
-.btn {
+.formulaireDevis .btn {
     padding: 0.5em 1.25em;
     font-size: 1.1em;
     border: solid black 2px;
@@ -13,76 +13,76 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.btn-black {
+.formulaireDevis .btn-black {
     background-color: black;
     color: white;
 }
 
-.btn-black:hover {
+.formulaireDevis .btn-black:hover {
     background-color: #222;
     color: white;
     border-color: #222;
 }
 
-.btn-red {
+.formulaireDevis .btn-red {
     background-color: red;
     border-color: red;
     color: white;
 }
 
-.btn-red:hover {
+.formulaireDevis .btn-red:hover {
     background-color: #dd0000;
     color: white;
     border-color: #dd0000;
 }
 
 
-.btn-h-black:hover {
+.formulaireDevis .btn-h-black:hover {
     background-color: black;
     color: white;
 }
 
-.btn-h-red:hover {
+.formulaireDevis .btn-h-red:hover {
     background-color: red;
     color: white;
     border-color: red;
 }
 
-.btn-h:hover {
+.formulaireDevis .btn-h:hover {
     transform: scale(1.05);
 }
 
-.right {
+.formulaireDevis .right {
     /* make this element on the right of the div */
     display: block;
     margin-left: auto;
 }
 
-.center {
+.formulaireDevis .center {
     /* make this element in the center of the div */
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.addProjectBtnContainer {
+.formulaireDevis .addProjectBtnContainer {
     margin: 2em 0;
 }
 
-.fieldInputTextarea {
+.formulaireDevis .fieldInputTextarea {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.fieldInputTextarea label {
+.formulaireDevis .fieldInputTextarea label {
     margin-bottom: 0.5em;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.fieldInputTextarea textarea {
+.formulaireDevis .fieldInputTextarea textarea {
     width: 100%;
     max-width: 600px;
     padding: 0.5em;

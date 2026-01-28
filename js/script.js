@@ -286,6 +286,7 @@ const getProjectList = (id) => {
 
 window.preloadModal = (id, modalType) => {
     document.body.style.overflow = 'hidden';
+    const target = document.getElementById("formulaireDevis");
     const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
     const title = modalType === "Model" ? "Choisir un modèle" : modalType === "Project" ? "Choisir un projet" : "Choisir une couleur";
 
@@ -313,7 +314,7 @@ window.preloadModal = (id, modalType) => {
     });
     closeButton.addEventListener('click', () => closeModal());
 
-    document.body.appendChild(modalHtml);
+    target.appendChild(modalHtml);
 }
 
 window.changeImage = () => {

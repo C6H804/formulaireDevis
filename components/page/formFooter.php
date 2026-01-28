@@ -19,4 +19,5 @@ echo "
 echo "<input class='btn btn-red btn-h center' type='submit' value='Envoyer vôtre demande' name='submit' />";
 
 echo "</form>";
+echo "</div>";
 ?>

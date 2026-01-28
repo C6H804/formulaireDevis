@@ -23,7 +23,7 @@ function getImageUrl($file) {
     ));
 
     if ($_ENV["ENVIRONMENT"] === "development") {
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Pour éviter les erreurs SSL (à utiliser avec précaution)
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     } else {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
