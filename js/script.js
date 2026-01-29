@@ -248,7 +248,7 @@ window.openModalProject = async (id) => {
     console.log(data);
     const target = document.getElementById("modalBodyProject" + id);
     target.innerHTML = "";
-    const projectImgFolder = "/img/projects/";
+    const projectImgFolder = "./img/projects/";
 
     data.forEach(p => {
         const projectItem = CreateElement("div", { class: "projectItem" }, [
