@@ -14,6 +14,9 @@ include_once __DIR__ . '/../utils/loadEnv.php';
 
 include_once __DIR__ . '/imgbb/__getImage.php';
 
+include_once __DIR__ . '/mail/_writteMail.php';
+include_once __DIR__ . '/mail/_sendMail.php';
+
 
 $data = getData();
 if ($data === null) {
@@ -60,7 +63,10 @@ if ($data === null) {
         }
 
         $devis = writteDevis($result);
-        echo $devis;
+        sendMail($result); 
+        // echo $devis;
+
+
 
         $deal = addDeal(
             $token,
