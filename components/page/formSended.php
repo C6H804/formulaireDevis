@@ -113,7 +113,7 @@
                 <div class="formAlert-Body">
                     <h3>Une erreur est survenue lors de l'envoie de vôtre demande de devis</h3>
                     <p><?php echo $_SESSION['formError']; ?></p>
-                    <p>Si le problème persiste, veuillez contacter nôtre agence au : 05 58 55 53 14 ou par mail : contact@acportail.fr</p>
+                    <p>Si le problème persiste, veuillez contacter nôtre agence au : <a href="tel:0558555314">05 58 55 53 14</a> ou par mail : <a href="mailto:contact@acportail.fr">contact@acportail.fr</a></p>
                 </div>
                 <div class="formAlert-Footer">
                     <button class="btn btn-formAlert" onclick="fermer();">Fermer</button>
@@ -134,8 +134,8 @@
                         <p>Nous vous remercions pour l'intérêt que vous nous portez. Un conseiller
                             prendra contact avec vous dans les plus brefs délais afin de discuter de votre projet et
                             de vous fournir un devis personnalisé.</p>
-                        <p>Si vous avez des questions en attendant, n'hésitez pas à nous contacter au : 05 58 55 53 14
-                            ou par mail : contact@acportail.fr</p>
+                        <p>Si vous avez des questions en attendant, n'hésitez pas à nous contacter au : <a href="tel:0558555314">05 58 55 53 14</a>
+                            ou par mail : <a href="mailto:contact@acportail.fr">contact@acportail.fr</a></p>
                     </div>
                     <div class="formAlert-Footer">
                         <button class="btn btn-formAlert" onclick="fermer();">Fermer</button>

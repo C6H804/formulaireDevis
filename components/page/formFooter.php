@@ -16,7 +16,7 @@ include_once 'components/page/sondage.php';
 
 echo "
 </div>";
-echo "<input class='btn btn-red btn-h center' type='submit' value='Envoyer vôtre demande' name='submit' />";
+echo "<input class='btn btn-red btn-h center' type='submit' value='Envoyer votre demande' name='submit' />";
 
 echo "</form>";
 echo "</div>";
