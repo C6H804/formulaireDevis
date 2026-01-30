@@ -36,7 +36,7 @@ if ($data === null) {
     // Vérification du résultat
     if (is_string($result)) {
         $_SESSION['formError'] = $result;
-        header('Location: ../../index.php?error=validation');
+        header('Location: ../page/formSended.php');
         exit;
         
     } else {
