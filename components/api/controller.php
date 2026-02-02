@@ -89,7 +89,6 @@ if ($data === null) {
         header('Location: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/components/page/formSended.php');
         exit;
     }
-
 }
 
 ?>
