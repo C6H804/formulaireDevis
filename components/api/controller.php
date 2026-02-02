@@ -21,7 +21,7 @@ include_once __DIR__ . '/mail/_sendMail.php';
 $data = getData();
 if ($data === null) {
     $_SESSION['formError'] = "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer plus tard.";
-    header('Location: ../page/formSended.php');
+    header('Location: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/components/page/formSended.php');
     exit;
 
 } else {
@@ -36,7 +36,7 @@ if ($data === null) {
     // Vérification du résultat
     if (is_string($result)) {
         $_SESSION['formError'] = $result;
-        header('Location: ../page/formSended.php');
+        header('Location: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/components/page/formSended.php');
         exit;
         
     } else {
@@ -86,8 +86,7 @@ if ($data === null) {
             $_SESSION['formError'] = "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer plus tard.";
         }
 
-        // header('Location: ../page/formSended.php');
-        header("Location:" . __DIR__ . "/../page/formSended.php");
+        header('Location: ' . $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/components/page/formSended.php');
         exit;
     }
 
