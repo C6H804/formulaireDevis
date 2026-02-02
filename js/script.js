@@ -18,12 +18,36 @@ window.projectType = [
 ];
 window.projectList = [];
 
+// Fonction pour envoyer le contenu du formulaire au parent (WordPress)
+window.sendFormToParent = () => {
+    const formulaire = document.getElementById("formulaireDevis");
+    if (formulaire && window.parent !== window) {
+        const formHtml = formulaire.outerHTML;
+        window.parent.postMessage({
+            type: 'formulaireDevis',
+            html: formHtml,
+            data: window.projectList
+        }, '*');
+        console.log("Formulaire envoyé au parent");
+    }
+}
+
+// Envoyer le formulaire après chaque modification importante
+window.updateParentForm = () => {
+    if (window.parent !== window) {
+        setTimeout(() => {
+            window.sendFormToParent();
+        }, 100);
+    }
+}
+
 const init = async () => {
 
     console.log("Script loaded");
     document.getElementById('addProjectBtn').addEventListener('click', () => {
         addProject(projectType[0]);
         console.log(window.projectList);
+        updateParentForm();
     });
 
     document.addEventListener('keydown', (e) => {
@@ -52,11 +76,11 @@ const init = async () => {
 
     await addProject(projectType[0]);
     console.log("Premier projet ajouté, projectIds =", document.getElementById('projectIds')?.value);
-};
 
-window.changeProjectType = async (id = "") => {
-    console.log("Changing project type for ID:", id);
-    const value = document.getElementById("selectProject" + id).value;
+    const formulaire = document.getElementById("formulaireDevis");
+
+    // Envoyer le formulaire au parent après initialisation
+    updateParentForm();
     const target = document.querySelectorAll("#project" + id + " .projectBody")[0];
     projectList.forEach(e => {
         if (e.id == id) e.type = value;
@@ -100,6 +124,7 @@ window.deleteProject = (id) => {
     // Mettre à jour le champ caché avec les IDs des projets
     const projectIds = window.projectList.map(p => p.id).join(',');
     document.getElementById('projectIds').value = projectIds;
+    updateParentForm();
 }
 
 window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
@@ -326,3 +351,5 @@ window.changeImage = () => {
         btn.innerText = "Nous transmettre une image";
     }
 }
+
+
