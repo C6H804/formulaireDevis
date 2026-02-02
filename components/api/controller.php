@@ -86,7 +86,8 @@ if ($data === null) {
             $_SESSION['formError'] = "Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer plus tard.";
         }
 
-        header('Location: ../page/formSended.php');
+        // header('Location: ../page/formSended.php');
+        header("Location:" . __DIR__ . "/../page/formSended.php");
         exit;
     }
 
