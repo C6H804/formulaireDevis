@@ -14,3 +14,35 @@
     margin: 1em 0;
     padding: 1em 0;
 }
+
+
+
+.formulaireDevis .sectionCGU .inputField input,
+.formulaireDevis .sectionSondage .inputField input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.formulaireDevis .sectionCGU .inputField label,
+.formulaireDevis .sectionSondage .inputField label {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.formulaireDevis .sectionCGU .inputField,
+.formulaireDevis .sectionSondage .inputField {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.formulaireDevis .sectionCGU .inputField label,
+.formulaireDevis .sectionSondage .inputField label {
+    cursor: pointer;
+    user-select: none;
+}

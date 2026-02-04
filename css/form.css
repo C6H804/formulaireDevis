@@ -38,6 +38,7 @@
 .formulaireDevis .inputField input[type="email"],
 .formulaireDevis .inputField select,
 .formulaireDevis .inputField input[type="tel"] {
+    height: fit-content;
     padding: 0.4em 0.8em;
     border: solid black 2px;
     font-size: 1em;
@@ -95,10 +96,7 @@
 @media (max-width:720px) {
     .formulaireDevis .sectionGroupContact, .formulaireDevis .sectionGroupName {
         flex-wrap: wrap;
-
-
     }
-    
 }
 
 .formulaireDevis .section.sectionAutre .inputField {
@@ -129,6 +127,7 @@
 }
 
 
+
 /* animations --------------------------------------- */
 .formulaireDevis .project {
     animation: growDown 0.5s ease-out forwards;
@@ -147,3 +146,4 @@
         transform: scaleY(1);
     }
 }
+

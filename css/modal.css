@@ -107,7 +107,10 @@
 .formulaireDevis .modalDevis .colorItem {
     display: grid;
     grid-template-columns: 1fr 1fr 70px;
-    height: 25px;
+    align-items: center;
+    max-height: 25px;
+    height: fit-content;
+    align-items: center;
     width: 100%;
     gap: 0.2em;
     background-color: #f0f0f0;
@@ -133,6 +136,9 @@
     align-self: center;
     text-align: center;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .formulaireDevis .modalDevis .colorRal {
