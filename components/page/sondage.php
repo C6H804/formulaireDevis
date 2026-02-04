@@ -10,10 +10,10 @@ function writteSondageRandom()
             id="chkSondageFacebook" value="on"></input><label for="chkSondageFacebook">Facebook</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageInstagram"
             id="chkSondageInstagram" value="on"></input><label for="chkSondageInstagram">Instagram</label></div>',
-        '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondagePinterest"
-            id="chkSondagePinterest" value="on"></input><label for="chkSondagePinterest">Pinterest</label></div>',
-        '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageRadio"
-            id="chkSondageRadio" value="on"></input><label for="chkSondageRadio">Radio</label></div>',
+        // '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondagePinterest"
+            // id="chkSondagePinterest" value="on"></input><label for="chkSondagePinterest">Pinterest</label></div>',
+        // '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageRadio"
+            // id="chkSondageRadio" value="on"></input><label for="chkSondageRadio">Radio</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageBoucheOreille"
             id="chkSondageBoucheOreille" value="on"></input><label for="chkSondageBoucheOreille">Bouche à oreille</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondagePubliciteGrandMail"
