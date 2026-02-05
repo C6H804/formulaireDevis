@@ -98,9 +98,13 @@
 @keyframes slideScale {
     0% {
         transform: scaleX(0.12);
+        border-top-right-radius: 5em;
+        border-bottom-right-radius: 5em;
     }
     100% {
         transform: scaleX(1.1);
+        border-top-right-radius: 5em;
+        border-bottom-right-radius: 5em;
     }
 }
 

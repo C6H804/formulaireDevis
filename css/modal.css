@@ -50,6 +50,8 @@
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
 }
 
 
@@ -238,6 +240,16 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 90%;
+    max-height: 100px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+@media (max-height: 500px) and (min-width: 500px) {
+    .formulaireDevis .modalDevis .filterContainer {
+        max-height: 40px;
+    }
+    
 }
 
 .formulaireDevis .modalDevis .modalHeader {
@@ -315,6 +327,13 @@
     width: 100%;
     gap: 1em;
 }
+.formulaireDevis .modal-body .projectItemContent .projectName {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
 
 .formulaireDevis .modalProject .modalContent {
     max-width: 500px;
