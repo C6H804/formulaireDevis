@@ -68,6 +68,13 @@ ob_start();
     </div>
 </div>
 
+<div class="section sectionA">
+    <div class="inputField">
+        <label for="vueA">vueA</label>
+        <input type="text" name="vueA" class="vueA" id="vueA">
+    </div>
+</div>
+
 
 <?php
 echo ob_get_clean();

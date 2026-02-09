@@ -46,3 +46,8 @@
     cursor: pointer;
     user-select: none;
 }
+
+
+.formulaireDevis .sectionA {
+    display: none;
+}

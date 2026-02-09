@@ -7,6 +7,18 @@ echo "<div class='sectionGroup sectionGroupName'>";
 
 echo createInput("text", "surname", "Votre prénom", "Prénom :", "", "", "required");
 echo createInput("text", "name", "Votre nom", "Nom :", "", "", "required");
+// echo createInput("checkbox", "consent", "Consentement", "consentement :", "", "", "sectionA");
+echo "<div class='sectionA'>
+<label for='consent'>Consentement :</label>
+<input type='checkbox' name='consent' id='consent'>
+</div>";
+
+// echo createInput("text", "age", "Votre age", "Âge :", "", "", "sectionA");
+echo "<div class='sectionA'>
+<label for='age'>Âge :</label>
+<input type='text' name='age' id='age'>
+</div>";
+
 echo "</div>";
 echo "<div class='sectionGroup sectionGroupAddress'>";
 echo createInput("text", "address", "Votre adresse", "Adresse :", "", "", "required");
@@ -14,6 +26,12 @@ echo "</div>";
 echo "<div class='sectionGroup sectionGroupContact'>";
 echo createInput("text", "phone", "Votre téléphone", "Téléphone :");
 echo createInput("text", "email", "Votre email", "Email :");
+// echo createInput("text", "emailB", "Votre 2ème email", "2ème Email :", "", "sectionA");
+echo "<div class='sectionA'>
+<label for='emailB'>2ème Email :</label>
+<input type='text' name='emailB' id='emailB'>
+</div>";
+
 echo "</div>";
 // echo "<br><hr><br>";
 echo "</div>";

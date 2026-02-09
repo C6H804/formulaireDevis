@@ -18,6 +18,8 @@ window.projectType = [
 ];
 window.projectList = [];
 
+let ralColors = [];
+
 const init = async () => {
 
     console.log("Script loaded");
@@ -106,7 +108,13 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
     const modalHtml = await getModal(id, "ral", "Ral");
 
     const target = document.getElementById("modalBodyRal" + id);
-    target.innerHTML = modalHtml;
+    // console.log("Modal HTML for RAL:", modalHtml);
+    ralColors = JSON.parse(modalHtml);
+    
+    // target.innerHTML = modalHtml;
+    target.innerHTML = "";
+    fillRalModal(id, ralColors, target);
+
     // document.body.insertAdjacentHTML('beforeend', modalHtml);
     const modalRal = document.getElementById("modalRal" + id);
     modalRal.addEventListener('click', (e) => {
@@ -117,6 +125,33 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
 
     document.body.style.overflow = 'hidden';
 }
+
+const fillRalModal = (id, colors, target, search = "") => {
+    let ammount = 0;
+    colors.forEach(color => {
+        if (color.name_fr.toLowerCase().includes(search.toLowerCase()) || color.order.toLowerCase().startsWith(search.toLowerCase())) {
+            target.appendChild(addRalToModal(id, color));
+            ammount++;
+        }
+    });
+    if (ammount === 0) {
+        target.innerHTML = "<p class='noResult'>Aucun résultat trouvé pour \"" + search + "\"</p>";
+    }
+}
+
+
+const addRalToModal = (id, color) => {
+    const e = CreateElement("div", { class: "colorItem"}, [
+        CreateElement("span", { class: "colorSample", style: `background-color: #${color.color}` }),
+        CreateElement("div", { class: "colorName" }, [color.name_fr]),
+        CreateElement("div", { class: "colorRal" }, [color.value])
+    ]);
+    e.addEventListener('click', () => {
+        selectRal(id, color.order, "#radioToClear" + id, color.color, color.name_fr);
+    });
+    return e;
+}
+
 
 window.closeModal = () => {
     document.querySelectorAll(".modal").forEach(e => {
@@ -202,7 +237,6 @@ window.loadModels = (id, style, data) => {
 
 
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
-    
     projectType = document.getElementById("selectProject" + id).value;
     
     // Déterminer le préfixe en fonction du type de projet
@@ -282,6 +316,15 @@ const getProjectList = (id) => {
     return projectList;
 }
 
+window.changeRalSearch = (id) => {
+    // alert("Recherche RAL : " + document.getElementById("ralSearch" + id).value);
+    document.getElementById("modalBodyRal" + id).innerHTML = "";
+    fillRalModal(id, ralColors, document.getElementById("modalBodyRal" + id), document.getElementById("ralSearch" + id).value);
+}
+window.clearRalSearch = (id) => {
+    document.getElementById("ralSearch" + id).value = "";
+    changeRalSearch(id);
+}
 
 
 window.preloadModal = (id, modalType) => {
@@ -289,6 +332,16 @@ window.preloadModal = (id, modalType) => {
     const target = document.getElementById("formulaireDevis");
     const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);
     const title = modalType === "Model" ? "Choisir un modèle" : modalType === "Project" ? "Choisir un projet" : "Choisir une couleur";
+    let searchContainer = null;
+    if (modalType === "Ral") {
+        searchContainer = CreateElement("div", { class: "searchContainer" }, [
+            CreateElement("div", { class: "searchArea" }, [
+                CreateElement("input", { type: "text", placeholder: "Rechercher par nom ou code RAL...", id: "ralSearch" + id, onInput: `changeRalSearch(${id})`, class: "ralSearchInput" }),
+                CreateElement("button", { type: "span", class: "ralClearButton", onClick: `clearRalSearch(${id})` }, ["×"])
+            ])
+        ]);
+    }
+
 
     const modalHtml = CreateElement("div", { class: "modal modalDevis modal" + modalType, id: "modal" + modalType + id }, [
         CreateElement("div", { class: "modalContent" }, [
@@ -297,7 +350,8 @@ window.preloadModal = (id, modalType) => {
                     CreateElement("h2", {}, [title])
                 ]),
                 closeButton,
-                modalType === "Model" ? CreateElement("div", { class: "filterContainer" }) : null
+                modalType === "Model" ? CreateElement("div", { class: "filterContainer" }) : null,
+                modalType === "Ral" ? searchContainer : null
             ]),
             CreateElement("div", { class: "modal-body", id: "modalBody" + modalType + id }, [
                 CreateElement("div", { class: "loader" }, [

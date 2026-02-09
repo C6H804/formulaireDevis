@@ -83,8 +83,16 @@ function addPortail($id)
         </div>
         <div class="inputField">
             <label for="<?php echo "dimensionHauteur$id"; ?>">Dimension Hauteur du portail (en cm)</label>
-            <input type="text" name="dimensionHauteur<?php echo $id ?>"
-                id="<?php echo "dimensionHauteur$id"; ?>" placeholder="Exemple : 170 cm" />
+            <input type="text" name="dimensionHauteur<?php echo $id ?>" id="<?php echo "dimensionHauteur$id"; ?>"
+                placeholder="Exemple : 170 cm" />
+        </div>
+    </div>
+
+    <div class="section sectionA"> 
+        <div class="inputField">
+            <label for="<?php echo "dimensionProfondeur$id"; ?>">Dimension en profondeur</label>
+            <input type="text" name="dimensionProfondeur<?php echo $id ?>" id="<?php echo "dimensionProfondeur$id"; ?>"
+            placeholder="Exemple : 125 cm" />
         </div>
     </div>
 

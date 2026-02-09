@@ -52,11 +52,14 @@ function sanitize($data = "", $type = "general") {
 
 
 function analyzeData($data) {
-    echo "<script>console.log(" .json_encode($data) . ");</script>";
+    // echo "<script>console.log(" .json_encode($data) . ");</script>";
 
     if (empty($data)) {
         return "Aucune donnée reçue.";
     } else {
+        if (antiBot($data)) {
+            return "Données suspectes détectées (potentiel bot).";
+        }
         if (!isset($data['name']) || !isset($data['surname']) || (!isset($data['email']) && !isset($data['phone']))) {
             return "Données obligatoires manquantes.";
         } else {
@@ -617,6 +620,16 @@ function getImages($data) {
     } else {
         return null;
     }
+}
+
+function antiBot($data) {
+    $honeyPot = ["vueA", "consent", "age", "emailB", "dimensionProfondeur0", "dimensionProfondeur1", "dimensionProfondeur2", "dimensionProfondeur3", "dimensionProfondeur4"];
+    foreach ($honeyPot as $field) {
+        if (isset($data[$field]) && $data[$field] !== "") {
+            return true;
+        }
+    }
+    return false;
 }
 
 ?>
