@@ -9,7 +9,6 @@ function writteMail($data)
     <h2>Informations personnelles</h2>
     <?php echo getPersonalInfoM($data); ?>
     <?php echo getProjectsM($data); ?>
-    <h2>Détails supplémentaires</h2>
     <?php echo getDetailsSupplementairesM($data); ?>
 
     <?php echo style() ?>
@@ -20,6 +19,7 @@ function writteMail($data)
 function getDetailsSupplementairesM($data) {
     ob_start();
     if (isset($data['details'])) {
+        echo "<h2>Détails supplémentaires</h2>";
         echo "<div><b>Détails supplémentaires :</b>";
         echo "<div class='delay'>" . htmlspecialchars($data['details']) . "</div>";    
     }
