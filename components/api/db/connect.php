@@ -1,7 +1,8 @@
 <?php
+
 function connectDb() {
     $host = getenv("DB_HOST");
-    $dbname = getenv("DB_NAME");
+    $dbname = getenv("DB_DB");
     $username = getenv("DB_USER");
     $password = getenv("DB_PASSWORD");
     $port = getenv("DB_PORT");

@@ -496,7 +496,7 @@ function getDataFromPergola($id, $data)
     $largeur = sanitize($data['dimensionLargeur' . $id] ?? null);
     $hauteur = sanitize($data['dimensionHauteur' . $id] ?? null);
     $longueur = sanitize($data['dimensionLongueur' . $id] ?? null);
-    $options = sanitize($data['options' . $id] ?? null, ['Aucune', 'LED', 'Store verticaux', 'chauffage', 'parois vitrées']);
+    $options = sanitize($data['options' . $id] ?? null, ['Aucune', 'LED', 'Store verticaux', 'Chauffage', 'Parois vitrées']);
     $result = [
         "type" => "Pergola",
         "largeur" => $largeur === null ? "" : $largeur,

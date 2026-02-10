@@ -17,6 +17,8 @@ include_once __DIR__ . '/imgbb/__getImage.php';
 include_once __DIR__ . '/mail/_writteMail.php';
 include_once __DIR__ . '/mail/_sendMail.php';
 
+include_once __DIR__ . "/db/_writteStats.php";
+
 
 $data = getData();
 if ($data === null) {
@@ -29,17 +31,26 @@ if ($data === null) {
     if (!isset($_ENV['TOKEN'])) {
         loadEnv(__DIR__ . '/../../.env');
     }
-
+    
     // Analyse et traite les données
     $result = analyzeData($data);
-
+    
     // Vérification du résultat
     if (is_string($result)) {
         $_SESSION['formError'] = $result;
         header('Location: ../page/formSended.php');
         exit;
-        
-    } else {
+        } else {
+
+        // écrire les stats dans la base de données
+        $stats = writteStats($result);
+        if ($stats["valid"] === false) {
+            $_SESSION['formError'] = $stats["message"];
+            header('Location: ../page/formSended.php');
+            exit;
+        }
+
+
         $token = $_ENV['TOKEN'];
         // chercher l'ID de la personne via numéro de téléphone
         // si non trouvé, chercher l'ID via email
@@ -64,9 +75,12 @@ if ($data === null) {
 
         $devis = writteDevis($result);
         sendMail($result); 
+        
+        if ($data["email"] !== null) {
+            sendClientMail($result);
+        }
+
         // echo $devis;
-
-
 
         $deal = addDeal(
             $token,
@@ -77,7 +91,7 @@ if ($data === null) {
             $result['address'],
             $devis,
             $result['TVA'],
-            $_ENV['ID_STAGE']
+            $_ENV["ID_STAGE"] ?? 17
         );
 
         if (isset($deal['success']) && $deal['success'] === true) {

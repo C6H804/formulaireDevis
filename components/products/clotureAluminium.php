@@ -27,9 +27,9 @@ function addClotureAluminium($id)
         <div class="inputField">
             <label for="<?php echo "finition$id"; ?>">Finition :</label>
             <select name="finition<?php echo $id ?>" id="<?php echo "finition$id"; ?>">
-                <option value="Brillant">Brillant</option>
-                <option value="Mât">Mât</option>
                 <option value="Sablé">Sablé</option>
+                <option value="Mât">Mât</option>
+                <option value="Brillant">Brillant</option>
             </select>
         </div>
     </div>

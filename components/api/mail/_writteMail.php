@@ -4,14 +4,34 @@ function writteMail($data)
     // retourne le body du mail à envoyer
     ob_start();
     ?>
-    <h1>Demande de devis en ligne</h1>
+    <h1 style="color:#002;">Demande de devis en ligne</h1>
     <div><i>Reçu le <?php echo date('d/m/Y \à H:i'); ?></i></div>
-    <h2>Informations personnelles</h2>
+    <h2 style="color:#002;">Informations personnelles</h2>
     <?php echo getPersonalInfoM($data); ?>
     <?php echo getProjectsM($data); ?>
     <?php echo getDetailsSupplementairesM($data); ?>
 
-    <?php echo style() ?>
+    <?php
+    return ob_get_clean();
+}
+
+function getClientMail($data) {
+    // message envoyé au client pour accuser réception de sa demande de devis en ligne.
+    // le mail doit contenir un message de remerciement et un récapitulatif de sa demande.
+    // le message doit être simple et clair, sans trop de détails techniques.
+    // le ton doit être chaleureux et professionnel.
+    // le mail doit être responsive et s'adapter à tous les types d'écrans.
+    ob_start();
+    ?>
+    <h1 style="color:#002;">Bonjour <?php echo htmlspecialchars($data["name"] ?? ''); ?></h1>
+    <h2 style="color:#002;">Vôtre demande de devis en ligne à bien était enregistrée.</h2>
+    <p>Notre équipe va étudier votre demande avec attention et vous recontactera dans les plus brefs délais pour vous fournir une réponse personnalisée.</p>
+    <!-- phrase pour présenté le compte rendu du devis -->
+    <h3>Voici le récapitulatif de votre demande :</h3>
+    <?php echo getProjectsM($data); ?>
+    <p>Nous vous remercions encore une fois pour votre confiance et nous espérons pouvoir vous accompagner dans la réalisation de votre projet.</p>
+    <p>Cordialement,</p>
+    <p>L'équipe d'ACPORTAIL</p>
     <?php
     return ob_get_clean();
 }
@@ -19,9 +39,9 @@ function writteMail($data)
 function getDetailsSupplementairesM($data) {
     ob_start();
     if (isset($data['details'])) {
-        echo "<h2>Détails supplémentaires</h2>";
+        echo "<h2 style='color:#002;'>Détails supplémentaires</h2>";
         echo "<div><b>Détails supplémentaires :</b>";
-        echo "<div class='delay'>" . htmlspecialchars($data['details']) . "</div>";    
+        echo "<div style='margin-left:15px;'>" . htmlspecialchars($data['details']) . "</div>";
     }
     echo getImageCodeM($data);
     echo getSondageTextM($data);
@@ -32,7 +52,7 @@ function getDetailsSupplementairesM($data) {
 function getCodePromoTextM($data) {
     ob_start();
     if (isset($data["codePromo"])) {
-        echo "<div><b>Code promotionnel utilisé : </b><div class='delay'>" . htmlspecialchars($data["codePromo"]) . "</div></div>";
+        echo "<div><b>Code promotionnel utilisé : </b><div style='margin-left:15px;'>" . htmlspecialchars($data["codePromo"]) . "</div></div>";
     }
     return ob_get_clean();
 }
@@ -41,9 +61,9 @@ function getSondageTextM($data) {
     ob_start();
     if (isset($data["sondage"]) && count($data["sondage"]) > 0) {
         echo "<div><b>A entendu parlé de l'entreprise via :</b></div>";
-        echo "<div class='list'>";
+        echo "<div style='margin-left:15px;'>";
         foreach($data["sondage"] as $response) {
-            echo "<div class='delay'>" . htmlspecialchars($response) . "</div>";
+            echo "<div style='margin-top:5px;'>" . htmlspecialchars($response) . "</div>";
         }
         echo "</div>";
     }
@@ -69,28 +89,28 @@ function getPersonalInfoM($data)
 
     ob_start();
     ?>
-    <div class="infoPerso">
-        <div class="inputLineNotLast">
-            <div><b>Nom : </b></div>
-            <div class="delay"><?php echo htmlspecialchars($nom); ?></div>
-        </div>
-        <div class="inputLineNotLast">
-            <div><b>Prénom : </b></div>
-            <div class="delay"><?php echo htmlspecialchars($prenom); ?></div>
-        </div>
-        <div class="inputLineNotLast">
-            <div><b>Email : </b></div>
-            <div class="delay"><?php echo htmlspecialchars($email); ?></div>
-        </div>
-        <div class="inputLineNotLast">
-            <div><b>Téléphone : </b></div>
-            <div class="delay"><?php echo htmlspecialchars($telephone); ?></div>
-        </div>
-        <div class="inputLineLast">
-            <div><b>Adresse : </b></div>
-            <div class="delay"><?php echo htmlspecialchars($adresse); ?></div>
-        </div>
-    </div>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:10px;border-bottom:2px dotted black;">
+        <tr>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Nom : </b></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($nom); ?></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Prénom : </b></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($prenom); ?></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Email : </b></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($email); ?></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Téléphone : </b></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($telephone); ?></td>
+        </tr>
+        <tr>
+            <td style="padding:10px;vertical-align:top;"><b>Adresse : </b></td>
+            <td style="padding:10px;vertical-align:top;"><?php echo htmlspecialchars($adresse); ?></td>
+        </tr>
+    </table>
     <?php
     return ob_get_clean();
 }
@@ -101,12 +121,12 @@ function getProjectsM($data) {
     
     ob_start();
     ?>
-    <h2>Devis (<?php echo $nbrProjects; ?> projet<?php echo $nbrProjects > 1 ? 's' : ''; ?>)</h2>
-    <div class="Devis">
+    <h2 style="color:#002;">Devis (<?php echo $nbrProjects; ?> projet<?php echo $nbrProjects > 1 ? 's' : ''; ?>)</h2>
+    <div style="margin-bottom:10px;padding-bottom:15px;">
         <?php
         foreach (($data["projects"] ?? []) as $projectId => $project) {
-            echo "<div class='project'>";
-            echo "<h3>" . htmlspecialchars($project['type'] ?? 'Non spécifié') . "</h3>";
+            echo "<div style='border:1px solid #ccc;padding:10px;margin-bottom:15px;background-color:#f9f9f9;'>";
+            echo "<h3 style='margin:0 0 8px 0;'>" . htmlspecialchars($project['type'] ?? 'Non spécifié') . "</h3>";
             echo getProjectDataM($project);
             echo "</div>";
         }
@@ -151,7 +171,7 @@ function getProjectDataM($project) {
 function getAutreM($p) {
     ob_start();
     echo "<div><b>Description : </b></div>";
-    echo "<div class='delay'>" . htmlspecialchars($p['descriptionAutre'] ?? '') . "</div>";
+    echo "<div style='margin-left:15px;'>" . htmlspecialchars($p['descriptionAutre'] ?? '') . "</div>";
     return ob_get_clean();
 }
 
@@ -166,11 +186,11 @@ function getMaconnerieM($p) {
         echo "<div><b>Aucune option maçonnerie sélectionnée</b></div>";
     } else {
         echo "<div><b>Options maçonnerie : </b></div>";
-        echo "<div class='list'>";
-        if ($piliers !== "") echo "<div>" . htmlspecialchars($piliers) . "</div>";
-        if ($piliersAluminium !== "") echo "<div>" . htmlspecialchars($piliersAluminium) . "</div>";
-        if ($refuite !== "") echo "<div>" . htmlspecialchars($refuite) . "</div>";
-        if ($seuil !== "") echo "<div>" . htmlspecialchars($seuil) . "</div>";
+        echo "<div style='margin-left:15px;'>";
+        if ($piliers !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($piliers) . "</div>";
+        if ($piliersAluminium !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($piliersAluminium) . "</div>";
+        if ($refuite !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($refuite) . "</div>";
+        if ($seuil !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($seuil) . "</div>";
         echo "</div>";
     }
     return ob_get_clean();
@@ -188,12 +208,12 @@ function getFournituresM($p) {
         echo "<div><b>Aucune fourniture sélectionnée</b></div>";
     } else {
         echo "<div><b>Fournitures : </b></div>";
-        echo "<div class='list'>";
-        if ($automatisme !== "") echo "<div class='delay'>" . htmlspecialchars($automatisme) . "</div>";
-        if ($digicode !== "") echo "<div class='delay'>" . htmlspecialchars($digicode) . "</div>";
-        if ($fournituresPose !== "") echo "<div class='delay'>" . htmlspecialchars($fournituresPose) . "</div>";
-        if ($interphone !== "") echo "<div class='delay'>" . htmlspecialchars($interphone) . "</div>";
-        if ($visiophone !== "") echo "<div class='delay'>" . htmlspecialchars($visiophone) . "</div>";
+        echo "<div style='margin-left:15px;'>";
+        if ($automatisme !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($automatisme) . "</div>";
+        if ($digicode !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($digicode) . "</div>";
+        if ($fournituresPose !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($fournituresPose) . "</div>";
+        if ($interphone !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($interphone) . "</div>";
+        if ($visiophone !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($visiophone) . "</div>";
         echo "</div>";
     }
     return ob_get_clean();
@@ -201,11 +221,11 @@ function getFournituresM($p) {
 
 function getCarportM($p) {
     ob_start();
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
-    echo "<div><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
-    echo "<div><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
     echo "</div>";
 
     return ob_get_clean();
@@ -213,11 +233,11 @@ function getCarportM($p) {
 
 function getPergolaM($p): string {
     ob_start();
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
-    echo "<div><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
-    echo "<div><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
     echo "</div>";
     echo "<div><b>Options : </b>" . htmlspecialchars($p["options"] ?? '') . "</div>";
     return ob_get_clean();
@@ -227,15 +247,14 @@ function getStoreM($p) {
     ob_start();
     echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
     echo "<div><b>Couleur : </b>" . htmlspecialchars(manageColor($p["color"] ?? '')) . "</div>";
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Largeur : </b>" . htmlspecialchars($p["largeur"] ?? '') . " m</div>";
-    echo "<div><b>Projection : </b>" . htmlspecialchars($p["projection"] ?? '') . " m</div>";
-    echo "<div><b>Toile verticale : </b>" . htmlspecialchars($p["toileVerticale"] ?? '') . "</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Largeur : </b>" . htmlspecialchars($p["largeur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Projection : </b>" . htmlspecialchars($p["projection"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Toile verticale : </b>" . htmlspecialchars($p["toileVerticale"] ?? '') . "</div>";
     echo "</div>";
     return ob_get_clean();
 }
-
 
 function getPorteGarageM($p) {
     ob_start();
@@ -250,10 +269,10 @@ function getClotureAluminiumM($p) {
     echo "<div><b>Modèle :</b> " . htmlspecialchars($p["model"] ?? '') . "</div>";
     $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
     echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
-    echo "<div><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     return ob_get_clean();
 }
@@ -262,39 +281,36 @@ function getClotureAluminiumM($p) {
 function getClotureBetonM($p) {
     ob_start();
     echo "<div><b>Modèle :</b> " . htmlspecialchars($p["model"] ?? '') . "</div>";
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
-    echo "<div><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     return ob_get_clean();
 }
 
 
-
 function getClotureRigideM($p) {
     ob_start();
     echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . "</div>";
-    echo "<div class='dimension'>";
-    echo "<div class='first'><b>Dimensions :</b></div>";
-    echo "<div><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
-    echo "<div><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>";
+    echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     $kitOccultant = $p["kitOccultant"] ?? "";
     $kitSoubassement = $p["kitSoubassement"] ?? "";
     if ($kitOccultant === "Oui" || $kitSoubassement === "Oui") {
         echo "<div><b>Options :</b></div>";
         if ($kitOccultant === "Oui") {
-            echo "<div class='delay'>Kit occultant</div>";
+            echo "<div style='margin-left:15px;'>Kit occultant</div>";
         }
         if ($kitSoubassement === "Oui") {
-            echo "<div class='delay'>Kit soubassement</div>";
+            echo "<div style='margin-left:15px;'>Kit soubassement</div>";
         }
     }
     return ob_get_clean();
 }
-
-
 
 
 function getDevisPortillonM($p) {
@@ -302,10 +318,10 @@ function getDevisPortillonM($p) {
     echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
     $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
     echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
-    echo "<div class='dimension'>
-        <div class='first'><b>Dimensions :</b></div>
-        <div><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
-        <div><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>
+        <div style='margin-bottom:5px;'><b>Dimensions :</b></div>
+        <div style='margin-top:5px;'><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>
         </div>";
     return ob_get_clean();
 }
@@ -320,12 +336,12 @@ function getDevisPortailM($p) {
     echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
     $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
     echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
-    echo "<div class='dimension'>
-        <div class='first'><b>Dimensions :</b></div>
-        <div><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
-        <div><b>Longueur : </b>" . htmlspecialchars($p["longueur"] ?? '') . " cm</div>
+    echo "<div style='margin-top:10px;margin-bottom:10px;'>
+        <div style='margin-bottom:5px;'><b>Dimensions :</b></div>
+        <div style='margin-top:5px;'><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Longueur : </b>" . htmlspecialchars($p["longueur"] ?? '') . " cm</div>
         </div>";
-    echo "<div class='delay'>" . (($p["automatisme"] ?? '') === "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
+    echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') === "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
 }
 
@@ -335,76 +351,4 @@ function manageColorM($c) {
         return "RAL " . $c;
     }
     return $c;
-}
-
-
-function style() {
-    ob_start();
-    ?>
-    <style>
-        .inputLineLast {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            margin-left: 10px;
-        }
-        .inputLineNotLast {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            margin-left: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        h1, h2 {
-            color: #002;
-        }
-        .infoPerso, .Devis {
-            margin-bottom: 10px;
-            border-bottom: 2px dotted black;
-            padding-bottom: 15px;
-        }
-        .infoPerso div, .Devis div {
-            margin-bottom: 5px;
-        }
-        .infoPerso {
-            display: grid;
-            grid-template-columns: auto auto;
-            gap: 10px 20px;
-        }
-        .project {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 15px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .dimension {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 15px;
-            flex-direction: column;
-        }
-        .dimension div {
-            margin-left: 15px;
-        }
-        .dimension .first {
-            margin-left: 0;
-            margin-bottom: 5px;
-        }
-        .list {
-            margin-left: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .delay {
-            margin-left: 15px;
-        }
-    </style>
-
-    <?php
-    return ob_get_clean();
 }
