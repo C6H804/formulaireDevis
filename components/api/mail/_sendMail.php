@@ -52,7 +52,7 @@ function sendClientMail($data)
     $smtpUsername = $_ENV["SMTP_USERNAME"] ?? null;
     $smtpPassword = $_ENV["SMTP_PASSWORD"] ?? null;
     $emailFrom = $_ENV["EMAIL_FROM"] ?? null;
-    $emailTo = "alanpint9@gmail.com";
+    $emailTo = $data["email"] ?? null;
     $emailBCC = $_ENV["EMAIL_BCC"] ?? null;
     try {
         $mail = new PHPMailer(true);
@@ -69,9 +69,9 @@ function sendClientMail($data)
         $mail->isHTML(true);
         $mail->Subject = "Reçu de votre demande de Devis en ligne";
         $mail->Body = $message;
-        if ($emailBCC) {
-            $mail->addBCC($emailBCC);
-        }
+        // if ($emailBCC) {
+        //     $mail->addBCC($emailBCC);
+        // }
         $mail->send();
     } catch (Exception $e) {
         // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
