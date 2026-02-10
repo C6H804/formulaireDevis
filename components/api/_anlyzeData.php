@@ -486,11 +486,6 @@ function getDataFromStore($id, $data)
 }
 
 
-
-
-
-
-
 function getDataFromPergola($id, $data)
 {
     $largeur = sanitize($data['dimensionLargeur' . $id] ?? null);
@@ -506,13 +501,6 @@ function getDataFromPergola($id, $data)
     ];
     return $result;
 }
-
-
-
-
-
-
-
 
 
 function getDataFromCarport($id, $data)
@@ -541,11 +529,6 @@ function getDataFromCarport($id, $data)
     ];
     return $result;
 }
-
-
-
-
-
 
 
 function getDataFromFournitures($id, $data)
