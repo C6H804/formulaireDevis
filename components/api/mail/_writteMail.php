@@ -115,13 +115,18 @@ function getPersonalInfoM($data)
     return ob_get_clean();
 }
 
-function getProjectsM($data) {
+function getProjectsM($data, $client = false) {
     $nbrProjects = count($data['projects'] ?? []);
     
     
     ob_start();
+    if ($client) {
+        echo "<h2 style='color:#002;'>" . ($nbrProjects > 1 ? 'Vos projets' : 'Votre projet') . "</h2>";
+    } else {
+        echo "<h2 style='color:#002;'>Devis ( " . $nbrProjects . " projet" . ($nbrProjects > 1 ? 's' : '') . ")</h2>";
+    }
+    // <h2 style="color:#002;">Devis (<?php echo $nbrProjects; ?> projet<?php echo $nbrProjects > 1 ? 's' : ''; ?>)</h2>
     ?>
-    <h2 style="color:#002;">Devis (<?php echo $nbrProjects; ?> projet<?php echo $nbrProjects > 1 ? 's' : ''; ?>)</h2>
     <div style="margin-bottom:10px;padding-bottom:15px;">
         <?php
         foreach (($data["projects"] ?? []) as $projectId => $project) {
