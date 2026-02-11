@@ -71,7 +71,8 @@ SELECT projects_types.name, COUNT(stats_projects.id_project_Type) AS nombre_devi
 FROM projects_types
 LEFT JOIN stats_projects ON projects_types.id = stats_projects.id_project_Type
 GROUP BY projects_types.name
-HAVING nombre_devis > 0;
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
 
 
 SELECT sondage_types.name, COUNT(stats_sondage.id_sondage_Type) AS nombre_devis
@@ -79,3 +80,52 @@ FROM sondage_types
 LEFT JOIN stats_sondage ON sondage_types.id = stats_sondage.id_sondage_Type
 GROUP BY sondage_types.name
 HAVING nombre_devis > 0;
+
+
+SELECT projects_types.name, COUNT(stats_projects.id_project_Type) AS nombre_devis, CONCAT(ROUND((COUNT(stats_projects.id_project_Type) / (SELECT COUNT(*) FROM stats_projects)) * 100, 2), '%') AS pourcentage_devis
+FROM projects_types
+LEFT JOIN stats_projects ON projects_types.id = stats_projects.id_project_Type
+GROUP BY projects_types.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+    
+-- calculer le nombre de devis par type de sondage et le pourcentage de chaque type de sondage par rapport au total des devis
+SELECT sondage_types.name, COUNT(stats_sondage.id_sondage_Type) AS nombre_devis, CONCAT(ROUND((COUNT(stats_sondage.id_sondage_Type) / (SELECT COUNT(*) FROM stats_sondage)) * 100, 2), '%') AS pourcentage_devis
+FROM sondage_types
+LEFT JOIN stats_sondage ON sondage_types.id = stats_sondage.id_sondage_Type
+GROUP BY sondage_types.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+
+-- calculer le nombre de projets par réponse de sondage
+SELECT st.name AS sondage_type, COUNT(sp.id_project_Type) AS nombre_projets
+FROM sondage_types st
+LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type
+LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis
+GROUP BY st.name
+HAVING nombre_projets > 0
+ORDER BY nombre_projets DESC;
+
+
+-- calcule le nombre de devis et de projets par type de sondage
+SELECT st.name AS sondage_type, COUNT(DISTINCT ss.id_devis) AS nombre_devis, COUNT(sp.id_project_Type) AS nombre_projets, CONCAT(ROUND((COUNT(DISTINCT ss.id_devis) / (SELECT COUNT(*) FROM stats_sondage)) * 100, 2), '%') AS pourcentage_devis
+FROM sondage_types st
+LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type
+LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis
+GROUP BY st.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+
+-- pour chaques types de projet, calcule le nombres de récurences de chaques réponses de sondage
+SELECT pt.name AS project_type, st.name AS sondage_type, COUNT(*) AS nombre_recurences
+FROM projects_types pt
+LEFT JOIN stats_projects sp ON pt.id = sp.id_project_Type
+LEFT JOIN stats_sondage ss ON sp.id_devis = ss.id_devis
+LEFT JOIN sondage_types st ON ss.id_sondage_Type = st.id
+GROUP BY pt.name, st.name
+HAVING nombre_recurences > 0 and sondage_type IS NOT NULL
+ORDER BY pt.name, nombre_recurences DESC;
+
