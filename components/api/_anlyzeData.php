@@ -37,6 +37,8 @@ function sanitize($data = "", $type = "general") {
     }
 
     switch ($type) {
+        case "address":
+            return preg_match("/^[\p{L}0-9\s,.'\-()]{2,255}$/u", $data) ? $data : null;
         case "email":
             return filter_var($data, FILTER_VALIDATE_EMAIL) ? substr(htmlspecialchars($data), 0, 255) : null;
         case "phone":
@@ -46,7 +48,7 @@ function sanitize($data = "", $type = "general") {
         case "id":
             return preg_match('/^[0-9,]+$/', $data) ? substr(htmlspecialchars($data), 0, 255) : null;
         default:
-            return htmlspecialchars($data);
+            return substr(htmlspecialchars($data), 0, 999);
     }
 }
 
@@ -82,17 +84,24 @@ function analyzeData($data) {
                 if (strlen($result['name']) < 2 || strlen($result['surname']) < 2) {
                     return "Le nom et le prénom doivent contenir au moins 2 caractères.";
                 } else {
-                    $result['address'] = isset($data['address']) ? sanitize($data['address']) : '';
+                    $result['address'] = isset($data['address']) ? sanitize($data['address'], "address") : 'Non renseignée';
+
+                    $result["addressCity"] = isset($data["city"]) ? sanitize($data["city"], "address") : "Non renseignée";
+                    $result["addressPostcode"] = isset($data["codePostal"]) ? sanitize($data["codePostal"], "address") : "Non renseigné";
+
+                    $result["addressFull"] = $result['address'] . ", " . $result["addressCity"] .", ". $result["addressPostcode"];
+                    
+
                     $result['codePromo'] = isset($data['codePromo']) ? sanitize($data['codePromo']) : '';
                     $result['TVA'] = $data['TVA'] === "true" ? true : false;
 
                     $result['projects'] = [];
-                    echo "<script>console.log('projectIds reçu : ', " . json_encode($data['projectIds'] ?? 'NON DÉFINI') . ");</script>";
+                    // echo "<script>console.log('projectIds reçu : ', " . json_encode($data['projectIds'] ?? 'NON DÉFINI') . ");</script>";
                     
                     if (isset($data['projectIds']) && sanitize($data['projectIds'], 'id') !== null) {
                         // Séparation des IDs de projets
                         $projectIds = explode(',', sanitize($data['projectIds'], 'id'));
-                        echo "<script>console.log('IDs de projets à traiter : ', " . json_encode($projectIds) . ");</script>";
+                        // echo "<script>console.log('IDs de projets à traiter : ', " . json_encode($projectIds) . ");</script>";
 
                         foreach ($projectIds as $id) {
                             $id = trim($id);
@@ -106,16 +115,16 @@ function analyzeData($data) {
                                 if ($project !== null) {
                                     $result['projects'][$id] = $project;
                                 } else {
-                                    echo "<script>console.warn('Le projet " . $id . " est null (données incomplètes)');</script>";
+                                    // echo "<script>console.warn('Le projet " . $id . " est null (données incomplètes)');</script>";
                                 }
                             } else {
-                                echo "<script>console.warn('Le projet " . $id . " n\\'est pas valide ou son type n\\'existe pas');</script>";
+                                // echo "<script>console.warn('Le projet " . $id . " n\\'est pas valide ou son type n\\'existe pas');</script>";
                             }
                         }
                     } else {
-                        echo "<script>console.error('projectIds est vide ou invalide !');</script>";
+                        // echo "<script>console.error('projectIds est vide ou invalide !');</script>";
                     }
-                    echo "<script>console.log('Nombre de projets traités:', " . count($result['projects']) . ");</script>";
+                    // echo "<script>console.log('Nombre de projets traités:', " . count($result['projects']) . ");</script>";
 
                     // Récupération des images transmises
                     $imageUrl = getImages($data);

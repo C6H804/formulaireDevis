@@ -22,6 +22,8 @@ echo "<div class='sectionA'>
 echo "</div>";
 echo "<div class='sectionGroup sectionGroupAddress'>";
 echo createInput("text", "address", "Votre adresse", "Adresse :", "", "", "required");
+echo createInput("text", "city","Votre ville", "Ville :", "", "", "required");
+echo createInput("text","postalCode","Votre code postal", "Code postal :", "", "", "required");
 echo "</div>";
 echo "<div class='sectionGroup sectionGroupContact'>";
 echo createInput("text", "phone", "Votre téléphone", "Téléphone :");

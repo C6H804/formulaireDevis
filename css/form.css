@@ -59,7 +59,48 @@
     margin-bottom: 1.7em;
 }
 
-.formulaireDevis .sectionIdentite .sectionGroupName {
+.formulaireDevis .section.sectionIdentite {
+    display: grid;
+    gap: 1em;
+    @media (max-width:815px) and (min-width:548px) {
+        gap: 2em;
+    }
+    @media (max-width:546px) {
+        gap: 3em;
+    }
+}
+
+.formulaireDevis .section.section.sectionIdentite .sectionGroup {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.formulaireDevis .section.section.sectionIdentite .sectionGroup .inputField {
+    flex: 1 1 0;
+}
+
+.formulaireDevis .section.section.sectionIdentite .sectionGroupAddress .inputField:first-child {
+    flex: 2 1 1.5%;
+    order: -2;
+}
+.formulaireDevis .section.section.sectionIdentite .sectionGroupAddress .inputField:last-child {
+    flex: 1 1 0;
+    order: 3;
+    @media (max-width:815px) and (min-width:548px) {
+        order: -1;
+        flex: 0 1 0;
+    }
+}
+
+
+.formulaireDevis .section.sectionIdentite .sectionGroup .inputField {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+
+/* .formulaireDevis .sectionIdentite .sectionGroupName {
     display: flex;
     gap: 1em;
 }
@@ -72,32 +113,32 @@
 
 
 .formulaireDevis .sectionGroupAddress {
-    display: flex;
+    display: grid;
     gap: 1em;
 }
 
 .formulaireDevis .sectionGroupAddress .inputField {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     width: 100%;
 }
 
 .formulaireDevis .sectionGroupContact {
-    display: flex;
+    display: grid;
     gap: 1em;
 }
 .formulaireDevis .sectionGroupContact .inputField {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* min-width: 300px; */
+    min-width: 300px;
 }
 
 @media (max-width:720px) {
     .formulaireDevis .sectionGroupContact, .formulaireDevis .sectionGroupName {
-        flex-wrap: wrap;
+         flex-wrap: wrap; 
     }
-}
+} */
 
 .formulaireDevis .section.sectionAutre .inputField {
     display: flex;

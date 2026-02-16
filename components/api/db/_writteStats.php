@@ -28,7 +28,7 @@ function writteStats($data) {
         }
         return ["valid" => true];
     } catch (Exception $e) {
-        return ["valid"=> false,"message"=> $e->getMessage()];
+        return ["valid"=> false,"message"=> "Erreur lors de l'ajout des stats : ". $e->getMessage() ];
     }
 }
 

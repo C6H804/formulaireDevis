@@ -42,7 +42,7 @@ function getSondageText($data) {
         foreach($data["sondage"] as $response) {
             $r .= $response . ", ";
         }
-        $r = substr($r,0,-1);
+        $r = substr($r,0,-2);
         return $r;
     } else {
         return "";

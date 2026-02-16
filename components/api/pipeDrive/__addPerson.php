@@ -1,5 +1,5 @@
 <?php
-function addPerson($token, $name, $surname, $email, $phone, $address) {
+function addPerson($token, $name, $surname, $email, $phone, $address, $postalCode, $locality) {
     // echo "<script>console.log('Adding person: ' + " . json_encode([$name, $surname, $email, $phone]) . ");</script>";
     $url = "https://api.pipedrive.com/v1/persons?api_token=" . $token;
     $data = [
@@ -8,7 +8,10 @@ function addPerson($token, $name, $surname, $email, $phone, $address) {
         "last_name"=> $name,
         "email" => [$email],
         "phone" => [$phone],
-        "f9bb98d85ad690a8bdc2a2a5fbc55551cc1a669d" => $address
+        "f9bb98d85ad690a8bdc2a2a5fbc55551cc1a669d" => $address ?? "",
+        "48fe09ac430f6ed0cf66439cccde8ec99830be8c_postal_code" => "$postalCode" ?? "",
+        "48fe09ac430f6ed0cf66439cccde8ec99830be8c_locality"=> "$locality" ?? "",
+
         ];
     $options = [
         "http" => [

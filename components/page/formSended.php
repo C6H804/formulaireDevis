@@ -121,6 +121,7 @@
             </div>
         </div>
         <?php
+        echo ob_get_clean();
     } else if (isset($_SESSION['formSuccess'])) {
         ob_start();
         ?>
@@ -130,7 +131,7 @@
                         <h2>Demande de devis envoyée</h2>
                     </div>
                     <div class="formAlert-Body">
-                        <h3>Votre demande de devis a bien été envoyée !</h3>
+                        <h3>Votre demande de devis a bien été envoyée !</h3>
                         <p>Nous vous remercions pour l'intérêt que vous nous portez. Un conseiller
                             prendra contact avec vous dans les plus brefs délais afin de discuter de votre projet et
                             de vous fournir un devis personnalisé.</p>
@@ -143,6 +144,7 @@
                 </div>
             </div>
         <?php
+        echo ob_get_clean();
     } else {
         session_destroy();
         header('Location: https://www.acportail.fr');

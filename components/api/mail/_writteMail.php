@@ -1,7 +1,14 @@
 <?php
+
+function dm($data) {
+    if ($data === null || $data === '' || $data === 'Non renseigné' || $data === 'Non renseignée') {
+        return $data;
+    }
+    return htmlspecialchars_decode($data, ENT_QUOTES);
+}
+
 function writteMail($data)
 {
-    // retourne le body du mail à envoyer
     ob_start();
     ?>
     <h1 style="color:#002;">Demande de devis en ligne</h1>
@@ -16,14 +23,9 @@ function writteMail($data)
 }
 
 function getClientMail($data) {
-    // message envoyé au client pour accuser réception de sa demande de devis en ligne.
-    // le mail doit contenir un message de remerciement et un récapitulatif de sa demande.
-    // le message doit être simple et clair, sans trop de détails techniques.
-    // le ton doit être chaleureux et professionnel.
-    // le mail doit être responsive et s'adapter à tous les types d'écrans.
     ob_start();
     ?>
-    <h1 style="color:#002;">Bonjour <?php echo htmlspecialchars($data["name"] ?? ''); ?></h1>
+    <h1 style="color:#002;">Bonjour <?php echo dm($data["name"] ?? ''); ?></h1>
     <h2 style="color:#002;">Vôtre demande de devis en ligne à bien était enregistrée.</h2>
     <p>Notre équipe va étudier votre demande avec attention et vous recontactera dans les plus brefs délais pour vous fournir une réponse personnalisée.</p>
     <!-- phrase pour présenté le compte rendu du devis -->
@@ -41,7 +43,7 @@ function getDetailsSupplementairesM($data) {
     if (isset($data['details'])) {
         echo "<h2 style='color:#002;'>Détails supplémentaires</h2>";
         echo "<div><b>Détails supplémentaires :</b>";
-        echo "<div style='margin-left:15px;'>" . htmlspecialchars($data['details']) . "</div>";
+        echo "<div style='margin-left:15px;'>" . dm($data['details']) . "</div>";
     }
     echo getImageCodeM($data);
     echo getSondageTextM($data);
@@ -52,7 +54,7 @@ function getDetailsSupplementairesM($data) {
 function getCodePromoTextM($data) {
     ob_start();
     if (isset($data["codePromo"])) {
-        echo "<div><b>Code promotionnel utilisé : </b><div style='margin-left:15px;'>" . htmlspecialchars($data["codePromo"]) . "</div></div>";
+        echo "<div><b>Code promotionnel utilisé : </b><div style='margin-left:15px;'>" . dm($data["codePromo"]) . "</div></div>";
     }
     return ob_get_clean();
 }
@@ -63,7 +65,7 @@ function getSondageTextM($data) {
         echo "<div><b>A entendu parlé de l'entreprise via :</b></div>";
         echo "<div style='margin-left:15px;'>";
         foreach($data["sondage"] as $response) {
-            echo "<div style='margin-top:5px;'>" . htmlspecialchars($response) . "</div>";
+            echo "<div style='margin-top:5px;'>" . dm($response) . "</div>";
         }
         echo "</div>";
     }
@@ -72,7 +74,7 @@ function getSondageTextM($data) {
 
 function getImageCodeM($data) {
     if (isset($data['imageUrl'])) {
-        return "<div><b>Image du projet : </b><a href='" . htmlspecialchars($data['imageUrl']) . "'>" . htmlspecialchars($data['imageUrl']) . "</a></div>";
+        return "<div><b>Image du projet : </b><a href='" . dm($data['imageUrl']) . "'>" . dm($data['imageUrl']) . "</a></div>";
     } else {
         return "";
     }
@@ -83,7 +85,11 @@ function getPersonalInfoM($data)
     $nom = $data["name"] ?? "Non renseigné";
     $prenom = $data["surname"] ?? "Non renseigné";
     $email = $data["email"] ?? "Non renseigné";
-    $adresse = $data["address"] ?? "Non renseigné";
+    $adresse = $data["addressFull"] ?? ($data["address"] ?? "Non renseigné");
+    $ville = $data["addressCity"] ?? "Non renseigné";
+    $codePostal = $data["addressPostcode"] ?? "Non renseigné";
+    $lat = $data["addressLat"] ?? null;
+    $lng = $data["addressLng"] ?? null;
     $telephone = $data["phone"] ?? "Non renseigné";
 
 
@@ -92,23 +98,23 @@ function getPersonalInfoM($data)
     <table style="width:100%;border-collapse:collapse;margin-bottom:10px;border-bottom:2px dotted black;">
         <tr>
             <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Nom : </b></td>
-            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($nom); ?></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo dm($nom); ?></td>
         </tr>
         <tr>
             <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Prénom : </b></td>
-            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($prenom); ?></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo dm($prenom); ?></td>
         </tr>
         <tr>
             <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Email : </b></td>
-            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($email); ?></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo dm($email); ?></td>
         </tr>
         <tr>
             <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><b>Téléphone : </b></td>
-            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo htmlspecialchars($telephone); ?></td>
+            <td style="padding:10px;border-bottom:1px solid #ddd;vertical-align:top;"><?php echo dm($telephone); ?></td>
         </tr>
         <tr>
             <td style="padding:10px;vertical-align:top;"><b>Adresse : </b></td>
-            <td style="padding:10px;vertical-align:top;"><?php echo htmlspecialchars($adresse); ?></td>
+            <td style="padding:10px;vertical-align:top;"><?php echo dm($adresse); ?></td>
         </tr>
     </table>
     <?php
@@ -125,13 +131,12 @@ function getProjectsM($data, $client = false) {
     } else {
         echo "<h2 style='color:#002;'>Devis ( " . $nbrProjects . " projet" . ($nbrProjects > 1 ? 's' : '') . ")</h2>";
     }
-    // <h2 style="color:#002;">Devis (<?php echo $nbrProjects; ?> projet<?php echo $nbrProjects > 1 ? 's' : ''; ?>)</h2>
     ?>
     <div style="margin-bottom:10px;padding-bottom:15px;">
         <?php
         foreach (($data["projects"] ?? []) as $projectId => $project) {
             echo "<div style='border:1px solid #ccc;padding:10px;margin-bottom:15px;background-color:#f9f9f9;'>";
-            echo "<h3 style='margin:0 0 8px 0;'>" . htmlspecialchars($project['type'] ?? 'Non spécifié') . "</h3>";
+            echo "<h3 style='margin:0 0 8px 0;'>" . dm($project['type'] ?? 'Non spécifié') . "</h3>";
             echo getProjectDataM($project);
             echo "</div>";
         }
@@ -176,7 +181,7 @@ function getProjectDataM($project) {
 function getAutreM($p) {
     ob_start();
     echo "<div><b>Description : </b></div>";
-    echo "<div style='margin-left:15px;'>" . htmlspecialchars($p['descriptionAutre'] ?? '') . "</div>";
+    echo "<div style='margin-left:15px;'>" . dm($p['descriptionAutre'] ?? '') . "</div>";
     return ob_get_clean();
 }
 
@@ -192,10 +197,10 @@ function getMaconnerieM($p) {
     } else {
         echo "<div><b>Options maçonnerie : </b></div>";
         echo "<div style='margin-left:15px;'>";
-        if ($piliers !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($piliers) . "</div>";
-        if ($piliersAluminium !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($piliersAluminium) . "</div>";
-        if ($refuite !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($refuite) . "</div>";
-        if ($seuil !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($seuil) . "</div>";
+        if ($piliers !== "") echo "<div style='margin-top:5px;'>" . dm($piliers) . "</div>";
+        if ($piliersAluminium !== "") echo "<div style='margin-top:5px;'>" . dm($piliersAluminium) . "</div>";
+        if ($refuite !== "") echo "<div style='margin-top:5px;'>" . dm($refuite) . "</div>";
+        if ($seuil !== "") echo "<div style='margin-top:5px;'>" . dm($seuil) . "</div>";
         echo "</div>";
     }
     return ob_get_clean();
@@ -214,11 +219,11 @@ function getFournituresM($p) {
     } else {
         echo "<div><b>Fournitures : </b></div>";
         echo "<div style='margin-left:15px;'>";
-        if ($automatisme !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($automatisme) . "</div>";
-        if ($digicode !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($digicode) . "</div>";
-        if ($fournituresPose !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($fournituresPose) . "</div>";
-        if ($interphone !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($interphone) . "</div>";
-        if ($visiophone !== "") echo "<div style='margin-top:5px;'>" . htmlspecialchars($visiophone) . "</div>";
+        if ($automatisme !== "") echo "<div style='margin-top:5px;'>" . dm($automatisme) . "</div>";
+        if ($digicode !== "") echo "<div style='margin-top:5px;'>" . dm($digicode) . "</div>";
+        if ($fournituresPose !== "") echo "<div style='margin-top:5px;'>" . dm($fournituresPose) . "</div>";
+        if ($interphone !== "") echo "<div style='margin-top:5px;'>" . dm($interphone) . "</div>";
+        if ($visiophone !== "") echo "<div style='margin-top:5px;'>" . dm($visiophone) . "</div>";
         echo "</div>";
     }
     return ob_get_clean();
@@ -228,9 +233,9 @@ function getCarportM($p) {
     ob_start();
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
     echo "</div>";
 
     return ob_get_clean();
@@ -240,44 +245,44 @@ function getPergolaM($p): string {
     ob_start();
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
     echo "</div>";
-    echo "<div><b>Options : </b>" . htmlspecialchars($p["options"] ?? '') . "</div>";
+    echo "<div><b>Options : </b>" . dm($p["options"] ?? '') . "</div>";
     return ob_get_clean();
 }
 
 function getStoreM($p) {
     ob_start();
-    echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
-    echo "<div><b>Couleur : </b>" . htmlspecialchars(manageColor($p["color"] ?? '')) . "</div>";
+    echo "<div><b>Modèle : </b>" . dm($p["model"] ?? '') . "</div>";
+    echo "<div><b>Couleur : </b>" . dm(manageColorM($p["color"] ?? '')) . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Largeur : </b>" . htmlspecialchars($p["largeur"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Projection : </b>" . htmlspecialchars($p["projection"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Toile verticale : </b>" . htmlspecialchars($p["toileVerticale"] ?? '') . "</div>";
+    echo "<div style='margin-top:5px;'><b>Largeur : </b>" . dm($p["largeur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Projection : </b>" . dm($p["projection"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Toile verticale : </b>" . dm($p["toileVerticale"] ?? '') . "</div>";
     echo "</div>";
     return ob_get_clean();
 }
 
 function getPorteGarageM($p) {
     ob_start();
-    echo "<div><b>Modèle :</b> " . htmlspecialchars($p["model"] ?? '') . "</div>";
-    $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
-    echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
+    echo "<div><b>Modèle :</b> " . dm($p["model"] ?? '') . "</div>";
+    $finition = !empty($p["finition"]) ? " | " . dm($p["finition"]) : "";
+    echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . $finition . "</div>";
     return ob_get_clean();
 }
 
 function getClotureAluminiumM($p) {
     ob_start();
-    echo "<div><b>Modèle :</b> " . htmlspecialchars($p["model"] ?? '') . "</div>";
-    $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
-    echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
+    echo "<div><b>Modèle :</b> " . dm($p["model"] ?? '') . "</div>";
+    $finition = !empty($p["finition"]) ? " | " . dm($p["finition"]) : "";
+    echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . $finition . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     return ob_get_clean();
 }
@@ -285,11 +290,11 @@ function getClotureAluminiumM($p) {
 
 function getClotureBetonM($p) {
     ob_start();
-    echo "<div><b>Modèle :</b> " . htmlspecialchars($p["model"] ?? '') . "</div>";
+    echo "<div><b>Modèle :</b> " . dm($p["model"] ?? '') . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     return ob_get_clean();
 }
@@ -297,11 +302,11 @@ function getClotureBetonM($p) {
 
 function getClotureRigideM($p) {
     ob_start();
-    echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . "</div>";
+    echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . htmlspecialchars($p["hauteur"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . htmlspecialchars($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " m</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
     echo "</div>";
     $kitOccultant = $p["kitOccultant"] ?? "";
     $kitSoubassement = $p["kitSoubassement"] ?? "";
@@ -320,13 +325,13 @@ function getClotureRigideM($p) {
 
 function getDevisPortillonM($p) {
     ob_start();
-    echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
-    $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
-    echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
+    echo "<div><b>Modèle : </b>" . dm($p["model"] ?? '') . "</div>";
+    $finition = !empty($p["finition"]) ? " | " . dm($p["finition"]) : "";
+    echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . $finition . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>
         <div style='margin-bottom:5px;'><b>Dimensions :</b></div>
-        <div style='margin-top:5px;'><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
-        <div style='margin-top:5px;'><b>Largeur :</b> " . htmlspecialchars($p["largeur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>
         </div>";
     return ob_get_clean();
 }
@@ -334,17 +339,17 @@ function getDevisPortillonM($p) {
 
 function getDevisPortailM($p) {
     ob_start();
-    echo '<div><b>Type de portail : </b>' . htmlspecialchars($p["typePortail"] ?? '') . '</div>';
+    echo '<div><b>Type de portail : </b>' . dm($p["typePortail"] ?? '') . '</div>';
     if (($p["typePortail"] ?? '') === "Coulissant") {
-        echo "<div><b>Sens d'ouverture : </b>" . htmlspecialchars($p["sensOuverture"] ?? '') . "</div>";
+        echo "<div><b>Sens d'ouverture : </b>" . dm($p["sensOuverture"] ?? '') . "</div>";
     }
-    echo "<div><b>Modèle : </b>" . htmlspecialchars($p["model"] ?? '') . "</div>";
-    $finition = !empty($p["finition"]) ? " | " . htmlspecialchars($p["finition"]) : "";
-    echo "<div><b>Couleur :</b> " . htmlspecialchars(manageColor($p["color"] ?? '')) . $finition . "</div>";
+    echo "<div><b>Modèle : </b>" . dm($p["model"] ?? '') . "</div>";
+    $finition = !empty($p["finition"]) ? " | " . dm($p["finition"]) : "";
+    echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . $finition . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>
         <div style='margin-bottom:5px;'><b>Dimensions :</b></div>
-        <div style='margin-top:5px;'><b>Hauteur : </b>" . htmlspecialchars($p["hauteur"] ?? '') . " cm</div>
-        <div style='margin-top:5px;'><b>Longueur : </b>" . htmlspecialchars($p["longueur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
+        <div style='margin-top:5px;'><b>Longueur : </b>" . dm($p["longueur"] ?? '') . " cm</div>
         </div>";
     echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') === "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
