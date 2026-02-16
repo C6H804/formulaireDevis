@@ -147,7 +147,7 @@ function getClotureRigide($p) {
     $r .= "- Couleur : " . $color . " \n";
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " m \n";
-    $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
+    $r .= "  - Longueur : " . $p['longueur'] . " m \n";
     if ($p['kitOccultant'] === "Oui" || $p['kitSoubassement'] === "Oui") {
         $r .= "- Options :  \n";
         
@@ -166,7 +166,7 @@ function getClotureBeton($p) {
     $r .= "- Modèle : " . $p['model'] . " \n";
     $r .= "- Dimensions :  \n";
     $r .= "  -Hauteur : " . $p['hauteur'] . " cm \n";
-    $r .= "  -Longueur : " . $p['longueur'] . " cm \n";
+    $r .= "  -Longueur : " . $p['longueur'] . " m \n";
     return $r;
 
 }
@@ -177,8 +177,8 @@ function getClotureAluminium($p) {
     $color = manageColor($p['color']);
     $r .= "- Couleur : " . $color . " | finition " . $p['finition'] . " \n";
     $r .= "- Dimensions :  \n";
-    $r .= "  - Hauteur : " . $p['hauteur'] . " m \n";
-    $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
+    $r .= "  - Hauteur : " . $p['hauteur'] . " cm \n";
+    $r .= "  - Longueur : " . $p['longueur'] . " m \n";
     return $r;
 }
 
