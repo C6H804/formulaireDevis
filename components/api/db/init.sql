@@ -129,3 +129,8 @@ GROUP BY pt.name, st.name
 HAVING nombre_recurences > 0 and sondage_type IS NOT NULL
 ORDER BY pt.name, nombre_recurences DESC;
 
+
+
+DELETE from stats_projects;
+DELETE from stats_sondage;
+DELETE from stats_devis;

@@ -78,6 +78,8 @@
 
 .formulaireDevis .section.section.sectionIdentite .sectionGroup .inputField {
     flex: 1 1 0;
+    min-width: 300px;
+    width: 100%;
 }
 
 .formulaireDevis .section.section.sectionIdentite .sectionGroupAddress .inputField:first-child {
@@ -87,11 +89,21 @@
 .formulaireDevis .section.section.sectionIdentite .sectionGroupAddress .inputField:last-child {
     flex: 1 1 0;
     order: 3;
-    @media (max-width:815px) and (min-width:548px) {
+    @media (max-width:1050px) and (min-width:700px) {
         order: -1;
         flex: 0 1 0;
     }
 }
+
+@media (max-width:1050px) and (min-width:700px) {
+    .formulaireDevis .section.sectionIdentite {
+        gap: 2em;
+        order: -1;
+        flex: 0 1 0;
+    }
+}
+
+
 
 
 .formulaireDevis .section.sectionIdentite .sectionGroup .inputField {

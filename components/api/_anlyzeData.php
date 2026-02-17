@@ -87,7 +87,7 @@ function analyzeData($data) {
                     $result['address'] = isset($data['address']) ? sanitize($data['address'], "address") : 'Non renseignée';
 
                     $result["addressCity"] = isset($data["city"]) ? sanitize($data["city"], "address") : "Non renseignée";
-                    $result["addressPostcode"] = isset($data["codePostal"]) ? sanitize($data["codePostal"], "address") : "Non renseigné";
+                    $result["addressPostcode"] = isset($data["postalCode"]) ? sanitize($data["postalCode"], "address") : "Non renseigné";
 
                     $result["addressFull"] = $result['address'] . ", " . $result["addressCity"] .", ". $result["addressPostcode"];
                     
