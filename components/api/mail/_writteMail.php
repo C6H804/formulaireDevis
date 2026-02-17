@@ -281,8 +281,8 @@ function getClotureAluminiumM($p) {
     echo "<div><b>Couleur :</b> " . dm(manageColorM($p["color"] ?? '')) . $finition . "</div>";
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
-    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " m</div>";
     echo "</div>";
     return ob_get_clean();
 }
@@ -294,7 +294,7 @@ function getClotureBetonM($p) {
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
     echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " m</div>";
     echo "</div>";
     return ob_get_clean();
 }
@@ -306,7 +306,7 @@ function getClotureRigideM($p) {
     echo "<div style='margin-top:10px;margin-bottom:10px;'>";
     echo "<div style='margin-bottom:5px;'><b>Dimensions :</b></div>";
     echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " m</div>";
-    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " m</div>";
     echo "</div>";
     $kitOccultant = $p["kitOccultant"] ?? "";
     $kitSoubassement = $p["kitSoubassement"] ?? "";
