@@ -26,7 +26,7 @@ function getClientMail($data) {
     ob_start();
     ?>
     <h1 style="color:#002;">Bonjour <?php echo dm($data["name"] ?? ''); ?></h1>
-    <h2 style="color:#002;">Vôtre demande de devis en ligne à bien était enregistrée.</h2>
+    <h2 style="color:#002;">Votre demande de devis en ligne a bien été enregistrée.</h2>
     <p>Notre équipe va étudier votre demande avec attention et vous recontactera dans les plus brefs délais pour vous fournir une réponse personnalisée.</p>
     <!-- phrase pour présenté le compte rendu du devis -->
     <h3>Voici le récapitulatif de votre demande :</h3>

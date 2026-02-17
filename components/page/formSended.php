@@ -111,9 +111,9 @@
                     <h2>Erreur lors de l'envoi du formulaire</h2>
                 </div>
                 <div class="formAlert-Body">
-                    <h3>Une erreur est survenue lors de l'envoie de vôtre demande de devis</h3>
+                    <h3>Une erreur est survenue lors de l'envoi de votre demande de devis</h3>
                     <p><?php echo $_SESSION['formError']; ?></p>
-                    <p>Si le problème persiste, veuillez contacter nôtre agence au : <a href="tel:0558555314">05 58 55 53 14</a> ou par mail : <a href="mailto:contact@acportail.fr">contact@acportail.fr</a></p>
+                    <p>Si le problème persiste, veuillez contacter notre agence au : <a href="tel:0558555314">05 58 55 53 14</a> ou par mail : <a href="mailto:contact@acportail.fr">contact@acportail.fr</a></p>
                 </div>
                 <div class="formAlert-Footer">
                     <button class="btn btn-formAlert" onclick="fermer();">Fermer</button>

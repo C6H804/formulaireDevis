@@ -9,7 +9,8 @@ function addDeal($token, $title, $value, $currency, $person_id, $address, $posta
         // "stage_id" => 31,
         "stage_id" => $stage_id,
         // "stage_id" => 17,
-        "label" => $_ENV["environment"] === "production"  ? 31 : "50,31",
+        // "label" => $_ENV["environment"] === "production"  ? 31 : "50,31",
+        "label" => "31",
         "48fe09ac430f6ed0cf66439cccde8ec99830be8c" => $address,
         "28b0fd48a7342c7dd136e759c3d1a032c0e40546" => $TVA === true ? 35 : 36,
         "b04cd4cdc4dd8dd4d94395c624a7e6a644d0bc25" => $devis
