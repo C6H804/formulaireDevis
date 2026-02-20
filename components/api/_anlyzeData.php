@@ -296,14 +296,18 @@ function getDataFromPortillon($id, $data)
     $finition = sanitize($data['finition' . $id] ?? null);
     $dimensionLongueur = sanitize($data['dimensionLongueur' . $id] ?? null);
     $dimensionHauteur = sanitize($data['dimensionHauteur' . $id] ?? null);
+
+    $pose = sanitize($data['fourniturePose' . $id] ?? null, ['Oui', 'Non']);
+
+
     $result = [
         "type" => "Portillon",
         "model" => $model === null ? "" : $model,
         "color" => $color === null ? "" : $color,
         "finition" => $finition === null ? "" : $finition,
         "longueur" => $dimensionLongueur === null ? "" : $dimensionLongueur,
-        "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur
-
+        "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur,
+        "pose" => $pose === null ? "" : $pose
     ];
     return $result;
 }
@@ -341,6 +345,9 @@ function getDataFromPortail($id, $data)
     $dimensionLongueur = sanitize($data['dimensionLongueur' . $id] ?? null);
     $dimensionHauteur = sanitize($data['dimensionHauteur' . $id] ?? null);
 
+    $pose = sanitize($data["fourniturePose" . $id] ?? null, ['Oui', 'Non']);
+
+
     $result = [
         "type" => "Portail",
         "typePortail" => $type === null ? "" : $type,
@@ -350,7 +357,8 @@ function getDataFromPortail($id, $data)
         "color" => $color === null ? "" : $color,
         "finition" => $finition === null ? "" : $finition,
         "longueur" => $dimensionLongueur === null ? "" : $dimensionLongueur,
-        "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur
+        "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur,
+        "pose" => $pose === null ? "" : $pose
     ];
     return $result;
 }

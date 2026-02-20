@@ -45,8 +45,20 @@ function addPortillon($id)
         </div>
         <div class="inputField">
             <label for="<?php echo "dimensionHauteur$id"; ?>">Dimension Hauteur du portail (en cm)</label>
-            <input type="text" name="dimensionHauteur<?php echo $id ?>"
-                id="<?php echo "dimensionHauteur$id"; ?>" placeholder="Exemple : 200 cm" />
+            <input type="text" name="dimensionHauteur<?php echo $id ?>" id="<?php echo "dimensionHauteur$id"; ?>"
+                placeholder="Exemple : 200 cm" />
+        </div>
+    </div>
+    <div class="section sectionPortillon">
+        <div class="inputField">
+            <label for="<?php echo "fourniturePoseOui$id"; ?>">Fourniture + pose : </label>
+            <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseOui$id"; ?>"
+                value="Oui" checked>
+        </div>
+        <div class="inputField">
+            <label for="<?php echo "fourniturePoseNon$id"; ?>">Fourniture sans pose : </label>
+            <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseNon$id"; ?>"
+            value="Non">
         </div>
     </div>
 

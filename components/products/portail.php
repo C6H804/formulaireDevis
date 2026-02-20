@@ -96,6 +96,19 @@ function addPortail($id)
         </div>
     </div>
 
+        <div class="section sectionPortail">
+        <div class="inputField">
+            <label for="<?php echo "fourniturePoseOui$id"; ?>">Fourniture + pose : </label>
+            <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseOui$id"; ?>"
+                value="Oui" checked>
+        </div>
+        <div class="inputField">
+            <label for="<?php echo "fourniturePoseNon$id"; ?>">Fourniture sans pose : </label>
+            <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseNon$id"; ?>"
+            value="Non">
+        </div>
+    </div>
+
 
     <?php
     return ob_get_clean();

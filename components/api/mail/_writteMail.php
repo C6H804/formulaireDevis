@@ -323,7 +323,8 @@ function getClotureRigideM($p) {
 }
 
 
-function getDevisPortillonM($p) {
+function getDevisPortillonM($p)
+{
     ob_start();
     echo "<div><b>Modèle : </b>" . dm($p["model"] ?? '') . "</div>";
     $finition = !empty($p["finition"]) ? " | " . dm($p["finition"]) : "";
@@ -333,11 +334,17 @@ function getDevisPortillonM($p) {
         <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
         <div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>
         </div>";
+    if ($p["pose"] === "Oui") {
+        echo "<div style='margin-top:10px;'>Fourniture et pose</div>";
+    } else {
+        echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
+    }
     return ob_get_clean();
 }
 
 
-function getDevisPortailM($p) {
+function getDevisPortailM($p)
+{
     ob_start();
     echo '<div><b>Type de portail : </b>' . dm($p["typePortail"] ?? '') . '</div>';
     if (($p["typePortail"] ?? '') === "Coulissant") {
@@ -351,6 +358,11 @@ function getDevisPortailM($p) {
         <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
         <div style='margin-top:5px;'><b>Longueur : </b>" . dm($p["longueur"] ?? '') . " cm</div>
         </div>";
+    if ($p["pose"] === "Oui") {
+        echo "<div style='margin-top:10px;'>Fourniture et pose</div>";
+    } else {
+        echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
+    }
     echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') === "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
 }
