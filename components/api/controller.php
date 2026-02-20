@@ -93,7 +93,7 @@ if ($data === null) {
                 $result["address"],
                 $result["addressPostcode"],
                 $result["addressCity"]
-            )['data']['id']; // à tester
+            )['data']['id'];
         }
 
         $devis = writteDevis($result);

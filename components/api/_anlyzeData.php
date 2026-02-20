@@ -68,7 +68,9 @@ function analyzeData($data) {
             $result = [];
 
             $result['name'] = sanitize($data['name']);
+            $result["name"] = preg_replace('/\s+/', ' ', $result["name"]);
             $result['surname'] = sanitize($data['surname']);
+            $result["surname"] = preg_replace('/\s+/', ' ', $result["surname"]);
 
             if (isset($data['email'])) {
                 $result['email'] = sanitize($data['email'], "email");

@@ -89,7 +89,7 @@ GROUP BY projects_types.name
 HAVING nombre_devis > 0
 ORDER BY nombre_devis DESC;
 
-    
+
 -- calculer le nombre de devis par type de sondage et le pourcentage de chaque type de sondage par rapport au total des devis
 SELECT sondage_types.name, COUNT(stats_sondage.id_sondage_Type) AS nombre_devis, CONCAT(ROUND((COUNT(stats_sondage.id_sondage_Type) / (SELECT COUNT(*) FROM stats_sondage)) * 100, 2), '%') AS pourcentage_devis
 FROM sondage_types
