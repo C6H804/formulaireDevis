@@ -125,7 +125,7 @@ function getDevisPortail($p) {
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " cm \n";
     $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
-    $r .= $p['automatisme'] === "oui" ? "- Avec automatisme \n" : "- Sans automatisme \n";
+    $r .= $p['automatisme'] === "Oui" ? "- Avec automatisme \n" : "- Sans automatisme \n";
     $r .= $p["pose"] === "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
 return $r;
 }

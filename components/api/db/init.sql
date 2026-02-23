@@ -56,6 +56,7 @@ INSERT INTO projects_types (name) VALUES ("MAÇONNERIE");
 INSERT INTO projects_types (name) VALUES ("AUTRE");
 INSERT INTO projects_types (name) VALUES ("AUCUNE RÉPONSE");
 
+UPDATE projects_types SET name = "AUCUN PROJET" WHERE id = 13;
 
 
 DROP TABLE IF EXISTS stats_projects;
@@ -134,3 +135,6 @@ ORDER BY pt.name, nombre_recurences DESC;
 DELETE from stats_projects;
 DELETE from stats_sondage;
 DELETE from stats_devis;
+
+-- but du graphique : montrer la quantité et le pourcentage de chaques types de projets par rapport à la manière dont les clients ont connu l'agence (sondage)
+-- titre du graphique : "Répartition des types de projets par type de sondage"
