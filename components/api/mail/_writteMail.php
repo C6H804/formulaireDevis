@@ -310,12 +310,12 @@ function getClotureRigideM($p) {
     echo "</div>";
     $kitOccultant = $p["kitOccultant"] ?? "";
     $kitSoubassement = $p["kitSoubassement"] ?? "";
-    if ($kitOccultant === "Oui" || $kitSoubassement === "Oui") {
+    if ($kitOccultant == "Oui" || $kitSoubassement == "Oui") {
         echo "<div><b>Options :</b></div>";
-        if ($kitOccultant === "Oui") {
+        if ($kitOccultant == "Oui") {
             echo "<div style='margin-left:15px;'>Kit occultant</div>";
         }
-        if ($kitSoubassement === "Oui") {
+        if ($kitSoubassement == "Oui") {
             echo "<div style='margin-left:15px;'>Kit soubassement</div>";
         }
     }
@@ -334,7 +334,7 @@ function getDevisPortillonM($p)
         <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
         <div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>
         </div>";
-    if ($p["pose"] === "Oui") {
+    if ($p["pose"] == "Oui") {
         echo "<div style='margin-top:10px;'>Fourniture et pose</div>";
     } else {
         echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
@@ -358,12 +358,12 @@ function getDevisPortailM($p)
         <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
         <div style='margin-top:5px;'><b>Longueur : </b>" . dm($p["longueur"] ?? '') . " cm</div>
         </div>";
-    if ($p["pose"] === "Oui") {
+    if ($p["pose"] == "Oui") {
         echo "<div style='margin-top:10px;'>Fourniture et pose</div>";
     } else {
         echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
     }
-    echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') === "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
+    echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') == "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
 }
 

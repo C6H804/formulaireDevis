@@ -125,8 +125,8 @@ function getDevisPortail($p) {
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " cm \n";
     $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
-    $r .= $p['automatisme'] === "Oui" ? "- Avec automatisme \n" : "- Sans automatisme \n";
-    $r .= $p["pose"] === "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
+    $r .= $p['automatisme'] == "Oui" ? "- Avec automatisme \n" : "- Sans automatisme \n";
+    $r .= $p["pose"] == "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
 return $r;
 }
 
@@ -139,7 +139,7 @@ function getDevisPortillon($p) {
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " cm \n";
     $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
-    $r .= $p["pose"] === "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
+    $r .= $p["pose"] == "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
     return $r;
 }
 
@@ -150,13 +150,13 @@ function getClotureRigide($p) {
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " m \n";
     $r .= "  - Longueur : " . $p['longueur'] . " m \n";
-    if ($p['kitOccultant'] === "Oui" || $p['kitSoubassement'] === "Oui") {
+    if ($p['kitOccultant'] == "Oui" || $p['kitSoubassement'] == "Oui") {
         $r .= "- Options :  \n";
         
-        if ($p['kitOccultant'] === "Oui") {
+        if ($p['kitOccultant'] == "Oui") {
             $r .= "  - Kit occultant \n";
         }
-        if ($p['kitSoubassement'] === "Oui") {
+        if ($p['kitSoubassement'] == "Oui") {
             $r .= "  - Kit soubassement \n";
         }
     }

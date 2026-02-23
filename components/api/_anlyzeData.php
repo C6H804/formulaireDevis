@@ -319,7 +319,8 @@ function getDataFromPortail($id, $data)
 {
     $result = [];
     $type = sanitize($data['typePortail' . $id] ?? null, ['Battant', 'Coulissant']);
-    $automatisme = sanitize($data['automatisme' . $id] ?? null, ['Oui', 'Non']);
+    // $automatisme = sanitize($data['automatisme' . $id] ?? null, ['Oui', 'Non']);
+    $automatisme = $data["automatisme" . $id] == "Oui" ? "Oui" : "Non";
     if ($type === 'Battant') {
         // $model = htmlspecialchars($data['battant-modelSelect' . $id] ?? null);
         $model = sanitize($data['battant-modelSelect' . $id] ?? null);
@@ -445,11 +446,6 @@ function getDataFromClotureAluminium($id, $data)
     return $result;
 }
 
-
-
-
-
-
 function getDataFromPorteGarage($id, $data)
 {
     $result = [];
@@ -472,12 +468,6 @@ function getDataFromPorteGarage($id, $data)
     ];
     return $result;
 }
-
-
-
-
-
-
 
 function getDataFromStore($id, $data)
 {

@@ -17,16 +17,15 @@ function addPortail($id)
     </div>
 
     <div class="section sectionPortail automatismeSection"> <!-- automatisme oui non -->
-        <label for="<?php echo "automatismeOui$id"; ?>">Avec automatisme ?</label>
 
+
+        <label for="<?php echo "automatismeOui$id"; ?>">Avec automatisme ?</label>
         <div class="inputField">
-            <label for="<?php echo "automatismeOui$id"; ?>">Oui :</label>
-            <input type="radio" name="automatisme<?php echo $id ?>" value="Oui" checked
-                id="<?php echo "automatismeOui$id"; ?>" />
-        </div>
-        <div class="inputField">
-            <label for="<?php echo "automatismeNon$id"; ?>">Non :</label>
-            <input type="radio" name="automatisme<?php echo $id ?>" value="Non" id="<?php echo "automatismeNon$id"; ?>" />
+            <label for="<?php echo "automatisme$id"; ?>">Automatisme : </label>
+            <select name="automatisme<?php echo $id ?>" id="<?php echo "automatisme$id"; ?>">
+                <option value="Oui" selected>Avec automatisme</option>
+                <option value="Non">Sans automatisme</option>
+            </select>
         </div>
     </div>
 
