@@ -237,10 +237,10 @@ window.loadModels = (id, style, data) => {
 
 
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
-    projectType = document.getElementById("selectProject" + id).value;
+    const pt = document.getElementById("selectProject" + id).value;
     
     // Déterminer le préfixe en fonction du type de projet
-    if (projectType === "Portail") {
+    if (pt === "Portail") {
         outputIdPrefix = document.getElementById("typePortail" + id).value === "Battant" ? "battant-" : "coulissant-";
     } 
     // else if (projectType === "Porte de garage") {
