@@ -363,7 +363,7 @@ function getDevisPortailM($p)
     } else {
         echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
     }
-    echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') == "oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
+    echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') == "Oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
 }
 
