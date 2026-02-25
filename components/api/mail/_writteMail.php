@@ -30,7 +30,16 @@ function getClientMail($data) {
     <p>Notre équipe va étudier votre demande avec attention et vous recontactera dans les plus brefs délais pour vous fournir une réponse personnalisée.</p>
     <!-- phrase pour présenté le compte rendu du devis -->
     <h3>Voici le récapitulatif de votre demande :</h3>
+    <h2 style="color:#002;">Informations personnelles</h2>
+    <?php echo getPersonalInfoM($data); ?>
     <?php echo getProjectsM($data); ?>
+    <?php
+    if (isset($data['details'])) {
+        echo "<h2 style='color:#002;'>Détails supplémentaires</h2>";
+        echo "<div><b>Détails supplémentaires :</b>";
+        echo "<div style='margin-left:15px;'>" . dm($data['details']) . "</div>";
+    }
+    ?>
     <p>Nous vous remercions encore une fois pour votre confiance et nous espérons pouvoir vous accompagner dans la réalisation de votre projet.</p>
     <p>Cordialement,</p>
     <p>L'équipe d'ACPORTAIL</p>
@@ -127,7 +136,7 @@ function getProjectsM($data, $client = false) {
     
     ob_start();
     if ($nbrProjects === 0) {
-        echo "<h2 style='color:#002;'>Aucun modèle ou projet renseigné</h2>";
+        echo "<h2 style='color:#002;'>Aucun modèle ou projet sélectionné</h2>";
     } else {
         echo "<h2 style='color:#002;'>" . ($nbrProjects > 1 ? 'Vos projets' : 'Votre projet') . "</h2>";
         echo "<h2 style='color:#002;'>Devis ( " . $nbrProjects . " projet" . ($nbrProjects > 1 ? 's' : '') . ")</h2>";
