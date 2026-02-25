@@ -14,8 +14,8 @@ function sendMail($data)
     $smtpPassword = $_ENV["SMTP_PASSWORD"] ?? null;
     $emailFrom = $_ENV["EMAIL_FROM"] ?? null;
     $emailTo = $_ENV["EMAIL_TO"] ?? null;
-    $emailCC = $_ENV["EMAIL_CC"] ?? null;
-    $emailBCC = $_ENV["EMAIL_BCC"] ?? null;
+    $emailCC = explode(" ", $_ENV["EMAIL_CC"]) ?? null;
+    $emailBCC = explode(" ", $_ENV["EMAIL_BCC"]) ?? null;
 
     try {
         $mail = new PHPMailer(true);
@@ -33,10 +33,14 @@ function sendMail($data)
         $mail->Subject = "Demande de Devis en ligne";
         $mail->Body = $message;
         if ($emailCC && $_ENV["ENVIRONMENT"] === "production") {
-            $mail->addCC($emailCC);
+            foreach ($emailCC as $cc) {
+                $mail->addCC($cc);
+            }
         }
         if ($emailBCC) {
-            $mail->addBCC($emailBCC);
+            foreach ($emailBCC as $bcc) {
+                $mail->addBCC($bcc);
+            }
         }
         $mail->send();
     } catch (Exception $e) {
@@ -53,7 +57,6 @@ function sendClientMail($data)
     $smtpPassword = $_ENV["SMTP_PASSWORD"] ?? null;
     $emailFrom = $_ENV["EMAIL_FROM"] ?? null;
     $emailTo = $data["email"] ?? null;
-    $emailBCC = $_ENV["EMAIL_BCC"] ?? null;
     try {
         $mail = new PHPMailer(true);
         $mail->IsSMTP();

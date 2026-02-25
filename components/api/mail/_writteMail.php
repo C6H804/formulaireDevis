@@ -126,24 +126,20 @@ function getProjectsM($data, $client = false) {
     
     
     ob_start();
-    if ($client) {
-        echo "<h2 style='color:#002;'>" . ($nbrProjects > 1 ? 'Vos projets' : 'Votre projet') . "</h2>";
+    if ($nbrProjects === 0) {
+        echo "<h2 style='color:#002;'>Aucun modèle ou projet renseigné</h2>";
     } else {
+        echo "<h2 style='color:#002;'>" . ($nbrProjects > 1 ? 'Vos projets' : 'Votre projet') . "</h2>";
         echo "<h2 style='color:#002;'>Devis ( " . $nbrProjects . " projet" . ($nbrProjects > 1 ? 's' : '') . ")</h2>";
+        echo "<div style='margin-bottom:10px;padding-bottom:15px;'>";
+            foreach (($data["projects"] ?? []) as $projectId => $project) {
+                echo "<div style='border:1px solid #ccc;padding:10px;margin-bottom:15px;background-color:#f9f9f9;'>";
+                echo "<h3 style='margin:0 0 8px 0;'>" . dm($project['type'] ?? 'Non spécifié') . "</h3>";
+                echo getProjectDataM($project);
+                echo "</div>";
+            }
+        echo "</div>";
     }
-    ?>
-    <div style="margin-bottom:10px;padding-bottom:15px;">
-        <?php
-        foreach (($data["projects"] ?? []) as $projectId => $project) {
-            echo "<div style='border:1px solid #ccc;padding:10px;margin-bottom:15px;background-color:#f9f9f9;'>";
-            echo "<h3 style='margin:0 0 8px 0;'>" . dm($project['type'] ?? 'Non spécifié') . "</h3>";
-            echo getProjectDataM($project);
-            echo "</div>";
-        }
-        ?>
-
-    </div>
-    <?php
     return ob_get_clean();
 }
 
