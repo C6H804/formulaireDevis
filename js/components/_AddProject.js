@@ -15,6 +15,12 @@ export const addProject = async (type) => {
     target.insertAdjacentHTML('beforeend', data);
 
     updateProjectIds();
+
+    const newProject = document.getElementById('project' + id);
+    if (newProject) {
+        newProject.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     return id;
 };
 

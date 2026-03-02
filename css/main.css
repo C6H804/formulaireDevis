@@ -51,3 +51,25 @@
 .formulaireDevis .sectionA {
     display: none;
 }
+
+
+.formulaireDevis .projectDelete {
+    animation: projectDelete 1s ease-in-out forwards;
+}
+
+@keyframes projectDelete {
+    0% {
+        max-height: var(--project-height);
+    }
+    80% {
+        padding: 0%;
+        margin: 0%;
+        opacity: 1;
+    }
+    100% {
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+}

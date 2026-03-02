@@ -24,10 +24,6 @@ const init = async () => {
 
     console.log("Script loaded");
     document.getElementById('addProjectBtn').addEventListener('click', async () => {
-        // const newProjectId = await addProject(projectType[0]);
-        // window.openModalProject(newProjectId);
-        // // TODO : mettre la modal ici 
-        // console.log(window.projectList);
         addProjectModal();
     });
 
@@ -49,12 +45,6 @@ const init = async () => {
                 ])
             ]);
             projectItem.addEventListener('click', async () => {
-                // const s = document.getElementById("selectProject" + id);
-                // console.log("Project selected:", p);
-                // s.value = p;
-                // console.log(s.name);
-
-                // changeProjectType(id);
                 const projectType = p;
                 console.log("Adding project of type:", projectType);
                 await addProject(projectType);
@@ -88,7 +78,7 @@ const init = async () => {
         });
     }
 
-    await addProject(projectType[0]);
+    // await addProject(projectType[0]);
     console.log("Premier projet ajouté, projectIds =", document.getElementById('projectIds')?.value);
 };
 
@@ -130,15 +120,33 @@ window.changeDisplaySection = (id, self) => {
     });
 }
 
-window.deleteProject = (id) => {
-    if (projectList.length <= 1) return;
-    projectList = projectList.filter(e => e.id != id);
-    document.getElementById("project" + id).remove();
+window.deleteProject = async (id) => {
+    if (projectList.length > 0) {
+        console.log("Deleting project with ID:", id);
 
-    // Mettre à jour le champ caché avec les IDs des projets
-    const projectIds = window.projectList.map(p => p.id).join(',');
-    document.getElementById('projectIds').value = projectIds;
+        projectList = projectList.filter(e => e.id != id);
+        const pToDelete = document.getElementById("project" + id);
+
+        await pToDelete.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+
+        const projectIds = window.projectList.map(p => p.id).join(',');
+        const pHeight = pToDelete.offsetHeight;
+        pToDelete.style.setProperty('--project-height', pHeight + 'px');
+        document.getElementById('projectIds').value = projectIds;
+
+        pToDelete.addEventListener("animationend", () => {
+            pToDelete.remove();
+        });
+
+        if (!pToDelete.classList.contains("projectDelete")) {
+            pToDelete.classList.add("projectDelete");
+        }
+    }
 }
+
+
+
 
 window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
     const modalHtml = await getModal(id, "ral", "Ral");
