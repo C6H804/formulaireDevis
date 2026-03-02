@@ -1,9 +1,9 @@
 @import url("form.css");
 @import url("fileInput.css");
 @import url("btn.css");
-@import url("modal.css");
 @import url("outputModel.css");
 @import url("ralStandard.css");
+@import url("modal.css");
 
 .formulaireDevis .hidden {
     display: none;

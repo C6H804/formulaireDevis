@@ -26,10 +26,6 @@ include_once __DIR__ . '/../utils/modals/modelModal.php';
 
 include_once __DIR__ . '/../utils/db/getModel.php';
 
-/*
-cette est appelé depuis le js avec une méthode ajax
-elle retourne des info DOM que le js va insérer dans la page
-*/
 
 header('Content-Type: text/html; charset=UTF-8');
 if (isset($_POST['addProject'])) {

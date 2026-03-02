@@ -96,34 +96,35 @@
     width: 100%;
 }
 
-.formulaireDevis .modalDevis .modal-body div {
+.formulaireDevis .modalModel .modal-body div,
+.formulaireDevis .modalRal .modal-body div {
     max-width: 536px;
     width: 100%;
 }
 
 @media (max-width: 700px) and (min-width: 550px) {
-    .formulaireDevis .modalDevis .modal-body div {
+    .formulaireDevis .modalModel .modal-body div, .formulaireDevis .modalRal .modal-body div {
         max-width: 400px;
         grid-template-columns: 1fr 2fr 80px;
     }
 }
 
 @media (max-width: 550px) and (min-width: 400px) {
-    .formulaireDevis .modalDevis .modal-body div {
+    .formulaireDevis .modalModel .modal-body div, .formulaireDevis .modalRal .modal-body div {
         max-width: 300px;
         grid-template-columns: 1fr 3fr 80px;
     }
 }
 
 @media (max-width: 400px) and (min-width: 300px) {
-    .formulaireDevis .modalDevis .modal-body div {
+    .formulaireDevis .modalModel .modal-body div, .formulaireDevis .modalRal .modal-body div {
         max-width: 250px;
         grid-template-columns: 1fr 4fr 80px;
     }
 }
 
 @media (max-width: 300px) {
-    .formulaireDevis .modalDevis .modal-body div {
+    .formulaireDevis .modalModel .modal-body div, .formulaireDevis .modalRal .modal-body div {
         max-width: 250px;
         grid-template-columns: 0 1fr 80px;
     }
@@ -376,7 +377,22 @@
 
 /* project ------------------------------------------------------------------------- */
 
-
+.formulaireDevis .modalProject .modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5em 1em;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    padding-top: 1em;
+    margin: 0;
+    scrollbar-width: thin;
+    @media (max-width:630px) {
+        grid-template-columns: 1fr;
+    }
+}
 
 .formulaireDevis .projectItem {
     display: flex;
@@ -387,16 +403,20 @@
     background-color: #f0f0f0;
     gap: 0.5em;
     /* max-width: 100%; */
-    margin: 0.1em 1em;
     font-size: 1.5em;
-    border-radius: 1em;
-    width: 100%;
-    padding: 1em;
     font-weight: bold;
-    padding-bottom: 0.5em;
-    max-width: 350px;
+    padding: 0.5em 0;
+    /* width: 130px; */
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+    transition: background-color 0.3s ease;
 }
 
+.formulaireDevis .projectItem:hover {
+    background-color: #fafafa;
+    
+}
 .formulaireDevis .projectItem img {
     transition: 0.3s ease;
 }
@@ -414,12 +434,12 @@
     width: 100%;
     gap: 1em;
 }
+
 .formulaireDevis .modal-body .projectItemContent .projectName {
     display: flex;
     justify-content: center;
     text-align: center;
 }
-
 
 
 /* .formulaireDevis .modalProject .modalContent {

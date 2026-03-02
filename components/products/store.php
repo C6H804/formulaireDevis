@@ -39,6 +39,7 @@ function addStore($id)
             <select name="toileVerticale<?php echo $id ?>" id="toileVerticale<?php echo $id ?>">
                 <option value="non">Non</option>
                 <option value="oui">Oui</option>
+            </select>
         </div>
     </div>
 
