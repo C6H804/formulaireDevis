@@ -46,7 +46,6 @@ const init = async () => {
             ]);
             projectItem.addEventListener('click', async () => {
                 const projectType = p;
-                console.log("Adding project of type:", projectType);
                 await addProject(projectType);
                 closeModal();
             });
@@ -79,7 +78,6 @@ const init = async () => {
     }
 
     // await addProject(projectType[0]);
-    console.log("Premier projet ajouté, projectIds =", document.getElementById('projectIds')?.value);
 };
 
 window.changeProjectType = async (id = "") => {
@@ -434,7 +432,6 @@ const getProjectsData = () => {
 
 window.changeProjectDisplay = (deleted = 0) => {
     const quantity = getProjectsData() - deleted;
-    console.log("Updating project display, quantity:", quantity);
     const target = projectsFieldTitle;
     switch (true) {
         case quantity <= 0:
