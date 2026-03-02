@@ -50,6 +50,6 @@ echo createInput("radio", "TVA", "", "Ma maison à moins de 2 ans :", "false");
 echo "</div>";
 echo "</div>";
 echo "<div class='projectsContainer' id='projectsContainer'>";
-echo "<div class='projectsTitle'><h2>Vos projets</h2></div>";
+echo "<div class='projectsTitle'><h2 id='projectsFieldTitle'>Aucun projet sélectionné</h2></div>";
 echo "<input type='hidden' name='projectIds' id='projectIds' value=''>";
 ?>

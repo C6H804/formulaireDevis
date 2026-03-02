@@ -122,8 +122,8 @@ window.changeDisplaySection = (id, self) => {
 
 window.deleteProject = async (id) => {
     if (projectList.length > 0) {
-        console.log("Deleting project with ID:", id);
-
+        changeProjectDisplay(1);
+        
         projectList = projectList.filter(e => e.id != id);
         const pToDelete = document.getElementById("project" + id);
 
@@ -143,6 +143,7 @@ window.deleteProject = async (id) => {
             pToDelete.classList.add("projectDelete");
         }
     }
+
 }
 
 
@@ -422,5 +423,28 @@ window.changeImage = () => {
         btn.innerText = "Choisir une autre image";
     } else {
         btn.innerText = "Nous transmettre une image";
+    }
+}
+
+const getProjectsData = () => {
+    const data = document.getElementById("projectIds");
+    if (data) return data.value.split(",").length;
+    return 0;
+}
+
+window.changeProjectDisplay = (deleted = 0) => {
+    const quantity = getProjectsData() - deleted;
+    console.log("Updating project display, quantity:", quantity);
+    const target = projectsFieldTitle;
+    switch (true) {
+        case quantity <= 0:
+            target.innerText = "Aucun projet sélectionné";
+            break;
+        case quantity === 1:
+            target.innerText = `Votre projet (${quantity})`;
+            break;
+        default:
+            target.innerText = `Vos projets (${quantity})`;
+            break;
     }
 }

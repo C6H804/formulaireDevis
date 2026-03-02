@@ -29,6 +29,7 @@ function updateProjectIds() {
     const element = document.getElementById('projectIds');
     if (element) {
         element.value = projectIds;
+        changeProjectDisplay();
         console.log('projectIds mis à jour:', projectIds);
     } else {
         console.error('Élément projectIds introuvable !');
