@@ -23,10 +23,46 @@ let ralColors = [];
 const init = async () => {
 
     console.log("Script loaded");
-    document.getElementById('addProjectBtn').addEventListener('click', () => {
-        addProject(projectType[0]);
-        console.log(window.projectList);
+    document.getElementById('addProjectBtn').addEventListener('click', async () => {
+        // const newProjectId = await addProject(projectType[0]);
+        // window.openModalProject(newProjectId);
+        // // TODO : mettre la modal ici 
+        // console.log(window.projectList);
+        addProjectModal();
     });
+
+
+    window.addProjectModal = async () => {
+        preloadModal("adding", "Project");
+        // const data = getProjectList(id);
+        const data = window.projectType;
+        const target = document.getElementById("modalBodyProjectadding");
+        // const target = document.getElementById("modalBodyProject" + id);
+        target.innerHTML = "";
+        const projectImgFolder = "./img/projects/";
+
+        data.forEach(p => {
+            const projectItem = CreateElement("div", { class: "projectItem" }, [
+                CreateElement("div", { class: "projectItemContent" }, [
+                    CreateElement("img", { class: "projectImg", src: projectImgFolder + p.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".svg", alt: p }),
+                    CreateElement("div", { class: "projectName" }, [p])
+                ])
+            ]);
+            projectItem.addEventListener('click', async () => {
+                // const s = document.getElementById("selectProject" + id);
+                // console.log("Project selected:", p);
+                // s.value = p;
+                // console.log(s.name);
+
+                // changeProjectType(id);
+                const projectType = p;
+                console.log("Adding project of type:", projectType);
+                await addProject(projectType);
+                closeModal();
+            });
+            target.appendChild(projectItem);
+        });
+    }
 
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
@@ -42,7 +78,7 @@ const init = async () => {
             const projectIds = window.projectList.map(p => p.id).join(',');
             document.getElementById('projectIds').value = projectIds;
             console.log('Soumission du formulaire, projectIds:', projectIds);
-            
+
             // Vérifier qu'il y a au moins un projet
             if (projectIds === '' || window.projectList.length === 0) {
                 e.preventDefault();
@@ -110,7 +146,7 @@ window.modalRalOpen = async (id, uncheckAll = "", color, name = "") => {
     const target = document.getElementById("modalBodyRal" + id);
     // console.log("Modal HTML for RAL:", modalHtml);
     ralColors = JSON.parse(modalHtml);
-    
+
     // target.innerHTML = modalHtml;
     target.innerHTML = "";
     fillRalModal(id, ralColors, target);
@@ -141,7 +177,7 @@ const fillRalModal = (id, colors, target, search = "") => {
 
 
 const addRalToModal = (id, color) => {
-    const e = CreateElement("div", { class: "colorItem"}, [
+    const e = CreateElement("div", { class: "colorItem" }, [
         CreateElement("span", { class: "colorSample", style: `background-color: #${color.color}` }),
         CreateElement("div", { class: "colorName" }, [color.name_fr]),
         CreateElement("div", { class: "colorRal" }, [color.value])
@@ -228,7 +264,7 @@ window.loadModels = (id, style, data) => {
     target.innerHTML = "";
     data[style].forEach(model => {
         const modelItem = CreateElement("div", { class: "modelItem", onClick: `selectModel(${id}, '${model.nom}', '${model.image_url}')` }, [
-            CreateElement("div", { class: "modelImageContainer"}, [CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage center" })]),
+            CreateElement("div", { class: "modelImageContainer" }, [CreateElement("img", { src: model.image_url, alt: model.nom, class: "modelImage center" })]),
             CreateElement("div", { class: "modelName" }, [model.nom])
         ]);
         target.appendChild(modelItem);
@@ -238,11 +274,11 @@ window.loadModels = (id, style, data) => {
 
 window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
     const pt = document.getElementById("selectProject" + id).value;
-    
+
     // Déterminer le préfixe en fonction du type de projet
     if (pt === "Portail") {
         outputIdPrefix = document.getElementById("typePortail" + id).value === "Battant" ? "battant-" : "coulissant-";
-    } 
+    }
     // else if (projectType === "Porte de garage") {
     //     const typePorteGarage = document.getElementById("typePorteGarage" + id).value.toLowerCase();
     //     outputIdPrefix = typePorteGarage + "-";
@@ -287,7 +323,7 @@ window.openModalProject = async (id) => {
     data.forEach(p => {
         const projectItem = CreateElement("div", { class: "projectItem" }, [
             CreateElement("div", { class: "projectItemContent" }, [
-                CreateElement("img", { class: "projectImg", src: projectImgFolder + p.id + ".svg", alt: p.id }),
+                CreateElement("img", { class: "projectImg", src: projectImgFolder + p.id.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".svg", alt: p.id }),
                 CreateElement("div", { class: "projectName" }, [p.name])
             ])
         ]);
@@ -303,6 +339,7 @@ window.openModalProject = async (id) => {
         target.appendChild(projectItem);
     });
 }
+
 
 const getProjectList = (id) => {
     const options = document.querySelectorAll(`#selectProject${id} option`);
@@ -327,7 +364,7 @@ window.clearRalSearch = (id) => {
 }
 
 
-window.preloadModal = (id, modalType) => {
+window.preloadModal = (id = null, modalType) => {
     document.body.style.overflow = 'hidden';
     const target = document.getElementById("formulaireDevis");
     const closeButton = CreateElement("div", { class: "closeModal" }, ["×"]);

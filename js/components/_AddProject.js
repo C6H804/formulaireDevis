@@ -15,6 +15,7 @@ export const addProject = async (type) => {
     target.insertAdjacentHTML('beforeend', data);
 
     updateProjectIds();
+    return id;
 };
 
 function updateProjectIds() {

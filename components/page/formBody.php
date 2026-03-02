@@ -48,7 +48,47 @@ if (isset($_POST['addProject'])) {
 
     $result = projectHeader($id);
 
-    $result .= addPortail($id);
+    $type = $projectData['type'];
+
+
+    switch ($type) {
+        case "Portail":
+            $result .= addPortail($id);
+            break;
+        case "Portillon":
+            $result .= addPortillon($id);
+            break;
+        case "Clôture rigide":
+            $result .= addClotureRigide($id);
+            break;
+        case "Clôture Béton":
+            $result .= addClotureBeton($id);
+            break;
+        case "Clôture aluminium":
+            $result .= addClotureAluminium($id);
+            break;
+        case "Porte de garage":
+            $result .= addPorteGarage($id);
+            break;
+        case "Store":
+            $result .= addStore($id);
+            break;
+        case "Pergola":
+            $result .= addPergola($id);
+            break;
+        case "Carport":
+            $result .= addCarPort($id);
+            break;
+        case "Fournitures":
+            $result .= addFournitures($id);
+            break;
+        case "Maçonnerie":
+            $result .= addMaconnerie($id);
+            break;
+        default:
+            $result .= addAutre($id);
+            break;
+    }
 
     $result .= projectFooter($id);
     echo $result;
@@ -60,7 +100,7 @@ if (isset($_POST['changeProject'])) {
     $type = $projectData['type'];
 
 
-    switch($type) {
+    switch ($type) {
         case "Portail":
             echo addPortail($id);
             break;
@@ -81,10 +121,10 @@ if (isset($_POST['changeProject'])) {
             break;
         case "Store":
             echo addStore($id);
-            break;  
+            break;
         case "Pergola":
             echo addPergola($id);
-            break;  
+            break;
         case "Carport":
             echo addCarPort($id);
             break;
@@ -95,9 +135,9 @@ if (isset($_POST['changeProject'])) {
             echo addMaconnerie($id);
             break;
         default:
-        // echo $type;
+            // echo $type;
             echo addAutre($id);
-            break;       
+            break;
     }
 }
 
@@ -109,8 +149,8 @@ if (isset($_POST['loadModal'])) {
 
 
 
-    switch($type) {
-        case "ral": 
+    switch ($type) {
+        case "ral":
             echo ralModal($id);
             break;
         case "portailBattant":

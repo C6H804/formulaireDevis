@@ -29,5 +29,6 @@ function addFournitures($id)
     </div>
     
     <?php
+    return ob_get_clean();
 }
 ?>
