@@ -160,7 +160,7 @@ function getProjectDataM($project) {
             return getDevisPortillonM($project);
         case "Clôture rigide":
             return getClotureRigideM($project);
-        case "Clôture beton":
+        case "Clôture béton":
             return getClotureBetonM($project);
         case "Clôture aluminium":
             return getClotureAluminiumM($project);

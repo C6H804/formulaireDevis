@@ -218,7 +218,7 @@ function getSondage($data)
 
 function verifyType($type)
 {
-    $validTypes = ['Portail', 'Portillon', 'Clôture rigide', 'Clôture beton', 'Clôture aluminium', 'Porte de garage', 'Store', 'Pergola', 'Carport', 'Fournitures', 'Maçonnerie', 'Autre'];
+    $validTypes = ['Portail', 'Portillon', 'Clôture rigide', 'Clôture béton', 'Clôture aluminium', 'Porte de garage', 'Store', 'Pergola', 'Carport', 'Fournitures', 'Maçonnerie', 'Autre'];
     foreach ($validTypes as $validType) {
         if ($type === $validType) {
             return true;
@@ -239,7 +239,7 @@ function getDataByType($id, $type, $data)
             return getDataFromPortillon($id, $data);
         case 'Clôture rigide':
             return getDataFromClotureRigide($id, $data);
-        case 'Clôture beton':
+        case 'Clôture béton':
             return getDataFromClotureBeton($id, $data);
         case 'Clôture aluminium':
             return getDataFromClotureAluminium($id, $data);
@@ -406,7 +406,7 @@ function getDataFromClotureBeton($id, $data)
     $longueur = sanitize($data['dimensionLongueur' . $id] ?? null);
     $hauteur = sanitize($data['dimensionHauteur' . $id] ?? null);
     $result = [
-        "type" => "Clôture beton",
+        "type" => "Clôture béton",
         "model" => $model,
         "longueur" => $longueur === null ? "" : $longueur,
         "hauteur" => $hauteur === null ? "" : $hauteur

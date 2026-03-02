@@ -6,7 +6,7 @@ window.projectType = [
     "Portail",
     "Portillon",
     "Clôture rigide",
-    "Clôture Béton",
+    "Clôture béton",
     "Clôture aluminium",
     "Porte de garage",
     "Store",
@@ -255,7 +255,6 @@ window.changeModelFilter = (id, style, data) => {
         }
     });
     loadModels(id, style, data);
-
 }
 
 

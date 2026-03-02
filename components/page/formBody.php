@@ -42,9 +42,9 @@ if (isset($_POST['addProject'])) {
 
     $id = $projectData['id'];
 
-    $result = projectHeader($id);
-
     $type = $projectData['type'];
+
+    $result = projectHeader($id, $type);
 
 
     switch ($type) {
@@ -57,7 +57,7 @@ if (isset($_POST['addProject'])) {
         case "Clôture rigide":
             $result .= addClotureRigide($id);
             break;
-        case "Clôture Béton":
+        case "Clôture béton":
             $result .= addClotureBeton($id);
             break;
         case "Clôture aluminium":
@@ -106,7 +106,7 @@ if (isset($_POST['changeProject'])) {
         case "Clôture rigide":
             echo addClotureRigide($id);
             break;
-        case "Clôture beton":
+        case "Clôture béton":
             echo addClotureBeton($id);
             break;
         case "Clôture aluminium":
