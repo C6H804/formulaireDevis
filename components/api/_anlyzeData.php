@@ -107,13 +107,13 @@ function analyzeData($data) {
 
                         foreach ($projectIds as $id) {
                             $id = trim($id);
-                            echo "<script>console.log('Traitement du projet ID : ', " . json_encode($id) . ");</script>";
-                            echo "<script>console.log('Type de projet (selectProject" . $id . ") : ', " . json_encode($data['selectProject' . $id] ?? 'NON TROUVÉ') . ");</script>";
+                            // echo "<script>console.log('Traitement du projet ID : ', " . json_encode($id) . ");</script>";
+                            // echo "<script>console.log('Type de projet (selectProject" . $id . ") : ', " . json_encode($data['selectProject' . $id] ?? 'NON TROUVÉ') . ");</script>";
                             
                             // Vérification du type de projet et récupération des données spécifiques
                             if (isset($data['selectProject' . $id]) && verifyType($data['selectProject' . $id])) {
                                 $project = getDataByType($id, $data['selectProject' . $id], $data);
-                                echo "<script>console.log('Données du projet " . $id . ":', " . json_encode($project) . ");</script>";
+                                // echo "<script>console.log('Données du projet " . $id . ":', " . json_encode($project) . ");</script>";
                                 if ($project !== null) {
                                     $result['projects'][$id] = $project;
                                 } else {
@@ -325,14 +325,14 @@ function getDataFromPortail($id, $data)
         // $model = htmlspecialchars($data['battant-modelSelect' . $id] ?? null);
         $model = sanitize($data['battant-modelSelect' . $id] ?? null);
         $sensOuverture = null;
-        echo "<script>console.log('Portail Battant - Model recherché: battant-modelSelect" . $id . "', " . json_encode($data['battant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
+        // echo "<script>console.log('Portail Battant - Model recherché: battant-modelSelect" . $id . "', " . json_encode($data['battant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
     } else {
         $model = sanitize($data['coulissant-modelSelect' . $id] ?? null);
         $sensOuverture = sanitize($data['directionCoulissant' . $id] ?? null, ['Droite', 'Gauche']);
-        echo "<script>console.log('Portail Coulissant - Model recherché: coulissant-modelSelect" . $id . "', " . json_encode($data['coulissant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
+        // echo "<script>console.log('Portail Coulissant - Model recherché: coulissant-modelSelect" . $id . "', " . json_encode($data['coulissant-modelSelect' . $id] ?? 'NON TROUVÉ') . ");</script>";
     }
     if ($model === null) {
-        echo "<script>console.error('Portail ID " . $id . ": AUCUN MODÈLE SÉLECTIONNÉ ! Le projet sera ignoré.');</script>";
+        // echo "<script>console.error('Portail ID " . $id . ": AUCUN MODÈLE SÉLECTIONNÉ ! Le projet sera ignoré.');</script>";
         return null;
     }
     try {

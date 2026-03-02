@@ -19,7 +19,7 @@ function projectHeader($id, $type = "Portail"): bool|string
                     <?php endforeach; ?>
                 </select>
 
-                <input type="button" class="btn btn-h-red btn-black" id="selectProjectBtn<?php echo $id ?>" onclick="window.openModalProject(<?php echo $id ?>)" value="Modifier ce projet" />
+                <input type="button" class="btn btn-h-red btn-black" id="selectProjectBtn<?php echo $id ?>" onclick="window.openModalProject(<?php echo $id ?>)" value="Choisir autre chose" />
 
             </div>
         </div>

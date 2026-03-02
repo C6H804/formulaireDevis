@@ -19,8 +19,6 @@ include_once __DIR__ . '/mail/_sendMail.php';
 
 include_once __DIR__ . "/db/_writteStats.php";
 
-include_once __DIR__ . "/copy.json";
-
 
 $data = getData();
 if ($data === null) {
