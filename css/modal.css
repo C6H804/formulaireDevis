@@ -274,7 +274,7 @@
     justify-content: center;
     cursor: pointer;
     background-color: #F2F2F2;
-    border-radius: 1em;
+    border-radius: 0.35em;
     padding: 1em;
     width: 100%;
 }
@@ -282,7 +282,7 @@
 .formulaireDevis .modalDevis .modelItem img {
     max-width: 100%;
     height: auto;
-    border-radius: 1em;
+    border-radius: 0.35em;
     transition: 0.8s ease;
 }
 
@@ -293,7 +293,7 @@
 .formulaireDevis .modalDevis .modelImageContainer {
     width: 100%;
     overflow: hidden;
-    border-radius: 1em;
+    border-radius: 0.35em;
 }
 .formulaireDevis .modalDevis .modelName {
     margin-top: 0.5em;
@@ -409,7 +409,7 @@
     /* width: 130px; */
     width: 100%;
     height: 100%;
-    border-radius: 1em;
+    border-radius: 0.35em;
     transition: background-color 0.3s ease;
 }
 
@@ -419,6 +419,7 @@
 }
 .formulaireDevis .projectItem img {
     transition: 0.3s ease;
+    width: 100%;
 }
 
 

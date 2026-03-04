@@ -40,7 +40,7 @@ const init = async () => {
         data.forEach(p => {
             const projectItem = CreateElement("div", { class: "projectItem" }, [
                 CreateElement("div", { class: "projectItemContent" }, [
-                    CreateElement("img", { class: "projectImg", src: projectImgFolder + p.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".svg", alt: p }),
+                    CreateElement("img", { class: "projectImg", src: projectImgFolder + p.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".png", alt: p }),
                     CreateElement("div", { class: "projectName" }, [p])
                 ])
             ]);
@@ -329,7 +329,7 @@ window.openModalProject = async (id) => {
     data.forEach(p => {
         const projectItem = CreateElement("div", { class: "projectItem" }, [
             CreateElement("div", { class: "projectItemContent" }, [
-                CreateElement("img", { class: "projectImg", src: projectImgFolder + p.id.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".svg", alt: p.id }),
+                CreateElement("img", { class: "projectImg", src: projectImgFolder + p.id.normalize('NFD').replace(/[\u0300-\u036f]/g, '') + ".png", alt: p.id }),
                 CreateElement("div", { class: "projectName" }, [p.name])
             ])
         ]);
