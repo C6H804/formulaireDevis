@@ -15,7 +15,7 @@
     background: white;
     margin: auto;
     padding: 1em;
-    border-radius: 1em;
+    border-radius: 0.5em;
     width: 80%;
     max-width: 600px;
     max-height: 80%;
@@ -282,7 +282,7 @@
 .formulaireDevis .modalDevis .modelItem img {
     max-width: 100%;
     height: auto;
-    border-radius: 0.35em;
+    border-radius: 0.20em;
     transition: 0.8s ease;
 }
 
@@ -293,7 +293,7 @@
 .formulaireDevis .modalDevis .modelImageContainer {
     width: 100%;
     overflow: hidden;
-    border-radius: 0.35em;
+    border-radius: 0.20em;
 }
 .formulaireDevis .modalDevis .modelName {
     margin-top: 0.5em;
