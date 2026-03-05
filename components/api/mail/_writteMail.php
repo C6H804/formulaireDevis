@@ -160,7 +160,7 @@ function getProjectDataM($project) {
             return getDevisPortillonM($project);
         case "Clôture rigide":
             return getClotureRigideM($project);
-        case "Clôture beton":
+        case "Clôture béton":
             return getClotureBetonM($project);
         case "Clôture aluminium":
             return getClotureAluminiumM($project);
@@ -179,14 +179,14 @@ function getProjectDataM($project) {
         case "Autre":
             return getAutreM($project);
         default:
-            return null;
+            return "<div><b>Détails du projet :</b></div><div style='margin-left:15px;'>" . dm($project['details'] ?? 'Non renseigné') . "</div>";
     }
 }
 
 function getAutreM($p) {
     ob_start();
     echo "<div><b>Description : </b></div>";
-    echo "<div style='margin-left:15px;'>" . dm($p['descriptionAutre'] ?? '') . "</div>";
+    echo "<div style='margin-left:15px;'>" . dm($p['descriptionAutre'] ?? 'Non renseigné') . "</div>";
     return ob_get_clean();
 }
 
