@@ -30,7 +30,7 @@ function sendMail($data, $clientMail = "Client inconnu")
         $mail->setFrom($emailFrom);
         $mail->addAddress($emailTo);
         $mail->isHTML(true);
-        $mail->Subject = $clientMail . " | Devis en ligne";
+        $mail->Subject = $clientMail . " | Demande de devis en ligne";
         $mail->Body = $message;
         if ($emailCC && $_ENV["ENVIRONMENT"] === "production") {
             foreach ($emailCC as $cc) {
