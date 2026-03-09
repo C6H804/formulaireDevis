@@ -4,7 +4,7 @@ require __DIR__ . "/PHPMailer/SMTP.php";
 require __DIR__ . "/PHPMailer/Exception.php";
 use PHPMailer\PHPMailer\PHPMailer;
 
-function sendMail($data)
+function sendMail($data, $clientMail = "Client inconnu")
 {
     $message = writteMail($data);
 
@@ -30,7 +30,7 @@ function sendMail($data)
         $mail->setFrom($emailFrom);
         $mail->addAddress($emailTo);
         $mail->isHTML(true);
-        $mail->Subject = "Demande de Devis en ligne";
+        $mail->Subject = $clientMail . " | Devis en ligne";
         $mail->Body = $message;
         if ($emailCC && $_ENV["ENVIRONMENT"] === "production") {
             foreach ($emailCC as $cc) {

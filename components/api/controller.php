@@ -95,7 +95,7 @@ if ($data === null) {
         }
 
         $devis = writteDevis($result);
-        sendMail($result);
+        sendMail($result, $result["surname"] . " " . $result["name"]);
 
         if ($data["email"] !== null) {
             sendClientMail($result);
