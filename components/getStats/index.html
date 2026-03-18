@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques des Projets</title>
+    <script type="module" src="script.js"></script>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <h1>Statistiques</h1>
+    <form>
+        <div>
+            <label for="selectTypeStats">Sélectionnez le type de stats:</label>
+            <select id="selectTypeStats" name="selectTypeStats"></select>
+        </div>
+        <div>
+            <label for="startDate">De : </label>
+            <input type="date" id="startDate" name="startDate">
+        </div>
+        <div>
+            <label for="endDate">À : </label>
+            <input type="date" id="endDate" name="endDate">
+        </div>
+        <div>
+            <button type="button" id="generateRequest">Afficher les statistiques</button>
+        </div>
+        <div>
+            <h2>Requête :</h2>
+            <textarea name="result" id="result" readonly></textarea>
+        </div>
+    </form>
+
+</body>
+</html>

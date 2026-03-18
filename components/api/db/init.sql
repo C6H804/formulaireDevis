@@ -138,3 +138,71 @@ DELETE from stats_devis;
 
 -- but du graphique : montrer la quantité et le pourcentage de chaques types de projets par rapport à la manière dont les clients ont connu l'agence (sondage)
 -- titre du graphique : "Répartition des types de projets par type de sondage"
+
+
+
+-- ne sélectionner que de la date : 01/03/2026 au 31/03/2026
+USE acportaisx664385;
+
+SELECT projects_types.name, COUNT(stats_projects.id_project_Type) AS nombre_devis
+FROM projects_types
+LEFT JOIN stats_projects ON projects_types.id = stats_projects.id_project_Type
+LEFT JOIN stats_devis ON stats_projects.id_devis = stats_devis.id
+WHERE TRUE 
+AND stats_devis.date >= '2026-03-01' AND stats_devis.date <= '2026-03-02'
+GROUP BY projects_types.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+
+SELECT sondage_types.name, COUNT(stats_sondage.id_sondage_Type) AS nombre_devis
+FROM sondage_types
+JOIN stats_sondage ON sondage_types.id = stats_sondage.id_sondage_Type
+JOIN stats_devis ON stats_sondage.id_devis = stats_devis.id
+WHERE TRUE 
+
+AND stats_devis.date >= '2026-03-01' AND stats_devis.date <= '2026-03-02'
+
+GROUP BY sondage_types.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+
+
+SELECT st.name AS sondage_type, COUNT(sp.id_project_Type) AS nombre_projets
+FROM sondage_types st
+LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type
+LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis
+LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id
+WHERE TRUE
+
+GROUP BY st.name
+HAVING nombre_projets > 0
+ORDER BY nombre_projets DESC;
+
+
+SELECT st.name AS sondage_type, COUNT(DISTINCT ss.id_devis) AS nombre_devis, COUNT(sp.id_project_Type) AS nombre_projets
+FROM sondage_types st
+LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type
+LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis
+LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id
+WHERE TRUE 
+
+GROUP BY st.name
+HAVING nombre_devis > 0
+ORDER BY nombre_devis DESC;
+
+
+
+SELECT pt.name AS project_type, st.name AS sondage_type, COUNT(*) AS nombre_recurences
+FROM projects_types pt
+LEFT JOIN stats_projects sp ON pt.id = sp.id_project_Type
+LEFT JOIN stats_sondage ss ON sp.id_devis = ss.id_devis
+LEFT JOIN sondage_types st ON ss.id_sondage_Type = st.id
+LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id
+WHERE TRUE 
+
+
+GROUP BY pt.name, st.name
+HAVING nombre_recurences > 0 and sondage_type IS NOT NULL
+ORDER BY pt.name, nombre_recurences DESC;
