@@ -448,3 +448,8 @@ window.changeProjectDisplay = (deleted = 0) => {
             break;
     }
 }
+
+
+window.addProjectPortillon = async () => {
+    await addProject("Portillon");
+}

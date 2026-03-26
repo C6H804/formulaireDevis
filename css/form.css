@@ -184,6 +184,13 @@
 }
 
 
+.projectFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
 
 /* animations --------------------------------------- */
 .formulaireDevis .project {

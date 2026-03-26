@@ -1,10 +1,13 @@
 <?php
-function projectFooter($id)
+function projectFooter($id, $type = null)
 {
     ob_start();
     ?>
     </div> <!-- Close projectBody -->
     <div class="projectFooter">
+        <?php if ($type === "Portail") { ?>
+            <button type="button" class="btn btn-black" onclick="addProjectPortillon()">Ajouter un portillon</button>
+        <?php } ?>
         <button type="button" class="btn btn-red deleteProjectBtn right" onclick="deleteProject(<?php echo $id; ?>)">Supprimer le projet</button>
     </div>
     </div> <!-- Close project -->

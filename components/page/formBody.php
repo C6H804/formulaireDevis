@@ -85,7 +85,7 @@ if (isset($_POST['addProject'])) {
             break;
     }
 
-    $result .= projectFooter($id);
+    $result .= projectFooter($id, $type);
     echo $result;
 }
 
