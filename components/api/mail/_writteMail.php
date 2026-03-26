@@ -367,10 +367,17 @@ function getDevisPortailM($p)
         <div style='margin-top:5px;'><b>Hauteur : </b>" . dm($p["hauteur"] ?? '') . " cm</div>
         <div style='margin-top:5px;'><b>Longueur : </b>" . dm($p["longueur"] ?? '') . " cm</div>
         </div>";
+
     if ($p["pose"] == "Oui") {
         echo "<div style='margin-top:10px;'>Fourniture et pose</div>";
     } else {
         echo "<div style='margin-top:10px;'>Fourniture uniquement</div>";
+    }
+    
+    if ($p["maconnerie"] == "Oui") {
+        echo "<div style='margin-top:5px;'>Avec maçonnerie</div>";
+    } else {
+        echo "<div style='margin-top:5px;'>Sans maçonnerie</div>";
     }
     echo "<div style='margin-left:15px;'>" . (($p["automatisme"] ?? '') == "Oui" ? "Avec automatisme" : "Sans automatisme") . "</div>";
     return ob_get_clean();
