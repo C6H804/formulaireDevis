@@ -20,7 +20,7 @@ function addClotureRigide($id)
 
     <div class="section sectionClotureRigide"> <!-- choix couleur ral standard-->
         <div class="inputField">
-            <?php echo ralStandard($id); ?>
+            <?php echo ralStandardRigide($id); ?>
         </div>
     </div>
 

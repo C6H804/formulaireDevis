@@ -304,4 +304,25 @@ function ralStandard($id)
     </div>";
 }
 
+function ralStandardRigide($id) {
+    echo "
+    <div class='ralStandardContainer'>
+        <div class='ralStandard' title='Gris Anthracite RAL 7016'>
+                <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);' name='ralStandard$id' value='7016' id='ralStandardA$id' style='background-color: #363D43;' />
+                <label for='ralStandardA$id' class='invert'>
+                <span style='background-color: #363D43;'></span><div>Gris Anthracite (RAL 7016)</div></label>
+            </div>
+            <div class='ralStandard' title='Vert basque RAL 6005'>
+                <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='6005' id='ralStandardG$id' style='background-color: #2F4538;' />
+                <label for='ralStandardG$id' class='invert'>
+                <span style='background-color: #2F4538;'></span><div>Vert basque (RAL 6005)</div></label>
+            </div>
+            <div class='ralStandard' title='Bleu gentiane RAL 5010'>
+                <input type='radio' onchange='selectRal($id, ``, ``, ``, ``, true);'  name='ralStandard$id' value='5010' id='ralStandardH$id' style='background-color: #0E294B;' />
+                <label for='ralStandardH$id' class='invert'>
+                <span style='background-color: #0E294B;'></span><div>Bleu gentiane (RAL 5010)</div></label>
+        </div>
+    </div>";
+}
+
 ?>
