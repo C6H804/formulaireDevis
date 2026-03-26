@@ -117,11 +117,11 @@ function addPortail($id)
         </div>
         <div class="inputField">
             <label for="<?php echo "maconnerieSans$id"; ?>">Sans maçonnerie : </label>
-            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieSans$id"; ?>" value="Sans maçonnerie" checked>
+            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieSans$id"; ?>" value="Non" checked>
         </div>
         <div class="inputField">
             <label for="<?php echo "maconnerieAvec$id"; ?>">Avec maçonnerie : </label>
-            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieAvec$id"; ?>" value="Avec maçonnerie">
+            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieAvec$id"; ?>" value="Oui">
         </div>
     </div>
 

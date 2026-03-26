@@ -348,6 +348,8 @@ function getDataFromPortail($id, $data)
 
     $pose = sanitize($data["fourniturePose" . $id] ?? null, ['Oui', 'Non']);
 
+    $maconnerie = sanitize($data["maconnerie" . $id] ?? null, ['Oui', 'Non']);
+
 
     $result = [
         "type" => "Portail",
@@ -359,7 +361,8 @@ function getDataFromPortail($id, $data)
         "finition" => $finition === null ? "" : $finition,
         "longueur" => $dimensionLongueur === null ? "" : $dimensionLongueur,
         "hauteur" => $dimensionHauteur === null ? "" : $dimensionHauteur,
-        "pose" => $pose === null ? "" : $pose
+        "pose" => $pose === null ? "" : $pose,
+        "maconnerie" => $maconnerie === null ? "" : $maconnerie
     ];
     return $result;
 }

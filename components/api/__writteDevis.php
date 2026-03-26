@@ -127,6 +127,7 @@ function getDevisPortail($p) {
     $r .= "  - Longueur : " . $p['longueur'] . " cm \n";
     $r .= $p['automatisme'] == "Oui" ? "- Avec automatisme \n" : "- Sans automatisme \n";
     $r .= $p["pose"] == "Oui" ? "- Pose incluse \n" : "- Fourniture uniquement \n";
+    $r .= $p["maconnerie"] == "Oui" ? "- Avec maçonnerie \n" : "- Sans maçonnerie \n";
 return $r;
 }
 
@@ -149,17 +150,25 @@ function getClotureRigide($p) {
     $r .= "- Couleur : " . $color . " \n";
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " m \n";
-    $r .= "  - Longueur : " . $p['longueur'] . " m \n";
-    if ($p['kitOccultant'] == "Oui" || $p['kitSoubassement'] == "Oui") {
-        $r .= "- Options :  \n";
-        
-        if ($p['kitOccultant'] == "Oui") {
-            $r .= "  - Kit occultant \n";
-        }
-        if ($p['kitSoubassement'] == "Oui") {
-            $r .= "  - Kit soubassement \n";
-        }
+    if ($p["kistSoubassement"] == "Oui") {
+        $r .= "  + soubassement \n";
     }
+    $r .= "  - Longueur : " . $p['longueur'] . " m \n";
+    
+    if ($p['kitOccultant'] == "Oui") {
+        $r .= "  + kit occultant \n";
+    }
+
+    // if ($p['kitOccultant'] == "Oui" || $p['kitSoubassement'] == "Oui") {
+    //     $r .= "- Options :  \n";
+        
+    //     if ($p['kitOccultant'] == "Oui") {
+    //         $r .= "  - Kit occultant \n";
+    //     }
+    //     if ($p['kitSoubassement'] == "Oui") {
+    //         $r .= "  - Kit soubassement \n";
+    //     }
+    // }
     return $r;
 }
 
