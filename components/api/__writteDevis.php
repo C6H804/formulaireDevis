@@ -150,8 +150,8 @@ function getClotureRigide($p) {
     $r .= "- Couleur : " . $color . " \n";
     $r .= "- Dimensions :  \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " m \n";
-    if ($p["kistSoubassement"] == "Oui") {
-        $r .= "  + soubassement \n";
+    if ($p["kitSoubassement"] == "Oui") {
+        $r .= "    + soubassement \n";
     }
     $r .= "  - Longueur : " . $p['longueur'] . " m \n";
     
