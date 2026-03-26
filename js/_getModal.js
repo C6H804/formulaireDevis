@@ -1,4 +1,3 @@
-import { CreateElement } from "./components/__CreateElement.js";
 export const getModal = async (id, type, modalType = "Model") => {
     closeModal();
     // loadModal from components/page/formBody

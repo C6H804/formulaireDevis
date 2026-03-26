@@ -42,10 +42,13 @@ dataStats.forEach(stat => {
 
 const getMidRequest = (dateStart, dateEnd) => {
     let result = "";
-    if (dateStart) {
-        result += `AND stats_devis.date >= '${dateStart}' `;
-    }
     if (dateEnd) {
+        if (dateStart) {
+            result += `AND stats_devis.date >= '${dateStart}' `;
+        } else {
+            const dateValue = dateEnd.split("-");
+            result += `AND stats_devis.date >= '${dateValue[0]}-${dateValue[1]}-01' `;
+        }
         result += `AND stats_devis.date <= '${dateEnd}' `;
     }
     return result;

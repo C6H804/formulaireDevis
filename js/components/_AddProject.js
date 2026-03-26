@@ -1,8 +1,17 @@
 export const addProject = async (type) => {
     const id = window.projectList[window.projectList.length - 1]?.id + 1 || 0;
     window.projectList.push({ id, type });
+
     const target = document.getElementById("projectsContainer");
-    
+
+
+    const idLoading = Math.random().toString(36).substr(2, 9);
+    const loading = CreateElement("div", { class: "loader", id: "loading" + idLoading }, [
+        CreateElement("img", { src: "/img/loader.svg", alt: "Chargement..." }),
+    ]);
+    target.appendChild(loading);
+
+
     const response = await fetch('components/page/formBody.php', {
         method: 'POST',
         headers: {
@@ -11,6 +20,8 @@ export const addProject = async (type) => {
         body: `addProject=${encodeURIComponent(JSON.stringify({ id, type }))}`,
     });
     const data = await response.text();
+
+    document.getElementById("loading" + idLoading)?.remove();
     
     target.insertAdjacentHTML('beforeend', data);
 

@@ -1,3 +1,4 @@
+<script src="js/components/__CreateElement.js"></script>
 <script type="module" defer src="js/script.js"></script>
 <link rel="stylesheet" href="css/main.css">
 <link rel="preload" href="/img/loader.svg" as="image">

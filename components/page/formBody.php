@@ -27,7 +27,6 @@ include_once __DIR__ . '/../utils/modals/modelModal.php';
 include_once __DIR__ . '/../utils/db/getModel.php';
 
 
-header('Content-Type: text/html; charset=UTF-8');
 if (isset($_POST['addProject'])) {
 
     global $formData;

@@ -304,15 +304,14 @@
 
 
 /* Loader */
-.formulaireDevis .modalDevis .loader {
+.formulaireDevis .loader {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 2em;
 }
 
-.formulaireDevis .modalDevis .loader img {
+.formulaireDevis .loader img {
     width: 50px;
     height: 50px;
     /* mettre en noir tout ce qui n'est pas transparent */
@@ -382,7 +381,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-content: center;
-    gap: 2.5em 1em;
+    gap: 1em;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -405,7 +404,7 @@
     /* max-width: 100%; */
     font-size: 1.5em;
     font-weight: bold;
-    padding: 0.5em 0;
+    padding: 0em 0;
     /* width: 130px; */
     width: 100%;
     height: 100%;

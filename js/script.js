@@ -1,7 +1,6 @@
 import { addProject } from './components/_AddProject.js';
 import { changeProject } from './components/_ChangeProject.js';
 import { getModal } from './_getModal.js';
-import { CreateElement } from './components/__CreateElement.js';
 window.projectType = [
     "Portail",
     "Portillon",
@@ -46,8 +45,8 @@ const init = async () => {
             ]);
             projectItem.addEventListener('click', async () => {
                 const projectType = p;
-                await addProject(projectType);
                 closeModal();
+                await addProject(projectType);
             });
             target.appendChild(projectItem);
         });
@@ -87,6 +86,10 @@ window.changeProjectType = async (id = "") => {
     projectList.forEach(e => {
         if (e.id == id) e.type = value;
     });
+    target.innerHTML = "";
+    target.appendChild(CreateElement("div", { class: "loader" }, [
+        CreateElement("img", { src: "/img/loader.svg", alt: "Chargement..." })
+    ]));
     const result = await changeProject(id, value);
     target.innerHTML = result;
 }

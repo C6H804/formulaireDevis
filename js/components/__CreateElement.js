@@ -1,4 +1,4 @@
-export const CreateElement = (type, attributes = {}, content = []) => {
+window.CreateElement = (type, attributes = {}, content = []) => {
     const element = document.createElement(type);
     Object.entries(attributes).forEach(([key, value]) => {
         element.setAttribute(key, value);
