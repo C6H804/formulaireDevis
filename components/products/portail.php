@@ -19,7 +19,7 @@ function addPortail($id)
     <div class="section sectionPortail automatismeSection"> <!-- automatisme oui non -->
 
 
-        <label for="<?php echo "automatismeOui$id"; ?>">Avec automatisme ?</label>
+        <label for="<?php echo "automatismeOui$id"; ?>"><b>Avec automatisme ?</b></label>
         <div class="inputField">
             <label for="<?php echo "automatisme$id"; ?>">Automatisme : </label>
             <select name="automatisme<?php echo $id ?>" id="<?php echo "automatisme$id"; ?>">
@@ -76,26 +76,29 @@ function addPortail($id)
 
     <div class="section sectionPortail"> <!-- dimensions entre Poteaux et hauteur -->
         <div class="inputField">
-            <label for="<?php echo "dimensionLongueur$id"; ?>">Dimension entre Poteaux (en cm)</label>
+            <label for="<?php echo "dimensionLongueur$id"; ?>">Dimension entre Poteaux (en cm) : </label>
             <input type="text" name="dimensionLongueur<?php echo $id ?>" id="<?php echo "dimensionLongueur$id"; ?>"
                 placeholder="Exemple : 125 cm" />
         </div>
         <div class="inputField">
-            <label for="<?php echo "dimensionHauteur$id"; ?>">Dimension Hauteur du portail (en cm)</label>
+            <label for="<?php echo "dimensionHauteur$id"; ?>">Dimension Hauteur du portail (en cm) : </label>
             <input type="text" name="dimensionHauteur<?php echo $id ?>" id="<?php echo "dimensionHauteur$id"; ?>"
                 placeholder="Exemple : 170 cm" />
         </div>
     </div>
 
-    <div class="section sectionA"> 
+    <div class="section sectionA">
         <div class="inputField">
-            <label for="<?php echo "dimensionProfondeur$id"; ?>">Dimension en profondeur</label>
+            <label for="<?php echo "dimensionProfondeur$id"; ?>">Dimension en profondeur : </label>
             <input type="text" name="dimensionProfondeur<?php echo $id ?>" id="<?php echo "dimensionProfondeur$id"; ?>"
-            placeholder="Exemple : 125 cm" />
+                placeholder="Exemple : 125 cm" />
         </div>
     </div>
 
-        <div class="section sectionPortail">
+    <div class="section sectionPortail">
+        <div>
+            <b><label for="">Pose :</label></b>
+        </div>
         <div class="inputField">
             <label for="<?php echo "fourniturePoseOui$id"; ?>">Fourniture + pose : </label>
             <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseOui$id"; ?>"
@@ -104,10 +107,23 @@ function addPortail($id)
         <div class="inputField">
             <label for="<?php echo "fourniturePoseNon$id"; ?>">Fourniture sans pose : </label>
             <input type="radio" name="fourniturePose<?php echo $id ?>" id="<?php echo "fourniturePoseNon$id"; ?>"
-            value="Non">
+                value="Non">
         </div>
     </div>
 
+    <div class="section sectionPortail">
+        <div>
+            <b><label for="<?php echo "maconnerieSans$id"; ?>">Maçonnerie :</label></b>
+        </div>
+        <div class="inputField">
+            <label for="<?php echo "maconnerieSans$id"; ?>">Sans maçonnerie : </label>
+            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieSans$id"; ?>" value="Sans maçonnerie" checked>
+        </div>
+        <div class="inputField">
+            <label for="<?php echo "maconnerieAvec$id"; ?>">Avec maçonnerie : </label>
+            <input type="radio" name="maconnerie<?php echo $id ?>" id="<?php echo "maconnerieAvec$id"; ?>" value="Avec maçonnerie">
+        </div>
+    </div>
 
     <?php
     return ob_get_clean();
