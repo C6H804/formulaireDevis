@@ -1,6 +1,6 @@
 <?php
 echo "<div id='formulaireDevis' class='formulaireDevis'>";
-echo "<form method='post' action='components/api/controller.php' enctype='multipart/form-data'>";
+echo "<form method='post' action='components/api/controller.php' enctype='multipart/form-data' id='devisForm' >";
 echo "<div class='section sectionIdentite'>";
 echo "<h2>Vos informations</h2>";
 echo "<div class='sectionGroup sectionGroupName'>";

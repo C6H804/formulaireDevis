@@ -275,12 +275,7 @@ function getColor($id, $data)
 }
 
 
-
-
-
-
-function getDataFromPortillon($id, $data)
-{
+function getDataFromPortillon($id, $data) {
     $result = [];
     $model = sanitize($data['modelSelect' . $id] ?? null);
     // $model = htmlspecialchars($data['modelSelect' . $id] ?? null);

@@ -68,16 +68,51 @@ const init = async () => {
             console.log('Soumission du formulaire, projectIds:', projectIds);
 
             // Vérifier qu'il y a au moins un projet
-            if (projectIds === '' || window.projectList.length === 0) {
-                e.preventDefault();
-                alert('Veuillez ajouter au moins un projet avant de soumettre le formulaire.');
+            if (projectIds === '' && (window.projectList.length === 0 && document.getElementById("moreInfo").value.trim() === "")) {
+                cancelSubmit(e, "Veuillez ajouter au moins un projet avant de soumettre le formulaire.");
                 return false;
+            } else {
+                const firstName = form.surname.value.trim();
+                const lastName = form.name.value.trim();
+
+                const phone = form.phone.value.trim();
+                const email = form.email.value.trim();
+
+                if (firstName === "" || lastName === "" || (email === "" && phone === "")) {
+                    cancelSubmit(e, "Veuillez remplir tous les champs obligatoires (Prénom, Nom, et au moins un moyen de contact).", true);
+                    return false;
+                }
+                if (phone !== "" && !/^[0-9+\s()-]{6,20}$/.test(phone) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    cancelSubmit(e, "Veuillez entrer un numéro de téléphone valide ou une adresse e-mail valide.", true);
+                    return false;
+                }
             }
         });
     }
-
-    // await addProject(projectType[0]);
 };
+
+function cancelSubmit(e, message = "Erreur inconnue, veuillez réessayer.", scroll = false) {
+    e.preventDefault();
+    alert(message);
+    if (scroll) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+const ifFormValid = () => {
+    const form = document.getElementById('devisForm');
+    // form.firstName.value = form.firstName.value.trim();
+    alert.log(form.firstName.value);
+    return false;
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    // if (firstName === "" || lastName === "" || (email === "" && phone === "")) {
+    //     return false;
+    // }
+    // return /^[0-9+\s()-]{6,20}$/.test(phone) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 window.changeProjectType = async (id = "") => {
     console.log("Changing project type for ID:", id);
@@ -453,3 +488,4 @@ window.changeProjectDisplay = (deleted = 0) => {
 window.addProjectPortillon = async () => {
     await addProject("Portillon");
 }
+
