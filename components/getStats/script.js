@@ -3,6 +3,39 @@ const dataStats = [
     {
         id: 1,
         name: "produits par devis",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN stats_projects.id_project_Type END) AS nombre_devis FROM projects_types LEFT JOIN stats_projects ON projects_types.id = stats_projects.id_project_Type LEFT JOIN stats_devis ON stats_projects.id_devis = stats_devis.id ",
+        postRequest: "GROUP BY projects_types.name ORDER BY projects_types.name ASC;"
+    },
+    {
+        id: 2,
+        name: "sondage par devis",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN stats_sondage.id_sondage_Type END) AS nombre_devis FROM sondage_types LEFT JOIN stats_sondage ON sondage_types.id = stats_sondage.id_sondage_Type LEFT JOIN stats_devis ON stats_sondage.id_devis = stats_devis.id ",
+        postRequest: "GROUP BY sondage_types.name ORDER BY sondage_types.name ASC;"
+    },
+    {
+        id: 3,
+        name: "projets par sondage",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN sp.id_project_Type END) AS nombre_projets FROM sondage_types st LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id ",
+        postRequest: "GROUP BY st.name ORDER BY st.name ASC;"
+    },
+    {
+        id:4,
+        name: "devis et projets par sondage",
+        preRequest: "SELECT st.name AS sondage_type, COUNT(DISTINCT CASE WHEN {{DATE_CONDITION}} THEN ss.id_devis END) AS nombre_devis, COUNT(CASE WHEN {{DATE_CONDITION}} THEN sp.id_project_Type END) AS nombre_projets FROM sondage_types st LEFT JOIN stats_sondage ss ON st.id = ss.id_sondage_Type LEFT JOIN stats_projects sp ON ss.id_devis = sp.id_devis LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id ",
+        postRequest: "GROUP BY st.name ORDER BY st.name ASC;"
+    },
+    {
+        id:5,
+        name: "projet par sondage et type de projet",
+        preRequest: "SELECT pt.name AS project_type, st.name AS sondage_type, COUNT(CASE WHEN {{DATE_CONDITION}} THEN sp.id_project_Type END) AS nombre_recurences FROM projects_types pt LEFT JOIN stats_projects sp ON pt.id = sp.id_project_Type LEFT JOIN stats_sondage ss ON sp.id_devis = ss.id_devis LEFT JOIN sondage_types st ON ss.id_sondage_Type = st.id LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id ",
+        postRequest: "GROUP BY pt.name, st.name ORDER BY pt.name, st.name ASC;"
+    }
+];
+
+const dataStatsOLD = [
+    {
+        id: 1,
+        name: "produits par devis",
         preRequest: "SELECT projects_types.name, COUNT(stats_projects.id_project_Type) AS nombre_devis FROM projects_types LEFT JOIN stats_projects ON projects_types.id = stats_projects.id_project_Type LEFT JOIN stats_devis ON stats_projects.id_devis = stats_devis.id WHERE TRUE ",
         postRequest: "GROUP BY projects_types.name HAVING nombre_devis > 0 ORDER BY nombre_devis DESC;"
     },
@@ -40,18 +73,20 @@ dataStats.forEach(stat => {
     selectStats.appendChild(option);
 });
 
-const getMidRequest = (dateStart, dateEnd) => {
-    let result = "";
-    if (dateEnd) {
-        if (dateStart) {
-            result += `AND stats_devis.date >= '${dateStart}' `;
-        } else {
-            const dateValue = dateEnd.split("-");
-            result += `AND stats_devis.date >= '${dateValue[0]}-${dateValue[1]}-01' `;
-        }
-        result += `AND stats_devis.date <= '${dateEnd}' `;
+const getDateCondition = (dateStart, dateEnd) => {
+    if (!dateEnd) {
+        return "1=1";
     }
-    return result;
+
+    const conditions = [];
+    if (dateStart) {
+        conditions.push(`stats_devis.date >= '${dateStart}'`);
+    } else {
+        const dateValue = dateEnd.split("-");
+        conditions.push(`stats_devis.date >= '${dateValue[0]}-${dateValue[1]}-01'`);
+    }
+    conditions.push(`stats_devis.date <= '${dateEnd}'`);
+    return conditions.join(" AND ");
 }
 
 const getRequest = (id) => {
@@ -61,8 +96,7 @@ const getRequest = (id) => {
     }
     let result = "";
     result += initDb;
-    result += data.preRequest;
-    result += getMidRequest(document.getElementById("startDate").value, document.getElementById("endDate").value);
+    result += data.preRequest.replaceAll("{{DATE_CONDITION}}", getDateCondition(document.getElementById("startDate").value, document.getElementById("endDate").value));
     result += data.postRequest;
     return result;
 }
