@@ -36,6 +36,7 @@ function addPergola($id)
                 <option value="chauffage">chauffage</option>
                 <option value="parois vitrées">parois vitrées</option>
             </select>
+            
         </div>
     </div>
 
