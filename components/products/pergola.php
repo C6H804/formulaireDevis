@@ -28,15 +28,30 @@ function addPergola($id)
 
     <div class="section sectionPergola"> <!-- options -->
         <div class="inputField">
-            <label for="">Options :</label>
-            <select name="options<?php echo $id ?>">
+            <h3>Options :</h3>
+            <!-- <select name="options<?php echo $id ?>">
                 <option value="Aucune">Aucune</option>
                 <option value="LED">LED</option>
                 <option value="Store verticaux">Store verticaux</option>
                 <option value="chauffage">chauffage</option>
                 <option value="parois vitrées">parois vitrées</option>
-            </select>
-            
+            </select> -->
+            <div>
+                <label for="optionsLED<?php echo $id ?>">LED</label>
+                <input type="checkbox" name="optionsLED<?php echo $id ?>" id="optionsLED<?php echo $id ?>">
+            </div>
+            <div>
+                <label for="optionsStoreVerticaux<?php echo $id ?>">Store verticaux</label>
+                <input type="checkbox" name="optionsStoreVerticaux<?php echo $id ?>" id="optionsStoreVerticaux<?php echo $id ?>">
+            </div>
+            <div>
+                <label for="optionsChauffage<?php echo $id ?>">chauffage</label>
+                <input type="checkbox" name="optionsChauffage<?php echo $id ?>" id="optionsChauffage<?php echo $id ?>">
+            </div>
+            <div>
+                <label for="optionsParoisVitrees<?php echo $id ?>">parois vitrées</label>
+                <input type="checkbox" name="optionsParoisVitrees<?php echo $id ?>" id="optionsParoisVitrees<?php echo $id ?>">
+            </div>
         </div>
     </div>
 

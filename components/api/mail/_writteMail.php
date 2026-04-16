@@ -254,7 +254,16 @@ function getPergolaM($p): string {
     echo "<div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>";
     echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
     echo "</div>";
-    echo "<div><b>Options : </b>" . dm($p["options"] ?? '') . "</div>";
+    echo "<div><b>Options :</b>";
+    if (!$p["led"] && !$p["storeVerticaux"] && !$p["chauffage"] && !$p["paroisVitrees"]) {
+        echo "<div style='margin-left:15px;margin-top:5px;'>Aucune option sélectionnée</div>";
+    } else {
+        if ($p["led"]) echo "<div style='margin-left:15px;margin-top:5px;'>" . dm("LED") . "</div>";
+        if ($p["storeVerticaux"]) echo "<div style='margin-left:15px;margin-top:5px;'>" . dm("Store verticaux") . "</div>";
+        if ($p["chauffage"]) echo "<div style='margin-left:15px;margin-top:5px;'>" . dm("Chauffage") . "</div>";
+        if ($p["paroisVitrees"]) echo "<div style='margin-left:15px;margin-top:5px;'>" . dm("Parois vitrées") . "</div>";
+    }
+    echo "</div>";
     return ob_get_clean();
 }
 

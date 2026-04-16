@@ -220,7 +220,15 @@ function getPergola($p): string {
     $r .= "  - Largeur : " . $p['largeur'] . " cm \n";
     $r .= "  - Hauteur : " . $p['hauteur'] . " cm \n";
     $r .= "- Options :  \n";
-    $r .= $p['options'] . " \n";
+    // $r .= $p['options'] . " \n";
+    if (!$p["led"] && !$p["storeVerticaux"] && !$p["chauffage"] && !$p["paroisVitrees"]) {
+        $r .= "  Aucune option sélectionnée. \n";
+    } else {
+        $r .= $p["led"] ? "  - LED \n" : "";
+        $r .= $p["storeVerticaux"] ? "  - Store verticaux \n" : "";
+        $r .= $p["chauffage"] ? "  - Chauffage \n" : "";
+        $r .= $p["paroisVitrees"] ? "  - Parois vitrées \n" : "";
+    }
     return $r;
 }
 

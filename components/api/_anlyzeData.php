@@ -503,13 +503,23 @@ function getDataFromPergola($id, $data)
     $largeur = sanitize($data['dimensionLargeur' . $id] ?? null);
     $hauteur = sanitize($data['dimensionHauteur' . $id] ?? null);
     $longueur = sanitize($data['dimensionLongueur' . $id] ?? null);
-    $options = sanitize($data['options' . $id] ?? null, ['Aucune', 'LED', 'Store verticaux', 'Chauffage', 'Parois vitrées']);
+
+    // $options = sanitize($data['options' . $id] ?? null, ['Aucune', 'LED', 'Store verticaux', 'Chauffage', 'Parois vitrées']);
+    // options was a value now I need a value for each options as checkboxes
+    $led = sanitize($data['optionsLED' . $id] ?? null, ['on', null]);
+    $storeVerticaux = sanitize($data['optionsStoreVerticaux' . $id] ?? null, ['on', null]);
+    $chauffage = sanitize($data['optionsChauffage' . $id] ?? null, ['on', null]);
+    $paroisVitrees = sanitize($data['optionsParoisVitrees' . $id] ?? null, ['on', null]);
     $result = [
         "type" => "Pergola",
         "largeur" => $largeur === null ? "" : $largeur,
         "hauteur" => $hauteur === null ? "" : $hauteur,
         "longueur" => $longueur === null ? "" : $longueur,
-        "options" => $options === null ? "" : $options
+        "led" => $led === 'on' ? "LED" : "",
+        "storeVerticaux" => $storeVerticaux === 'on' ? "Store verticaux" : "",
+        "chauffage" => $chauffage === 'on' ? "Chauffage" : "",
+        "paroisVitrees" => $paroisVitrees === 'on' ? "Parois vitrées" : ""  
+        // "options" => $options === null ? "" : $options
     ];
     return $result;
 }
