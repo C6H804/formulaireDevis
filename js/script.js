@@ -456,12 +456,32 @@ window.preloadModal = (id = null, modalType) => {
 window.changeImage = () => {
     const input = document.getElementById("projectFile");
     const btn = document.querySelectorAll("label[for='projectFile']")[0];
+    const file = input.files[0];
+
+    const container = document.querySelectorAll(".imgPreview")[0];
+    const imgNameDisplay = document.getElementById("imgName");
+    const imgDisplay = document.getElementById("imgDisplayPreview");
+
     if (input.files.length > 0) {
+        container.classList.remove("hidden");
         btn.innerText = "Choisir une autre image";
+        const reader = new FileReader();
+
+        imgNameDisplay.innerText = file.name;
+        imgDisplay.alt = file.name;
+        reader.onload = (e) => {
+            imgDisplay.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
     } else {
+        container.classList.add("hidden");
         btn.innerText = "Nous transmettre une image";
+        imgNameDisplay.innerText = "";
+        imgDisplay.src = "";
+        imgDisplay.alt = "Aucune image envoyée";
     }
 }
+
 
 const getProjectsData = () => {
     const data = document.getElementById("projectIds");
@@ -490,4 +510,8 @@ window.addProjectPortillon = async () => {
     await addProject("Portillon");
 }
 
-
+window.removeImage = () => {
+    const input = document.getElementById("projectFile");
+    input.value = "";
+    changeImage();
+}
