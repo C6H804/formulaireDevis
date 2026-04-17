@@ -1,6 +1,5 @@
 <?php
-function projectHeader($id, $type = "Portail"): bool|string
-{
+function projectHeader($id, $type = "Portail"): bool|string {
     $options = [
         "Portail", "Portillon", "Clôture rigide", "Clôture béton",
         "Clôture aluminium", "Porte de garage", "Store", "Pergola",
@@ -18,9 +17,7 @@ function projectHeader($id, $type = "Portail"): bool|string
                     <option value="<?php echo $opt; ?>"<?php echo ($opt === $type) ? ' selected' : ''; ?>><?php echo $opt; ?></option>
                     <?php endforeach; ?>
                 </select>
-
-                <input type="button" class="btn btn-h-red btn-black" id="selectProjectBtn<?php echo $id ?>" onclick="window.openModalProject(<?php echo $id ?>)" value="Choisir autre chose" />
-
+                <input type="button" class="btn btn-h-red btn-black" id="selectProjectBtn<?php echo $id ?>" onclick="window.openModalProject(<?php echo $id ?>)" value="Modifier le produit" />
             </div>
         </div>
 

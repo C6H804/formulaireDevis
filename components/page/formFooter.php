@@ -1,6 +1,6 @@
 <?php
 echo "</div>";
-echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='Ajouter un projet' class='btn btn-black addProjectBtn center'></div>";
+echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='Ajouter un produit' class='btn btn-black addProjectBtn center'></div>";
 echo "
 <div class='formFooter'>
 <div class='fieldInput fieldInputTextarea'>

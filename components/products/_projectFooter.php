@@ -8,7 +8,7 @@ function projectFooter($id, $type = null)
         <?php if ($type === "Portail") { ?>
             <button type="button" class="btn btn-black" onclick="addProjectPortillon()">Ajouter un portillon</button>
         <?php } ?>
-        <button type="button" class="btn btn-red deleteProjectBtn right" onclick="deleteProject(<?php echo $id; ?>)">Supprimer le projet</button>
+        <button type="button" class="btn btn-red deleteProjectBtn right" onclick="deleteProject(<?php echo $id; ?>)">Supprimer le produit</button>
     </div>
     </div> <!-- Close project -->
     <?php

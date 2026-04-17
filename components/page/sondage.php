@@ -47,7 +47,7 @@ ob_start();
 <div class="section sectionSondage">
     <h3>
         Comment nous avez-vous connu ? Nous vous serions reconnaissant de bien vouloir répondre à ce très rapide
-        questionnaire afin d'améliorer nos services. (Plusieurs choix possible)
+        questionnaire afin d'améliorer nos services. <i>(Plusieurs choix possible)</i>
     </h3>
     <?php
     echo writteSondageRandom();

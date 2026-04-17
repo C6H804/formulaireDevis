@@ -473,13 +473,13 @@ window.changeProjectDisplay = (deleted = 0) => {
     const target = projectsFieldTitle;
     switch (true) {
         case quantity <= 0:
-            target.innerText = "Aucun projet sélectionné";
+            target.innerText = "Il n'y a aucun produit dans votre devis";
             break;
         case quantity === 1:
-            target.innerText = `Votre projet (${quantity})`;
+            target.innerText = `Vous avez ${quantity} produit dans votre devis`;
             break;
         default:
-            target.innerText = `Vos projets (${quantity})`;
+            target.innerText = `Vous avez ${quantity} produits dans votre devis`;
             break;
     }
 }
