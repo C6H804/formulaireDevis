@@ -1,6 +1,12 @@
 <?php
 echo "</div>";
-echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='Ajouter un produit' class='btn btn-black addProjectBtn center'></div>";
+// echo "<div class='addProjectBtnContainer'><input type='button' id='addProjectBtn' value='+ Ajouter un produit' class='btn btn-black addProjectBtn center'></div>";
+echo "<div class='addProjectBtnContainer'>
+<button id='addProjectBtn' class='btn btn-black addProjectBtn center'>
+<span class='addProjectBtnContainerPlus'>+</span>
+<span class='addProjectBtnContainerText'>Ajouter un produit</span>
+</button>
+</div>";
 echo "
 <div class='formFooter'>
 <div class='fieldInput fieldInputTextarea'>

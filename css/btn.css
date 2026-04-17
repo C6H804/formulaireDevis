@@ -91,3 +91,18 @@
     font-size: 1.5em;
     border-radius: 0;
 }
+
+.addProjectBtnContainerPlus {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    font-size: 2em;
+}
+
+.addProjectBtnContainerText {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    font-size: 1.1em;
+    margin-left: 0.25em;
+}

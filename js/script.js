@@ -22,7 +22,8 @@ let ralColors = [];
 const init = async () => {
 
     console.log("Script loaded");
-    document.getElementById('addProjectBtn').addEventListener('click', async () => {
+    document.getElementById('addProjectBtn').addEventListener('click', async (e) => {
+        e.preventDefault();
         addProjectModal();
     });
 
@@ -488,4 +489,5 @@ window.changeProjectDisplay = (deleted = 0) => {
 window.addProjectPortillon = async () => {
     await addProject("Portillon");
 }
+
 
