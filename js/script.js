@@ -510,8 +510,17 @@ window.addProjectPortillon = async () => {
     await addProject("Portillon");
 }
 
+
 window.removeImage = () => {
-    const input = document.getElementById("projectFile");
-    input.value = "";
-    changeImage();
+    const target = document.querySelectorAll(".imgPreview")[0];
+    target.classList.add("deleting");
+
+    target.addEventListener("animationend", () => {
+        if (target.classList.contains("deleting")) {
+            const input = document.getElementById("projectFile");
+            input.value = "";
+            changeImage();
+            target.classList.remove("deleting");
+        }
+    });
 }
