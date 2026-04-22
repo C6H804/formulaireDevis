@@ -375,6 +375,7 @@ window.openModalProject = async (id) => {
         projectItem.addEventListener('click', () => {
             const s = document.getElementById("selectProject" + id);
             console.log("Project selected:", p);
+            handleAddPortillonBtn(id, p.id);
             s.value = p.id;
             console.log(s.name);
 
@@ -385,6 +386,13 @@ window.openModalProject = async (id) => {
     });
 }
 
+const handleAddPortillonBtn = async (id, type) => {
+    if (type === "Portail") {
+        document.getElementById("addPortillon-" + id).classList.remove("hidden");
+    } else {
+        document.getElementById("addPortillon-" + id).classList.add("hidden");
+    }
+}
 
 const getProjectList = (id) => {
     const options = document.querySelectorAll(`#selectProject${id} option`);
