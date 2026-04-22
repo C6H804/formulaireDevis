@@ -97,6 +97,7 @@
     vertical-align: middle;
     height: 100%;
     font-size: 2em;
+    user-select: none;
 }
 
 .addProjectBtnContainerText {

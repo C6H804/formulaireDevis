@@ -324,11 +324,6 @@ window.selectModel = (id, modelName, modelImg, outputIdPrefix = "") => {
     if (pt === "Portail") {
         outputIdPrefix = document.getElementById("typePortail" + id).value === "Battant" ? "battant-" : "coulissant-";
     }
-    // else if (projectType === "Porte de garage") {
-    //     const typePorteGarage = document.getElementById("typePorteGarage" + id).value.toLowerCase();
-    //     outputIdPrefix = typePorteGarage + "-";
-    // }
-
     // Mise à jour du champ caché avec le nom du modèle
     const select = document.getElementById(outputIdPrefix + "modelSelect" + id);
     if (select) {
