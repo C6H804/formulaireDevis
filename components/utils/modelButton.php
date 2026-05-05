@@ -10,7 +10,7 @@ function modelSelector($id, $type, $outputIdPrefix = ""): bool|string
         <span id="<?php echo $outputIdPrefix; ?>modelOutput<?php echo $id; ?>">Aucun modèle Sélectionné</span><span id="<?php echo $outputIdPrefix; ?>modelImage<?php echo $id; ?>"></span>
     </div>
     
-    <input type="text" id="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" name="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" class="hidden">
+    <input type="text" id="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" name="<?php echo $outputIdPrefix; ?>modelSelect<?php echo $id; ?>" class="hidden" value="Aucun modèle sélectionné">
 
     <?php
     return ob_get_clean();
