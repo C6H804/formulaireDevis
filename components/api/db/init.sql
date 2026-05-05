@@ -42,14 +42,13 @@ VALUES (
     );
 
 INSERT INTO
-    sondage_types (name)
-VALUES (
-        "sur la route, en passant devant l'agence à lescar"
-    );
+    sondage_types (name) VALUES ("sur la route, en passant devant l'agence à lescar");
 
 INSERT INTO sondage_types (name) VALUES ("autre");
 
 INSERT INTO sondage_types (name) VALUES ("aucune réponse");
+
+INSERT INTO sondage_types (name) VALUES ("Foire");
 
 DROP TABLE IF EXISTS stats_devis;
 

@@ -56,6 +56,15 @@ function addCarport($id)
         </div>
     </div>
 
+    <div class="section sectionCarport"> <!-- type -->
+        <div class="inputField">
+            <label for="">Type :</label>
+            <select name="type<?php echo $id ?>" >
+                <option value="Adossé">Adossé</option>
+                <option value="Autoporté">Autoporté</option>
+            </select>
+        </div>
+    </div>
 
     <?php
     return ob_get_clean();

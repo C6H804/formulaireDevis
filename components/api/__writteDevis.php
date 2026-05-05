@@ -241,6 +241,7 @@ function getCarport($p) {
     $color = manageColor($p['color']);
     $r .= "- Couleur : " . $color . " | finitions " . $p['finition'] . " \n";
     $r .= "- Options : " . $p['options'] . " \n";
+    $r .= "- Type : " . $p['typeCarport'] . " \n";
     return $r;
 }
 

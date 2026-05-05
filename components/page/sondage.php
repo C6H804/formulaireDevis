@@ -30,7 +30,9 @@ function writteSondageRandom()
             Bégaar</label></div>',
         '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageRouteLescar"
             id="chkSondageRouteLescar" value="on"></input><label for="chkSondageRouteLescar">Sur la route, en passant devant l\'agence à
-            Lescar</label></div>'
+            Lescar</label></div>',
+        '<div class="inputField"><input type="checkbox" class="chkSondage" name="chkSondageFoire"
+            id="chkSondageFoire" value="on"></input><label for="chkSondageFoire">Pendant une foire</label></div>',
     ];
 
     $r = '';

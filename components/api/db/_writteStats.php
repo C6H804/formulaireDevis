@@ -58,7 +58,8 @@ function addSondageStats($data, $pdo, $idDevisStats) {
         "Sur la route, en passant devant l'agence à Bégaar" => "10",
         "Sur la route, en passant devant l'agence à Lescar" => "11",
         "Autre" => "12",
-        "Aucune réponse" =>"13"
+        "Aucune réponse" =>"13",
+        "Pendant une foire" => "14"
     ];
     $stmt = "INSERT INTO stats_sondage (id_sondage_Type, id_devis) VALUES ";
     foreach ($data["sondage"] as $s) {

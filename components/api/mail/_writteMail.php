@@ -241,6 +241,7 @@ function getCarportM($p) {
     echo "<div style='margin-top:5px;'><b>Longueur :</b> " . dm($p["longueur"] ?? '') . " cm</div>";
     echo "<div style='margin-top:5px;'><b>Largeur :</b> " . dm($p["largeur"] ?? '') . " cm</div>";
     echo "<div style='margin-top:5px;'><b>Hauteur :</b> " . dm($p["hauteur"] ?? '') . " cm</div>";
+    echo "<div style='margin-top:5px;'><b>Type :</b> " . dm($p["typeCarport"] ?? '') . "</div>";
     echo "</div>";
 
     return ob_get_clean();

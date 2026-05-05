@@ -534,6 +534,7 @@ function getDataFromCarport($id, $data)
 
     $finition = sanitize($data['finition' . $id] ?? null);
     $options = sanitize($data['options' . $id] ?? null, ['Aucune', 'LED']);
+    $typeCarport = sanitize($data["type" . $id] ?? null, ["Adossé", "Autoporté"]);
 
     $result = [
         "type" => "Carport",
@@ -542,7 +543,8 @@ function getDataFromCarport($id, $data)
         "longueur" => $longueur === null ? "" : $longueur,
         "color" => $color === null ? "" : $color,
         "finition" => $finition === null ? "" : $finition,
-        "options" => $options === null ? "" : $options
+        "options" => $options === null ? "" : $options,
+        "typeCarport" => $typeCarport === null ? "" : $typeCarport
     ];
     return $result;
 }
