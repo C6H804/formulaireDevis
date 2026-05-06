@@ -182,6 +182,7 @@ function getSondage($data)
     $publiciteExterieure = sanitize($data['chkSondagePubliciteExterieure'] ?? null, ['on', null]);
     $routeBegaar = sanitize($data['chkSondageRouteBegaar'] ?? null, ['on', null]);
     $routeLescar = sanitize($data['chkSondageRouteLescar'] ?? null, ['on', null]);
+    $foire = sanitize($data['chkSondageFoire'] ?? null, ['on', null]);
     $autre = sanitize($data['chkSondageAutre'] ?? null, ['on', null]);
 
 
@@ -207,6 +208,8 @@ function getSondage($data)
         $result[] = "Sur la route, en passant devant l'agence à Bégaar";
     if ($routeLescar === 'on')
         $result[] = "Sur la route, en passant devant l'agence à Lescar";
+    if ($foire === 'on')
+        $result[] = "Pendant une foire";
     if ($autre === 'on')
         $result[] = 'Autre';
 
