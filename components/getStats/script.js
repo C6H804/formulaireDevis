@@ -29,6 +29,24 @@ const dataStats = [
         name: "projet par sondage et type de projet",
         preRequest: "SELECT pt.name AS project_type, st.name AS sondage_type, COUNT(CASE WHEN {{DATE_CONDITION}} THEN sp.id_project_Type END) AS nombre_recurences FROM projects_types pt LEFT JOIN stats_projects sp ON pt.id = sp.id_project_Type LEFT JOIN stats_sondage ss ON sp.id_devis = ss.id_devis LEFT JOIN sondage_types st ON ss.id_sondage_Type = st.id LEFT JOIN stats_devis ON ss.id_devis = stats_devis.id ",
         postRequest: "GROUP BY pt.name, st.name ORDER BY pt.name, st.name ASC;"
+    },
+    {
+        id:6,
+        name: "quantité de devis",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN stats_devis.id END) AS nombre_devis FROM stats_devis ",
+        postRequest: ";"
+    },
+    {
+        id:7,
+        name: "quantité de projets",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN stats_projects.id_project_Type END) AS nombre_projets FROM stats_projects LEFT JOIN stats_devis ON stats_projects.id_devis = stats_devis.id ",
+        postRequest: ";"
+    },
+    {
+        id:8,
+        name: "nouveaux clients par devis",
+        preRequest: "SELECT COUNT(CASE WHEN {{DATE_CONDITION}} THEN id END) AS 'nombre de clients' FROM stats_devis ",
+        postRequest: "GROUP BY new_client ORDER BY new_client ASC;"
     }
 ];
 
@@ -102,13 +120,34 @@ const getRequest = (id) => {
 }
 
 
+const copyToClipboard = (text) => {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+    // Fallback for non-secure contexts (e.g. http://) where clipboard API is unavailable.
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    try {
+        document.execCommand("copy");
+    } finally {
+        document.body.removeChild(textarea);
+    }
+    return Promise.resolve();
+};
+
 const sendRequest = () => {
     const id = document.getElementById("selectTypeStats").value;
     const request = getRequest(id);
-    navigator.clipboard.writeText(request).then(() => {
+    copyToClipboard(request).then(() => {
         document.getElementById("result").textContent = request;
     });
 };
 
 
 document.getElementById("generateRequest").addEventListener("click", sendRequest);
+
